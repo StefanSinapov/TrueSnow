@@ -1,5 +1,6 @@
 ﻿namespace TrueSnow.Data
 {
+    using System;
     using System.Data.Entity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -13,6 +14,8 @@
         }
 
         public IDbSet<Event> Events { get; set; }
+
+        public IDbSet<File> Files { get; set; }
 
         public IDbSet<Post> Posts { get; set; }
 

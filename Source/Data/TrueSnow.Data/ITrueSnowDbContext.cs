@@ -16,6 +16,8 @@
 
         IDbSet<Post> Posts { get; set; }
 
+        IDbSet<File> Files { get; set; }
+
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;

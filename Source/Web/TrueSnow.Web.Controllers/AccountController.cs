@@ -14,6 +14,9 @@ using Microsoft.Owin.Security;
 using TrueSnow.Data;
 using TrueSnow.Data.Models;
 using TrueSnow.Web.Models;
+using System.IO;
+using System.Collections.Generic;
+using TrueSnow.Data.Services.Contracts;
 
 namespace TrueSnow.Web.Controllers
 {
@@ -22,15 +25,17 @@ namespace TrueSnow.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IFilesService filesService;
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IFilesService filesService)
         {
-            UserManager = userManager;
-            SignInManager = signInManager;
+            this.UserManager = userManager;
+            this.SignInManager = signInManager;
+            this.filesService = filesService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -152,12 +157,37 @@ namespace TrueSnow.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
+                var user = new User
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName
+                };
+
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    var avatar = new Data.Models.File
+                    {
+                        FileName = Path.GetFileName(upload.FileName),
+                        FileType = FileType.Avatar,
+                        ContentType = upload.ContentType
+                    };
+
+                    using (var reader = new BinaryReader(upload.InputStream))
+                    {
+                        avatar.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+
+                    user.Files = new List<Data.Models.File> { avatar };
+                }
+
                 var result = await UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -167,9 +197,10 @@ namespace TrueSnow.Web.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    
                     return RedirectToAction("Index", "Home");
                 }
+
                 AddErrors(result);
             }
 

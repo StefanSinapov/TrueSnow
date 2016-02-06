@@ -99,11 +99,18 @@
   <ItemGroup>
     <Compile Include="AccountViewModels.cs" />
     <Compile Include="ManageViewModels.cs" />
+    <Compile Include="ProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\TrueSnow.Data.Models\TrueSnow.Data.Models.csproj">
+      <Project>{3c8217b5-1fe1-4587-9b00-7122d6c12746}</Project>
+      <Name>TrueSnow.Data.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

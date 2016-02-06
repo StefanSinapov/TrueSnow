@@ -123,8 +123,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountController.cs" />
+    <Compile Include="EventsController.cs" />
+    <Compile Include="FileController.cs" />
     <Compile Include="HomeController.cs" />
     <Compile Include="ManageController.cs" />
+    <Compile Include="PostsController.cs" />
+    <Compile Include="ProfileController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +139,10 @@
     <ProjectReference Include="..\..\Data\TrueSnow.Data.Models\TrueSnow.Data.Models.csproj">
       <Project>{3c8217b5-1fe1-4587-9b00-7122d6c12746}</Project>
       <Name>TrueSnow.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\TrueSnow.Data.Services\TrueSnow.Data.Services.csproj">
+      <Project>{2c9f9640-1cc1-46db-a594-557e4a3aa607}</Project>
+      <Name>TrueSnow.Data.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\TrueSnow.Data\TrueSnow.Data.csproj">
       <Project>{6bc1979b-c594-490f-950b-0bea0ee6c783}</Project>

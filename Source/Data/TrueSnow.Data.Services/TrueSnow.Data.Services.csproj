@@ -40,8 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IFilesService.cs" />
+    <Compile Include="Contracts\IPostsService.cs" />
     <Compile Include="Contracts\IService.cs" />
+    <Compile Include="FilesService.cs" />
+    <Compile Include="PostsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TrueSnow.Data.Models\TrueSnow.Data.Models.csproj">
+      <Project>{3c8217b5-1fe1-4587-9b00-7122d6c12746}</Project>
+      <Name>TrueSnow.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrueSnow.Data\TrueSnow.Data.csproj">
+      <Project>{6bc1979b-c594-490f-950b-0bea0ee6c783}</Project>
+      <Name>TrueSnow.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
