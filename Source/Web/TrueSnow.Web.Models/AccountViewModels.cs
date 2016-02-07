@@ -73,6 +73,10 @@ namespace TrueSnow.Web.Models
         public string LastName { get; set; }
 
         [Required]
+        [Display(Name = "Username")]
+        public string ScreenName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

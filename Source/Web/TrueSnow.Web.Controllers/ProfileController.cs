@@ -36,6 +36,7 @@
             var currentUser = UserManager.FindById(userId);
             var model = new ProfileViewModel
             {
+                ScreenName = currentUser.ScreenName,
                 FirstName = currentUser.FirstName,
                 LastName = currentUser.LastName,
                 Files = currentUser.Files

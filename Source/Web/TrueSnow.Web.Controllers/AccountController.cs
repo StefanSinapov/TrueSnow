@@ -17,6 +17,7 @@ using TrueSnow.Web.Models;
 using System.IO;
 using System.Collections.Generic;
 using TrueSnow.Data.Services.Contracts;
+using TrueSnow.Web.Infrastructure;
 
 namespace TrueSnow.Web.Controllers
 {
@@ -164,6 +165,7 @@ namespace TrueSnow.Web.Controllers
                 var user = new User
                 {
                     UserName = model.Email,
+                    ScreenName = model.ScreenName,
                     Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName
@@ -182,11 +184,20 @@ namespace TrueSnow.Web.Controllers
                     {
                         avatar.Content = reader.ReadBytes(upload.ContentLength);
                     }
-
+                   
                     user.Files = new List<Data.Models.File> { avatar };
                 }
-
+                
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+                if (user.Email == "biser.sirakov@gmail.com")
+                {
+                    result = await UserManager.AddToRoleAsync(user.Id, "Admin");
+                }
+                else
+                {
+                    result = await UserManager.AddToRoleAsync(user.Id, "User");
+                }
 
                 if (result.Succeeded)
                 {
@@ -560,10 +571,10 @@ public class ApplicationUserManager : UserManager<User>
         manager.PasswordValidator = new PasswordValidator
         {
             RequiredLength = 6,
-            RequireNonLetterOrDigit = true,
-            RequireDigit = true,
-            RequireLowercase = true,
-            RequireUppercase = true,
+            RequireNonLetterOrDigit = false,
+            RequireDigit = false,
+            RequireLowercase = false,
+            RequireUppercase = false,
         };
 
         // Configure user lockout defaults

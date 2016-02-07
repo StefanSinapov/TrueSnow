@@ -148,6 +148,10 @@
       <Project>{6bc1979b-c594-490f-950b-0bea0ee6c783}</Project>
       <Name>TrueSnow.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TrueSnow.Web.Infrastructure\TrueSnow.Web.Infrastructure.csproj">
+      <Project>{e65fdfff-baeb-4ccd-9fca-6c5aa95bdc88}</Project>
+      <Name>TrueSnow.Web.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TrueSnow.Web.Models\TrueSnow.Web.Models.csproj">
       <Project>{32f1d9fc-2f7b-454e-9667-c744dc21bb5f}</Project>
       <Name>TrueSnow.Web.Models</Name>
