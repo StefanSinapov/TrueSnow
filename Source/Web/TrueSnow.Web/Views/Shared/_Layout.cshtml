@@ -9,7 +9,8 @@
 
 </head>
 <body>
-    <div class="container">
+    <div class="main-container">
+        
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -31,13 +32,31 @@
         </div>
 
         <div class="container body-content">
+
             @RenderBody()
-            <footer class="text-center navbar-fixed-bottom">
-                <p>&copy; @DateTime.Now.Year - True Snow</p>
-                <a href="https://github.com/BiserSirakov/TrueSnow" target="_blank">Open Source</a>
-            </footer>
+
+            <!-- Add Post Modal -->
+            <div class="modal fade" id="addPostModal" tabindex="-1" role="dialog" aria-labelledby="addPostModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="addPostModalLabel">Add Post</h4>
+                        </div>
+                        <div class="modal-body">
+                            @{ Html.RenderAction("GetCreate", "Posts"); }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
+
+    <footer class="text-center">
+        <p>&copy; @DateTime.Now.Year - True Snow</p>
+        <a href="https://github.com/BiserSirakov/TrueSnow" target="_blank">Open Source</a>
+    </footer>
     
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

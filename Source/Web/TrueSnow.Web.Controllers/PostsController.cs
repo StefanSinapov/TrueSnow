@@ -9,6 +9,9 @@
     using Models.Posts;
     using System;
     using Data.Models;
+    using System.Web;
+    using System.IO;
+    using System.Collections.Generic;
     public class PostsController : Controller
     {
         private IPostsService posts;
@@ -30,7 +33,7 @@
                         Content = p.Content,
                         CreatedOn = p.CreatedOn,
                         Files = p.Files,
-                        CreatorId = p.CreatorId
+                        Creator = p.Creator
                     })
                     .ToList();
 
@@ -46,7 +49,7 @@
                         Content = p.Content,
                         CreatedOn = p.CreatedOn,
                         Files = p.Files,
-                        CreatorId = p.CreatorId
+                        Creator = p.Creator
                     })
                     .ToList();
 
@@ -54,7 +57,12 @@
             }
         }
 
-        public ActionResult Create(PostViewModel post)
+        public ActionResult GetCreate()
+        {
+            return PartialView("Create");
+        }
+
+        public ActionResult Create(PostViewModel post, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
@@ -62,15 +70,33 @@
                 {
                     Title = post.Title,
                     Content = post.Content,
-                    Files = post.Files,
-                    CreatedOn = DateTime.UtcNow,
+                    CreatedOn = DateTime.Now,
                     CreatorId = HttpContext.User.Identity.GetUserId()
                 };
 
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    var photo = new Data.Models.File
+                    {
+                        FileName = Path.GetFileName(upload.FileName),
+                        FileType = FileType.Photo,
+                        ContentType = upload.ContentType
+                    };
+
+                    using (var reader = new BinaryReader(upload.InputStream))
+                    {
+                        photo.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+
+                    postToAdd.Files = new List<Data.Models.File> { photo };
+                }
+
                 this.posts.Add(postToAdd);
+
+                return RedirectToAction("Index", "Home");
             }
 
-            return View(post);
+            return RedirectToAction("Index", "Home");
         }
     }
 }
