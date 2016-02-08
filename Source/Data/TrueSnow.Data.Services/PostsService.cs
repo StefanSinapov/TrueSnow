@@ -1,6 +1,7 @@
 ﻿namespace TrueSnow.Data.Services
 {
     using System.Linq;
+
     using TrueSnow.Data.Models;
     using TrueSnow.Data.Repositories;
     using TrueSnow.Data.Services.Contracts;
@@ -19,6 +20,20 @@
             return this.posts
                 .All()
                 .OrderBy(p => p.CreatedOn);
+        }
+
+        public IQueryable<Post> GetByUserId(string id)
+        {
+            return this.posts
+                .All()
+                .Where(p => p.CreatorId == id)
+                .OrderBy(p => p.CreatedOn);
+        }
+
+        public void Add(Post postToAdd)
+        {
+            this.posts.Add(postToAdd);
+            this.posts.SaveChanges();
         }
     }
 }

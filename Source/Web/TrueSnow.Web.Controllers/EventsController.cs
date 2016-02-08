@@ -1,5 +1,6 @@
 ﻿namespace TrueSnow.Web.Controllers
 {
+    using Models.Events;
     using System.Data.Entity;
     using System.Linq;
     using System.Net;
@@ -14,7 +15,14 @@
         // GET: Events
         public ActionResult Index()
         {
-            var events = db.Events.Include(e => e.Creator);
+            var events = db.Events
+                .Include(e => e.Creator)
+                .Select(e => new EventViewModel
+                {
+                    Title = e.Title,
+                    Description = e.Description
+                });
+            
             return View(events.ToList());
         }
 

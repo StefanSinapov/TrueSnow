@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -10,14 +15,11 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using SendGrid;
 
 using TrueSnow.Data;
 using TrueSnow.Data.Models;
-using TrueSnow.Web.Models;
-using System.IO;
-using System.Collections.Generic;
-using TrueSnow.Data.Services.Contracts;
-using TrueSnow.Web.Infrastructure;
+using TrueSnow.Web.Models.Users;
 
 namespace TrueSnow.Web.Controllers
 {
@@ -26,17 +28,15 @@ namespace TrueSnow.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private IFilesService filesService;
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IFilesService filesService)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             this.UserManager = userManager;
             this.SignInManager = signInManager;
-            this.filesService = filesService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -184,10 +184,10 @@ namespace TrueSnow.Web.Controllers
                     {
                         avatar.Content = reader.ReadBytes(upload.ContentLength);
                     }
-                   
+
                     user.Files = new List<Data.Models.File> { avatar };
                 }
-                
+
                 var result = await UserManager.CreateAsync(user, model.Password);
 
                 if (user.Email == "biser.sirakov@gmail.com")
@@ -208,7 +208,7 @@ namespace TrueSnow.Web.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                    
+
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -533,10 +533,38 @@ namespace TrueSnow.Web.Controllers
 
 public class EmailService : IIdentityMessageService
 {
-    public Task SendAsync(IdentityMessage message)
+    public async Task SendAsync(IdentityMessage message)
     {
-        // Plug in your email service here to send an email.
-        return Task.FromResult(0);
+        await configSendGridasync(message);
+    }
+
+    private async Task configSendGridasync(IdentityMessage message)
+    {
+        var myMessage = new SendGridMessage();
+        myMessage.AddTo(message.Destination);
+        myMessage.From = new System.Net.Mail.MailAddress("biser.sirakov@gmail.com", "Biser Sirakov");
+        myMessage.Subject = message.Subject;
+        myMessage.Text = message.Body;
+        myMessage.Html = message.Body;
+
+        var credentials = new NetworkCredential(
+                   ConfigurationManager.AppSettings["mailAccount"],
+                   ConfigurationManager.AppSettings["mailPassword"]
+                   );
+
+        // Create a Web transport for sending email.
+        var transportWeb = new Web(credentials);
+
+        // Send the email.
+        if (transportWeb != null)
+        {
+            await transportWeb.DeliverAsync(myMessage);
+        }
+        else
+        {
+            Trace.TraceError("Failed to create Web transport.");
+            await Task.FromResult(0);
+        }
     }
 }
 

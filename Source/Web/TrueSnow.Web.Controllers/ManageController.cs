@@ -7,7 +7,7 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
-    using TrueSnow.Web.Models;
+    using TrueSnow.Web.Models.Users;
 
     [Authorize]
     public class ManageController : Controller

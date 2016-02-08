@@ -97,9 +97,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountViewModels.cs" />
-    <Compile Include="ManageViewModels.cs" />
-    <Compile Include="ProfileViewModel.cs" />
+    <Compile Include="Events\EventViewModel.cs" />
+    <Compile Include="Posts\PostViewModel.cs" />
+    <Compile Include="Users\AccountViewModels.cs" />
+    <Compile Include="BaseViewModel.cs" />
+    <Compile Include="Users\ManageViewModels.cs" />
+    <Compile Include="Users\ProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +115,7 @@
       <Name>TrueSnow.Data.Models</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

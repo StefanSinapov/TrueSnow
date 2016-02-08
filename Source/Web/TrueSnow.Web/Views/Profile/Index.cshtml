@@ -1,5 +1,5 @@
 ﻿@using TrueSnow.Data.Models
-@model TrueSnow.Web.Models.ProfileViewModel
+@model TrueSnow.Web.Models.Users.ProfileViewModel
 
 @{
     ViewBag.Title = "Profile";
@@ -10,6 +10,7 @@
 <div>
     <h4>User</h4>
     <hr />
+    @Html.ActionLink("Manage profile", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.ScreenName)
@@ -46,4 +47,20 @@
         }
 
     </dl>
+
+    <!-- modal placeholder-->
+    <div id='myModal' class='modal fade in'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id='myModalContent'></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-offset-2 col-md-10" id="replacetarget">
+            @{ Html.RenderAction("Index", "Posts", new { id = Model.Id }); }
+        </div>
+    </div>
+
 </div>

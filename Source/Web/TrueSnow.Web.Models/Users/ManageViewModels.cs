@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace TrueSnow.Web.Models
+namespace TrueSnow.Web.Models.Users
 {
     public class IndexViewModel
     {

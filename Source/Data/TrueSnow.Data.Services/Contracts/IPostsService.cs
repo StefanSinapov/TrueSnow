@@ -6,5 +6,9 @@
     public interface IPostsService : IService
     {
         IQueryable<Post> GetAll();
+
+        IQueryable<Post> GetByUserId(string id);
+
+        void Add(Post postToAdd);
     }
 }

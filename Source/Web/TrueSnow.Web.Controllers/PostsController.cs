@@ -1,132 +1,76 @@
 ﻿namespace TrueSnow.Web.Controllers
 {
-    using Microsoft.AspNet.Identity;
-    using System;
-    using System.Data.Entity;
     using System.Linq;
-    using System.Net;
     using System.Web.Mvc;
-    using TrueSnow.Data;
-    using TrueSnow.Data.Models;
 
+    using Microsoft.AspNet.Identity;
+
+    using Data.Services.Contracts;
+    using Models.Posts;
+    using System;
+    using Data.Models;
     public class PostsController : Controller
     {
-        private TrueSnowDbContext db = new TrueSnowDbContext();
+        private IPostsService posts;
 
-        // GET: Posts
-        public ActionResult Index()
+        public PostsController(IPostsService posts)
         {
-            var posts = db.Posts.Include(p => p.Creator);
-            return View(posts.ToList());
+            this.posts = posts;
         }
 
-        // GET: Posts/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Index(string id)
         {
-            if (id == null)
+            if (string.IsNullOrWhiteSpace(id))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var postsViewModel = this.posts
+                    .GetAll()
+                    .Select(p => new PostViewModel
+                    {
+                        Title = p.Title,
+                        Content = p.Content,
+                        CreatedOn = p.CreatedOn,
+                        Files = p.Files,
+                        CreatorId = p.CreatorId
+                    })
+                    .ToList();
+
+                return PartialView("Index", postsViewModel);
             }
-            Post post = db.Posts.Find(id);
-            if (post == null)
+            else
             {
-                return HttpNotFound();
+                var postsViewModel = this.posts
+                    .GetByUserId(id)
+                    .Select(p => new PostViewModel
+                    {
+                        Title = p.Title,
+                        Content = p.Content,
+                        CreatedOn = p.CreatedOn,
+                        Files = p.Files,
+                        CreatorId = p.CreatorId
+                    })
+                    .ToList();
+
+                return PartialView("Index", postsViewModel);
             }
-            return View(post);
         }
 
-        // GET: Posts/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Posts/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Content")] Post post)
+        public ActionResult Create(PostViewModel post)
         {
             if (ModelState.IsValid)
             {
-                post.CreatedOn = DateTime.UtcNow;
-                post.CreatorId = HttpContext.User.Identity.GetUserId();
-                db.Posts.Add(post);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var postToAdd = new Post
+                {
+                    Title = post.Title,
+                    Content = post.Content,
+                    Files = post.Files,
+                    CreatedOn = DateTime.UtcNow,
+                    CreatorId = HttpContext.User.Identity.GetUserId()
+                };
+
+                this.posts.Add(postToAdd);
             }
 
-            ViewBag.CreatorId = new SelectList(db.Users, "Id", "FirstName", post.CreatorId);
             return View(post);
-        }
-
-        // GET: Posts/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Post post = db.Posts.Find(id);
-            if (post == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.CreatorId = new SelectList(db.Users, "Id", "FirstName", post.CreatorId);
-            return View(post);
-        }
-
-        // POST: Posts/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Content,CreatedOn,CreatorId")] Post post)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(post).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.CreatorId = new SelectList(db.Users, "Id", "FirstName", post.CreatorId);
-            return View(post);
-        }
-
-        // GET: Posts/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Post post = db.Posts.Find(id);
-            if (post == null)
-            {
-                return HttpNotFound();
-            }
-            return View(post);
-        }
-
-        // POST: Posts/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Post post = db.Posts.Find(id);
-            db.Posts.Remove(post);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
