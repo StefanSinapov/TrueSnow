@@ -23,8 +23,8 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Posts", "Index", "Posts")</li>
-                        <li>@Html.ActionLink("Events", "Index", "Events")</li>
+                        @*<li>@Html.ActionLink("Posts", "Index", "Posts")</li>
+                        <li>@Html.ActionLink("Events", "Index", "Events")</li>*@
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
@@ -61,5 +61,13 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script>
+        $('#Photo').fileinput({
+            language: 'bg',
+            uploadUrl: 'http://localhost:60702/Posts/Create',
+            allowedFileExtensions: ['jpg', 'png', 'gif'],
+        });
+    </script>
 </body>
 </html>

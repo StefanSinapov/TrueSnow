@@ -20,13 +20,16 @@ namespace TrueSnow.Web
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                      "~/Scripts/fileinput.min.js",
+                      //"~/Scripts/fileinput_locale_bg.js",
                       "~/Scripts/bootstrap.min.js",
                       "~/Scripts/respond.js",
                       "~/Scripts/custom.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/custom.min.css"));
+                      "~/Content/custom.min.css",
+                      "~/Content/fileinput.min.css"));
         }
     }
 }

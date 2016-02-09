@@ -5,20 +5,20 @@
     ViewBag.Title = "Profile";
 }
 
-<h2>Profile</h2>
+@*<h2>Profile</h2>    
 
 <div>
     <h4>User</h4>
     <hr />
     @Html.ActionLink("Manage profile", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ScreenName)
-        </dt>
+        <dt>*@
+            @*@Html.DisplayNameFor(model => model.ScreenName)*@
+        @*</dt>*@
 
-        <dd>
+        @*<dd>*@
             @Html.DisplayFor(model => model.ScreenName)
-        </dd>
+        @*</dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -41,17 +41,12 @@
             <dt>
                 Avatar
             </dt>
-            <dd>
-                <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).Id" alt="avatar" />
-            </dd>
+            <dd>*@
+                <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).Id" alt="avatar" class="img-responsive img-circle" style="width:300px;"/>
+            @*@</dd>
         }
 
     </dl>
 
-    @*<div class="row">
-        <div class="col-md-offset-2 col-md-10" id="replacetarget">
-            @{ Html.RenderAction("Index", "Posts", new { id = Model.Id }); }
-        </div>
-    </div>*@
 
-</div>
+</div>*@
