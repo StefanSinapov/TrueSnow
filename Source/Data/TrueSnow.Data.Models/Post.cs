@@ -1,10 +1,11 @@
 ﻿namespace TrueSnow.Data.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class Post
+    using Common.Models;
+
+    public class Post : BaseModel<int>
     {
         private ICollection<File> files;
 
@@ -13,16 +14,11 @@
             this.files = new HashSet<File>();
         }
 
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         public string Title { get; set; }
 
         [Required]
         public string Content { get; set; }
-
-        public DateTime CreatedOn { get; set; }
 
         public virtual ICollection<File> Files
         {

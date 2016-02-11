@@ -1,10 +1,11 @@
 ﻿namespace TrueSnow.Data.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class Event
+    using Common.Models;
+
+    public class Event : BaseModel<int>
     {
         private ICollection<User> attendants;
 
@@ -13,15 +14,10 @@
             this.attendants = new HashSet<User>();
         }
 
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         public string Title { get; set; }
 
         public string Description { get; set; }
-
-        public DateTime CreatedOn { get; set; }
 
         public string CreatorId { get; set; }
 

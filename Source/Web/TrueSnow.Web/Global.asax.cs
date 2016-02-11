@@ -4,7 +4,7 @@
     using System.Web.Optimization;
     using System.Web.Routing;
 
-    using TrueSnow.Web.App_Start;
+    using TrueSnow.Web.Config;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -15,13 +15,15 @@
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());
 
+            AutofacConfig.RegisterAutofac();
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            // TODO: automapper config
-
+            //var autoMapperConfig = new AutoMapperConfig();
+            //autoMapperConfig.Execute(Assembly.GetExecutingAssembly());
         }
     }
 }

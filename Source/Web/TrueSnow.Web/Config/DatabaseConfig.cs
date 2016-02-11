@@ -1,4 +1,4 @@
-﻿namespace TrueSnow.Web.App_Start
+﻿namespace TrueSnow.Web.Config
 {
     using System.Data.Entity;
 

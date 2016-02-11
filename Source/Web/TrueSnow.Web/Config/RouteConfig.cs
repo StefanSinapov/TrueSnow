@@ -1,4 +1,4 @@
-﻿namespace TrueSnow.Web
+﻿namespace TrueSnow.Web.Config
 {
     using System.Web.Mvc;
     using System.Web.Routing;

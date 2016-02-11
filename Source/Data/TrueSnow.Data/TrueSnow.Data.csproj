@@ -57,10 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ITrueSnowDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Repositories\GenericRepository.cs" />
-    <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="TrueSnowDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -69,6 +66,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TrueSnow.Data.Common\TrueSnow.Data.Common.csproj">
+      <Project>{3f2dfbbe-1e54-4de3-821b-3824517cda0a}</Project>
+      <Name>TrueSnow.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TrueSnow.Data.Models\TrueSnow.Data.Models.csproj">
       <Project>{3c8217b5-1fe1-4587-9b00-7122d6c12746}</Project>
       <Name>TrueSnow.Data.Models</Name>

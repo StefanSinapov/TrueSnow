@@ -3,23 +3,22 @@
     using System.Web.Mvc;
 
     using Microsoft.AspNet.Identity;
-
-    using Data.Services.Contracts;
     using Models.Users;
 
-    public class ProfileController : Controller
+    public class ProfileController : BaseController
     {
-        private IUsersService users;
+        private ApplicationUserManager userManager;
 
-        public ProfileController(IUsersService users)
+        public ProfileController(ApplicationUserManager userManager)
         {
-            this.users = users;
+            this.userManager = userManager;
         }
 
         public ActionResult Index()
         {
             var userId = HttpContext.User.Identity.GetUserId();
-            var currentUser = this.users.GetById(userId);
+            var currentUser = this.userManager.FindById(userId);
+
             var model = new ProfileViewModel
             {
                 Id = currentUser.Id,
@@ -35,7 +34,8 @@
         public ActionResult GetUser()
         {
             var userId = HttpContext.User.Identity.GetUserId();
-            var currentUser = this.users.GetById(userId);
+            var currentUser = this.userManager.FindById(userId);
+
             var model = new ProfileViewModel
             {
                 Id = currentUser.Id,

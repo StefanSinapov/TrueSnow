@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using TrueSnow.Data.Services.Contracts;
-
-namespace TrueSnow.Web.Views
+﻿namespace TrueSnow.Web.Controllers
 {
-    public class FileController : Controller
+    using System.Web.Mvc;
+
+    using TrueSnow.Services.Data.Contracts;
+
+    public class FileController : BaseController
     {
-        private IFilesService files;
+        private readonly IFilesService files;
 
         public FileController(IFilesService files)
         {

@@ -2,11 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class File
-    {
-        [Key]
-        public int Id { get; set; }
+    using Common.Models;
 
+    public class File : BaseModel<int>
+    {
         [StringLength(255)]
         public string FileName { get; set; }
 

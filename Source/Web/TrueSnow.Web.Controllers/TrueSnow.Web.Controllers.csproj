@@ -154,17 +154,25 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\TrueSnow.Data.Common\TrueSnow.Data.Common.csproj">
+      <Project>{3f2dfbbe-1e54-4de3-821b-3824517cda0a}</Project>
+      <Name>TrueSnow.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\TrueSnow.Data.Models\TrueSnow.Data.Models.csproj">
       <Project>{3c8217b5-1fe1-4587-9b00-7122d6c12746}</Project>
       <Name>TrueSnow.Data.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\TrueSnow.Data.Services\TrueSnow.Data.Services.csproj">
-      <Project>{2c9f9640-1cc1-46db-a594-557e4a3aa607}</Project>
-      <Name>TrueSnow.Data.Services</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\TrueSnow.Data\TrueSnow.Data.csproj">
       <Project>{6bc1979b-c594-490f-950b-0bea0ee6c783}</Project>
       <Name>TrueSnow.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\TrueSnow.Services.Data\TrueSnow.Services.Data.csproj">
+      <Project>{fd393a4b-f93d-4022-a4fd-320c35b4ca5f}</Project>
+      <Name>TrueSnow.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\TrueSnow.Services.Web\TrueSnow.Services.Web.csproj">
+      <Project>{0c6a3a80-d9cc-438d-b596-33658639786d}</Project>
+      <Name>TrueSnow.Services.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\TrueSnow.Web.Infrastructure\TrueSnow.Web.Infrastructure.csproj">
       <Project>{e65fdfff-baeb-4ccd-9fca-6c5aa95bdc88}</Project>

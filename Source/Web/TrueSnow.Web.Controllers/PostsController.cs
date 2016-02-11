@@ -8,14 +8,13 @@
     using System.Web.Mvc;
 
     using Microsoft.AspNet.Identity;
-
-    using Data.Services.Contracts;
     using Data.Models;
     using Models.Posts;
+    using Services.Data.Contracts;
 
-    public class PostsController : Controller
+    public class PostsController : BaseController
     {
-        private IPostsService posts;
+        private readonly IPostsService posts;
 
         public PostsController(IPostsService posts)
         {
