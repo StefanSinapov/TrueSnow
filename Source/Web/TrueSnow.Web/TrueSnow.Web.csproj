@@ -209,11 +209,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\ApplicationSignInManager.cs" />
+    <Compile Include="Config\ApplicationUserManager.cs" />
     <Compile Include="Config\AutofacConfig.cs" />
     <Compile Include="Config\BundleConfig.cs" />
     <Compile Include="Config\DatabaseConfig.cs" />
+    <Compile Include="Config\EmailService.cs" />
     <Compile Include="Config\FilterConfig.cs" />
     <Compile Include="Config\RouteConfig.cs" />
+    <Compile Include="Config\SmsService.cs" />
     <Compile Include="Config\Startup.Auth.cs" />
     <Compile Include="Config\GlimpseSecurityPolicy.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -231,9 +235,24 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Events\EventViewModel.cs" />
     <Compile Include="ViewModels\Posts\PostViewModel.cs" />
-    <Compile Include="ViewModels\Users\AccountViewModels.cs" />
-    <Compile Include="ViewModels\Users\ManageViewModels.cs" />
+    <Compile Include="ViewModels\Users\AddPhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\Users\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModels\Users\ConfigureTwoFactorViewModel.cs" />
+    <Compile Include="ViewModels\Users\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="ViewModels\Users\ExternalLoginListViewModel.cs" />
+    <Compile Include="ViewModels\Users\FactorViewModel.cs" />
+    <Compile Include="ViewModels\Users\ForgotPasswordViewModel.cs" />
+    <Compile Include="ViewModels\Users\ForgotViewModel.cs" />
+    <Compile Include="ViewModels\Users\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Users\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Users\ManageLoginsViewModel.cs" />
     <Compile Include="ViewModels\Users\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\Users\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\Users\ResetPasswordViewModel.cs" />
+    <Compile Include="ViewModels\Users\SendCodeViewModel.cs" />
+    <Compile Include="ViewModels\Users\SetPasswordViewModel.cs" />
+    <Compile Include="ViewModels\Users\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\Users\VerifyPhoneNumberViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -312,6 +331,7 @@
     <Content Include="Views\Profile\GetUser.cshtml" />
     <Content Include="Views\Posts\ByUser.cshtml" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
+    <Content Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\TrueSnow.Data.Common\TrueSnow.Data.Common.csproj">

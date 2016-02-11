@@ -1,9 +1,9 @@
 namespace TrueSnow.Data.Migrations
 {
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using Models;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Models;
 
     public sealed class Configuration : DbMigrationsConfiguration<TrueSnowDbContext>
     {

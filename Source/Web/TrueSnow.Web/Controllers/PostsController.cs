@@ -35,12 +35,12 @@
                 })
                 .ToList();
 
-            return PartialView("Index", postsViewModel);
+            return this.PartialView("Index", postsViewModel);
         }
 
         public ActionResult ByUserId()
         {
-            var currentUserId = HttpContext.User.Identity.GetUserId();
+            var currentUserId = this.HttpContext.User.Identity.GetUserId();
 
             var postsViewModel = this.posts
                         .GetByUserId(currentUserId)
@@ -54,24 +54,24 @@
                         })
                         .ToList();
 
-            return PartialView("ByUser", postsViewModel);
+            return this.PartialView("ByUser", postsViewModel);
         }
 
         public ActionResult GetCreate()
         {
-            return PartialView("Create");
+            return this.PartialView("Create");
         }
-        
+
         public ActionResult Create(PostViewModel post, HttpPostedFileBase upload)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var postToAdd = new Post
                 {
                     Title = post.Title,
                     Content = post.Content,
                     CreatedOn = DateTime.Now,
-                    CreatorId = HttpContext.User.Identity.GetUserId()
+                    CreatorId = this.HttpContext.User.Identity.GetUserId()
                 };
 
                 if (upload != null && upload.ContentLength > 0)
@@ -93,10 +93,10 @@
 
                 this.posts.Add(postToAdd);
 
-                return Redirect(Request.RawUrl);
+                return this.Redirect(this.Request.RawUrl);
             }
 
-            return RedirectToAction("Index", "Home");
+            return this.RedirectToAction("Index", "Home");
         }
     }
 }

@@ -9,7 +9,7 @@
     {
         public static byte[] ResizeImage(byte[] byteArrayIn, int width, int height)
         {
-            Image image = byteArrayToImage(byteArrayIn);
+            Image image = ByteArrayToImage(byteArrayIn);
 
             var destRect = new Rectangle(0, 0, width, height);
             var destImage = new Bitmap(width, height);
@@ -31,17 +31,17 @@
                 }
             }
 
-            return imageToByteArray(destImage);
+            return ImageToByteArray(destImage);
         }
 
-        private static byte[] imageToByteArray(Image imageIn)
+        private static byte[] ImageToByteArray(Image imageIn)
         {
             MemoryStream ms = new MemoryStream();
             imageIn.Save(ms, ImageFormat.Gif);
             return ms.ToArray();
         }
 
-        private static Image byteArrayToImage(byte[] byteArrayIn)
+        private static Image ByteArrayToImage(byte[] byteArrayIn)
         {
             MemoryStream ms = new MemoryStream(byteArrayIn);
             Image returnImage = Image.FromStream(ms);

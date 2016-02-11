@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace TrueSnow.Web.Models.Users
+﻿namespace TrueSnow.Web.Models.Users
 {
+    using System.Collections.Generic;
+
     public class ProfileViewModel
     {
         public string Id { get; set; }

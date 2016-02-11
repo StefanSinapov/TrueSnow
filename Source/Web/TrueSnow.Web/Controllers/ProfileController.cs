@@ -6,10 +6,10 @@
     using Microsoft.AspNet.Identity;
     using Models.Users;
     using Microsoft.AspNet.Identity.Owin;
-
+    using Config;
     public class ProfileController : BaseController
     {
-        private ApplicationUserManager _userManager;
+        private ApplicationUserManager userManager;
 
         public ProfileController()
         {
@@ -24,18 +24,18 @@
         {
             get
             {
-                return this._userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return this.userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
 
             private set
             {
-                this._userManager = value;
+                this.userManager = value;
             }
         }
-        
+
         public ActionResult Index()
         {
-            var userId = HttpContext.User.Identity.GetUserId();
+            var userId = this.HttpContext.User.Identity.GetUserId();
             var currentUser = this.UserManager.FindById(userId);
 
             var model = new ProfileViewModel
@@ -47,12 +47,12 @@
                 Files = currentUser.Files
             };
 
-            return View(model);
+            return this.View(model);
         }
 
         public ActionResult GetUser()
         {
-            var userId = HttpContext.User.Identity.GetUserId();
+            var userId = this.HttpContext.User.Identity.GetUserId();
             var currentUser = this.UserManager.FindById(userId);
 
             var model = new ProfileViewModel
@@ -64,7 +64,7 @@
                 Files = currentUser.Files
             };
 
-            return PartialView("GetUser", model);
+            return this.PartialView("GetUser", model);
         }
     }
 }

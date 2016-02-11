@@ -17,7 +17,7 @@
         public ActionResult Index(int id)
         {
             var fileToRetrieve = this.files.GetById(id);
-            return File(fileToRetrieve.Content, fileToRetrieve.ContentType);
+            return this.File(fileToRetrieve.Content, fileToRetrieve.ContentType);
         }
     }
 }
