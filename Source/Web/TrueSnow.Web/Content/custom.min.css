@@ -1,4 +1,31 @@
-﻿html {
+﻿.a-footer:hover {
+    color: #4C90B7;
+}
+
+.btn-primary {
+    background-color: #4C90B7 !important;
+    border-color: #4C90B7 !important;
+}
+
+.jumbotron {
+    height: 400px;
+    margin-top: 15px !important;
+    /*background-image: url(Images/jbg.jpg)*/
+}
+
+.logo-container {
+    padding-top: 10px;
+    padding-left: 60px;
+}
+
+.logo-container2 {
+}
+
+.logo {
+    height: 40px;
+}
+
+html {
     position: relative;
 }
 
@@ -12,6 +39,7 @@
     margin-bottom: 10px;
     border-radius: 10px;
     height: 1400px;
+    padding: 30px;
 }
 
 body {

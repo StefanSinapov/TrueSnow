@@ -31,5 +31,21 @@
 
             return View(model);
         }
+
+        public ActionResult GetUser()
+        {
+            var userId = HttpContext.User.Identity.GetUserId();
+            var currentUser = this.users.GetById(userId);
+            var model = new ProfileViewModel
+            {
+                Id = currentUser.Id,
+                ScreenName = currentUser.ScreenName,
+                FirstName = currentUser.FirstName,
+                LastName = currentUser.LastName,
+                Files = currentUser.Files
+            };
+
+            return PartialView("GetUser", model);
+        }
     }
 }

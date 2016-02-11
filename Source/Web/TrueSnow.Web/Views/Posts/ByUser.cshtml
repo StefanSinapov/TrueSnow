@@ -1,24 +1,23 @@
-﻿@using TrueSnow.Data.Models
+﻿@using System.Globalization
+@using TrueSnow.Data.Models
 @model IEnumerable<TrueSnow.Web.Models.Posts.PostViewModel>
 
 <div class="list-group" style="width: 600px;">
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>
     @foreach (var item in Model)
     {
         <a href="#" class="list-group-item">
             <h4 class="list-group-item-heading">@item.Title</h4>
             <img src="~/File?id=@item.Files.First(f => f.FileType == FileType.Photo).Id" alt="photo" class="img-responsive img-rounded" />
             <p class="list-group-item-text">@item.Content</p>
-            <b>@item.Creator.FirstName @item.Creator.LastName</b>
-            <p data-utcdate="@item.CreatedOn.ToString("s", System.Globalization.CultureInfo.InvariantCulture)"></p>
+            <p>@item.CreatedOn.ToString("dd MMM HH:mm:ss", CultureInfo.CreateSpecificCulture("en-US"))</p>
         </a>
     }
 </div>
-
-<script type="text/javascript">
-    $(function () {
-        $('[data-utcdate]').each(function () {
-            var d = moment($(this).attr('data-utcdate'));
-            $(this).html(d.format());
-        });
-    });
-</script>

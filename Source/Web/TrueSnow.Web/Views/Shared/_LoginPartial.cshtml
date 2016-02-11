@@ -6,13 +6,9 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" data-toggle="modal" data-target="#addPostModal">Add Post</a></li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="profile" aria-expanded="false">@User.Identity.GetUserName()<span class="caret"></span></a>
-                <ul class="dropdown-menu" aria-labelledby="profile">
-                    <li>@Html.ActionLink("Profile", "Index", "Profile", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
-                    <li><a href="javascript:document.getElementById('logoutForm').submit()"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a></li>
-                </ul>
+            <li style="margin-top: 10px;"><button class="btn btn-info" data-toggle="modal" data-target="#addPostModal" style="height: 39px; background-color: #4C90B7; border-color: #4C90B7;"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> <b>Post</b></button></li>
+            <li class="dropdown" style="padding: 10px;">
+                @{ Html.RenderAction("GetUser", "Profile"); }
             </li>
         </ul>
     }

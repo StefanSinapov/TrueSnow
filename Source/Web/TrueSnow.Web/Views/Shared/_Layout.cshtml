@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="main-container">
-        
+
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -22,11 +22,22 @@
                     @Html.ActionLink("True Snow", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        @*<li>@Html.ActionLink("Posts", "Index", "Posts")</li>
-                        <li>@Html.ActionLink("Events", "Index", "Events")</li>*@
-                    </ul>
-                    @Html.Partial("_LoginPartial")
+                    <div class="row">
+                        <div class="col-md-3">
+                            <ul class="nav navbar-nav">
+                                @*<li>@Html.ActionLink("Posts", "Index", "Posts")</li>
+                                    <li>@Html.ActionLink("Events", "Index", "Events")</li>*@
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+                            <ul class="nav navbar-nav">
+                                <li class="logo-container"><img src="~/Content/Images/logo.png" alt="Logo" class="logo img-responsive img-circle" /></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4" style="margin-left: 62px">
+                            @Html.Partial("_LoginPartial")
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -41,7 +52,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="addPostModalLabel">Add Post</h4>
+                            <h4 class="modal-title" id="addPostModalLabel" style="text-align: center;">Add Post</h4>
                         </div>
                         <div class="modal-body">
                             @{ Html.RenderAction("GetCreate", "Posts"); }
@@ -55,18 +66,34 @@
 
     <footer class="text-center">
         <p>&copy; @DateTime.Now.Year - True Snow</p>
-        <a href="https://github.com/BiserSirakov/TrueSnow" target="_blank">Open Source</a>
+        <a href="https://github.com/BiserSirakov/TrueSnow" target="_blank" class="a-footer">Open Source</a>
     </footer>
-    
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
     <script>
-        $('#Photo').fileinput({
-            language: 'bg',
-            uploadUrl: 'http://localhost:60702/Posts/Create',
-            allowedFileExtensions: ['jpg', 'png', 'gif'],
+        $(document).ready(function () {
+            $(".active-text-date").each(function () {
+                var date = $(this).text();
+                var formatted = moment(date).calendar();
+                $(this).text(formatted);
+            });
+
+            $('#Photo').fileinput({
+                language: 'bg',
+                uploadUrl: 'http://localhost:60702/Posts/Create',
+                allowedFileExtensions: ['jpg', 'png', 'gif'],
+            });
+
+            $('[data-toggle="tooltip"]').tooltip()
+
+            $('[data-utcdate]').each(function () {
+                var d = moment($(this).attr('data-utcdate'));
+                $(this).html(d.format());
+            });
+
         });
     </script>
 </body>

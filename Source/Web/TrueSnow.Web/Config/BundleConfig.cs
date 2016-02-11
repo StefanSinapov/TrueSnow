@@ -24,7 +24,8 @@ namespace TrueSnow.Web
                       //"~/Scripts/fileinput_locale_bg.js",
                       "~/Scripts/bootstrap.min.js",
                       "~/Scripts/respond.js",
-                      "~/Scripts/custom.js"));
+                      "~/Scripts/custom.js",
+                      "~/Scripts/moment.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

@@ -1,4 +1,4 @@
-﻿@model TrueSnow.Web.Models.RegisterViewModel
+﻿@model TrueSnow.Web.Models.Users.RegisterViewModel
 @{
     ViewBag.Title = "Register";
 }
@@ -28,7 +28,9 @@
             </div>
 
             <div class="form-group">
+                @Html.LabelFor(m => m.ScreenName, new { @class = "col-md-4 control-label" })
                 <div class="col-md-8">
+                    @Html.TextBoxFor(m => m.ScreenName, new { @class = "form-control" })
                 </div>
             </div>
 
