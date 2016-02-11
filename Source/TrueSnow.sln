@@ -19,8 +19,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{BD
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2B55C741-1912-4105-907B-901B92A0C81E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{16BC822D-1182-495B-BD7F-CB11CDC48F88}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrueSnow.Data.Common", "Data\TrueSnow.Data.Common\TrueSnow.Data.Common.csproj", "{3F2DFBBE-1E54-4DE3-821B-3824517CDA0A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrueSnow.Services.Data", "Services\TrueSnow.Services.Data\TrueSnow.Services.Data.csproj", "{FD393A4B-F93D-4022-A4FD-320C35B4CA5F}"
@@ -32,8 +30,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrueSnow.Tests.Web.Controllers", "Tests\TrueSnow.Tests.Web.Controllers\TrueSnow.Tests.Web.Controllers.csproj", "{A0705623-8C92-45CF-8D01-2B413FA95F9B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrueSnow.Tests.Web.Routes", "Tests\TrueSnow.Tests.Web.Routes\TrueSnow.Tests.Web.Routes.csproj", "{7551FDF8-5CC3-4581-B4F8-EBFE6A0D04A1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crawler", "Tools\Crawler\Crawler.csproj", "{AA74B468-0FBE-446F-B8BF-EF411AD73D6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,10 +77,6 @@ Global
 		{7551FDF8-5CC3-4581-B4F8-EBFE6A0D04A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7551FDF8-5CC3-4581-B4F8-EBFE6A0D04A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7551FDF8-5CC3-4581-B4F8-EBFE6A0D04A1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AA74B468-0FBE-446F-B8BF-EF411AD73D6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA74B468-0FBE-446F-B8BF-EF411AD73D6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA74B468-0FBE-446F-B8BF-EF411AD73D6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA74B468-0FBE-446F-B8BF-EF411AD73D6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -100,6 +92,5 @@ Global
 		{CFE9B632-753B-453D-9C98-5FF27B18C878} = {2B55C741-1912-4105-907B-901B92A0C81E}
 		{A0705623-8C92-45CF-8D01-2B413FA95F9B} = {2B55C741-1912-4105-907B-901B92A0C81E}
 		{7551FDF8-5CC3-4581-B4F8-EBFE6A0D04A1} = {2B55C741-1912-4105-907B-901B92A0C81E}
-		{AA74B468-0FBE-446F-B8BF-EF411AD73D6E} = {16BC822D-1182-495B-BD7F-CB11CDC48F88}
 	EndGlobalSection
 EndGlobal

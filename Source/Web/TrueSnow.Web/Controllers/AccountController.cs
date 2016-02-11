@@ -13,7 +13,7 @@
     using TrueSnow.Data.Models;
     using TrueSnow.Web.Models.Users;
     using TrueSnow.Web.Config;
-
+    using System;
     [Authorize]
     public class AccountController : BaseController
     {
@@ -184,6 +184,7 @@
                         avatar.Content = reader.ReadBytes(upload.ContentLength);
                     }
 
+                    avatar.CreatedOn = DateTime.Now;
                     user.Files = new List<Data.Models.File> { avatar };
                 }
 

@@ -3,14 +3,13 @@ namespace TrueSnow.Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using Models;
 
     public sealed class Configuration : DbMigrationsConfiguration<TrueSnowDbContext>
     {
         public Configuration()
         {
-            this.AutomaticMigrationsEnabled = true;
-            this.AutomaticMigrationDataLossAllowed = true;
+            this.AutomaticMigrationsEnabled = false;
+            this.AutomaticMigrationDataLossAllowed = false;
         }
 
         protected override void Seed(TrueSnowDbContext context)

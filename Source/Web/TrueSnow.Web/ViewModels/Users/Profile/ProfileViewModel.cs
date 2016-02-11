@@ -2,7 +2,10 @@
 {
     using System.Collections.Generic;
 
-    public class ProfileViewModel
+    using Data.Models;
+    using Infrastructure.Mapping;
+
+    public class ProfileViewModel : IMapFrom<User>
     {
         public string Id { get; set; }
 
@@ -12,6 +15,6 @@
 
         public string LastName { get; set; }
 
-        public ICollection<Data.Models.File> Files { get; set; }
+        public ICollection<File> Files { get; set; }
     }
 }

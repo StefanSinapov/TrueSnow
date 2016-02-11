@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TrueSnow.Web.Models.Events
+﻿namespace TrueSnow.Web.Models.Events
 {
-    public class EventViewModel
+    using Data.Models;
+    using Infrastructure.Mapping;
+
+    public class EventViewModel : IMapFrom<Event>
     {
         public string Title { get; set; }
 

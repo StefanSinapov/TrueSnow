@@ -7,6 +7,7 @@
     using Models.Users;
     using Microsoft.AspNet.Identity.Owin;
     using Config;
+
     public class ProfileController : BaseController
     {
         private ApplicationUserManager userManager;
@@ -37,15 +38,10 @@
         {
             var userId = this.HttpContext.User.Identity.GetUserId();
             var currentUser = this.UserManager.FindById(userId);
-
-            var model = new ProfileViewModel
-            {
-                Id = currentUser.Id,
-                ScreenName = currentUser.ScreenName,
-                FirstName = currentUser.FirstName,
-                LastName = currentUser.LastName,
-                Files = currentUser.Files
-            };
+            var model = this.Cache.Get(
+                "currentUser",
+                () => this.Mapper.Map<ProfileViewModel>(currentUser),
+                30 * 60);
 
             return this.View(model);
         }
@@ -54,15 +50,10 @@
         {
             var userId = this.HttpContext.User.Identity.GetUserId();
             var currentUser = this.UserManager.FindById(userId);
-
-            var model = new ProfileViewModel
-            {
-                Id = currentUser.Id,
-                ScreenName = currentUser.ScreenName,
-                FirstName = currentUser.FirstName,
-                LastName = currentUser.LastName,
-                Files = currentUser.Files
-            };
+            var model = this.Cache.Get(
+                "currentUser",
+                () => this.Mapper.Map<ProfileViewModel>(currentUser),
+                30 * 60);
 
             return this.PartialView("GetUser", model);
         }

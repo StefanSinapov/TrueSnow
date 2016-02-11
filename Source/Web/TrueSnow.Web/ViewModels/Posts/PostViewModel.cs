@@ -5,8 +5,9 @@
     using System.ComponentModel.DataAnnotations;
 
     using Data.Models;
+    using Infrastructure.Mapping;
 
-    public class PostViewModel
+    public class PostViewModel : IMapFrom<Post>
     {
         [Required]
         [MinLength(3)]

@@ -11,6 +11,7 @@
     using Data.Models;
     using Models.Posts;
     using Services.Data.Contracts;
+    using Infrastructure.Mapping;
 
     public class PostsController : BaseController
     {
@@ -25,14 +26,7 @@
         {
             var postsViewModel = this.posts
                 .GetAll()
-                .Select(p => new PostViewModel
-                {
-                    Title = p.Title,
-                    Content = p.Content,
-                    CreatedOn = p.CreatedOn,
-                    Files = p.Files,
-                    Creator = p.Creator
-                })
+                .To<PostViewModel>()
                 .ToList();
 
             return this.PartialView("Index", postsViewModel);
@@ -43,16 +37,9 @@
             var currentUserId = this.HttpContext.User.Identity.GetUserId();
 
             var postsViewModel = this.posts
-                        .GetByUserId(currentUserId)
-                        .Select(p => new PostViewModel
-                        {
-                            Title = p.Title,
-                            Content = p.Content,
-                            CreatedOn = p.CreatedOn,
-                            Files = p.Files,
-                            Creator = p.Creator
-                        })
-                        .ToList();
+                .GetByUserId(currentUserId)
+                .To<PostViewModel>()
+                .ToList();
 
             return this.PartialView("ByUser", postsViewModel);
         }

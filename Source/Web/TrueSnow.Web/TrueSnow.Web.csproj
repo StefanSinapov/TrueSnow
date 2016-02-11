@@ -58,6 +58,10 @@
       <HintPath>..\..\packages\Autofac.Mvc5.3.3.4\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="AutoMapper, Version=4.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Glimpse.AspNet, Version=1.9.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Glimpse.AspNet.1.9.2\lib\net45\Glimpse.AspNet.dll</HintPath>
       <Private>True</Private>
@@ -235,24 +239,24 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Events\EventViewModel.cs" />
     <Compile Include="ViewModels\Posts\PostViewModel.cs" />
-    <Compile Include="ViewModels\Users\AddPhoneNumberViewModel.cs" />
-    <Compile Include="ViewModels\Users\ChangePasswordViewModel.cs" />
-    <Compile Include="ViewModels\Users\ConfigureTwoFactorViewModel.cs" />
-    <Compile Include="ViewModels\Users\ExternalLoginConfirmationViewModel.cs" />
-    <Compile Include="ViewModels\Users\ExternalLoginListViewModel.cs" />
-    <Compile Include="ViewModels\Users\FactorViewModel.cs" />
-    <Compile Include="ViewModels\Users\ForgotPasswordViewModel.cs" />
-    <Compile Include="ViewModels\Users\ForgotViewModel.cs" />
-    <Compile Include="ViewModels\Users\IndexViewModel.cs" />
-    <Compile Include="ViewModels\Users\LoginViewModel.cs" />
-    <Compile Include="ViewModels\Users\ManageLoginsViewModel.cs" />
-    <Compile Include="ViewModels\Users\ProfileViewModel.cs" />
-    <Compile Include="ViewModels\Users\RegisterViewModel.cs" />
-    <Compile Include="ViewModels\Users\ResetPasswordViewModel.cs" />
-    <Compile Include="ViewModels\Users\SendCodeViewModel.cs" />
-    <Compile Include="ViewModels\Users\SetPasswordViewModel.cs" />
-    <Compile Include="ViewModels\Users\VerifyCodeViewModel.cs" />
-    <Compile Include="ViewModels\Users\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\Users\Manage\AddPhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\Users\Manage\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModels\Users\Manage\ConfigureTwoFactorViewModel.cs" />
+    <Compile Include="ViewModels\Users\Account\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="ViewModels\Users\Account\ExternalLoginListViewModel.cs" />
+    <Compile Include="ViewModels\Users\Manage\FactorViewModel.cs" />
+    <Compile Include="ViewModels\Users\Account\ForgotPasswordViewModel.cs" />
+    <Compile Include="ViewModels\Users\Account\ForgotViewModel.cs" />
+    <Compile Include="ViewModels\Users\Manage\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Users\Account\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Users\Manage\ManageLoginsViewModel.cs" />
+    <Compile Include="ViewModels\Users\Profile\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\Users\Account\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\Users\Account\ResetPasswordViewModel.cs" />
+    <Compile Include="ViewModels\Users\Account\SendCodeViewModel.cs" />
+    <Compile Include="ViewModels\Users\Manage\SetPasswordViewModel.cs" />
+    <Compile Include="ViewModels\Users\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\Users\Manage\VerifyPhoneNumberViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -369,6 +373,7 @@
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
