@@ -61,8 +61,7 @@
         {
             return PartialView("Create");
         }
-
-        [ValidateAntiForgeryToken]
+        
         public ActionResult Create(PostViewModel post, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)

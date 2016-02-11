@@ -1,23 +1,42 @@
 ﻿namespace TrueSnow.Web.Controllers
 {
+    using System.Web;
     using System.Web.Mvc;
 
     using Microsoft.AspNet.Identity;
     using Models.Users;
+    using Microsoft.AspNet.Identity.Owin;
 
     public class ProfileController : BaseController
     {
-        private ApplicationUserManager userManager;
+        private ApplicationUserManager _userManager;
+
+        public ProfileController()
+        {
+        }
 
         public ProfileController(ApplicationUserManager userManager)
         {
-            this.userManager = userManager;
+            this.UserManager = userManager;
         }
 
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return this._userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+
+            private set
+            {
+                this._userManager = value;
+            }
+        }
+        
         public ActionResult Index()
         {
             var userId = HttpContext.User.Identity.GetUserId();
-            var currentUser = this.userManager.FindById(userId);
+            var currentUser = this.UserManager.FindById(userId);
 
             var model = new ProfileViewModel
             {
@@ -34,7 +53,7 @@
         public ActionResult GetUser()
         {
             var userId = HttpContext.User.Identity.GetUserId();
-            var currentUser = this.userManager.FindById(userId);
+            var currentUser = this.UserManager.FindById(userId);
 
             var model = new ProfileViewModel
             {

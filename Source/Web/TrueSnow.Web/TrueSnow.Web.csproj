@@ -216,12 +216,24 @@
     <Compile Include="Config\RouteConfig.cs" />
     <Compile Include="Config\Startup.Auth.cs" />
     <Compile Include="Config\GlimpseSecurityPolicy.cs" />
-    <Compile Include="GlimpseSecurityPolicy.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Events\EventViewModel.cs" />
+    <Compile Include="ViewModels\Posts\PostViewModel.cs" />
+    <Compile Include="ViewModels\Users\AccountViewModels.cs" />
+    <Compile Include="ViewModels\Users\ManageViewModels.cs" />
+    <Compile Include="ViewModels\Users\ProfileViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -322,17 +334,9 @@
       <Project>{0c6a3a80-d9cc-438d-b596-33658639786d}</Project>
       <Name>TrueSnow.Services.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TrueSnow.Web.Controllers\TrueSnow.Web.Controllers.csproj">
-      <Project>{ac5256ae-0487-4828-ab8c-375b4acf2f94}</Project>
-      <Name>TrueSnow.Web.Controllers</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TrueSnow.Web.Infrastructure\TrueSnow.Web.Infrastructure.csproj">
       <Project>{e65fdfff-baeb-4ccd-9fca-6c5aa95bdc88}</Project>
       <Name>TrueSnow.Web.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TrueSnow.Web.Models\TrueSnow.Web.Models.csproj">
-      <Project>{32f1d9fc-2f7b-454e-9667-c744dc21bb5f}</Project>
-      <Name>TrueSnow.Web.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
