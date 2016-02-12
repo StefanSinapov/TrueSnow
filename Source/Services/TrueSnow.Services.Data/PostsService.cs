@@ -19,7 +19,7 @@
         {
             return this.posts
                 .All()
-                .OrderBy(p => p.CreatedOn);
+                .OrderByDescending(p => p.CreatedOn);
         }
 
         public Post GetById(int id)
@@ -34,7 +34,7 @@
             return this.posts
                 .All()
                 .Where(p => p.CreatorId == id)
-                .OrderBy(p => p.CreatedOn);
+                .OrderByDescending(p => p.CreatedOn);
         }
 
         public void Add(Post postToAdd)

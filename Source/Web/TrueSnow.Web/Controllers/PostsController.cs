@@ -23,17 +23,17 @@
             this.posts = posts;
         }
 
-        //public ActionResult Index()
-        //{
-        //    var postsViewModel = this.posts
-        //        .GetAll()
-        //        .To<PostViewModel>()
-        //        .ToList();
+        public ActionResult Index()
+        {
+            var postsViewModel = this.posts
+                .GetAll()
+                .To<PostViewModel>()
+                .ToList();
 
-        //    return this.PartialView("Index", postsViewModel);
-        //}
+            return this.PartialView("Index", postsViewModel);
+        }
 
-        public ActionResult Index(int id)
+        public ActionResult ById(int id)
         {
             var post = this.posts.GetById(id);
             var model = this.Mapper.Map<PostViewModel>(post);

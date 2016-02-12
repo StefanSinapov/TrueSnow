@@ -12,7 +12,6 @@
     public class CommentsController : BaseController
     {
         private readonly ICommentsService comments;
-        private int? currentPostId;
 
         public CommentsController(ICommentsService comments)
         {
@@ -46,7 +45,6 @@
                     PostId = Convert.ToInt32(this.TempData["currentPostId"])
                 };
 
-                this.currentPostId = null;
                 this.comments.Add(commentToAdd);
 
                 return this.Redirect(this.Request.RawUrl);
