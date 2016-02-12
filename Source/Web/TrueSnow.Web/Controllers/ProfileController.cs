@@ -38,10 +38,7 @@
         {
             var userId = this.HttpContext.User.Identity.GetUserId();
             var currentUser = this.UserManager.FindById(userId);
-            var model = this.Cache.Get(
-                "currentUser",
-                () => this.Mapper.Map<ProfileViewModel>(currentUser),
-                30 * 60);
+            var model = this.Mapper.Map<ProfileViewModel>(currentUser);
 
             return this.View(model);
         }
@@ -50,10 +47,7 @@
         {
             var userId = this.HttpContext.User.Identity.GetUserId();
             var currentUser = this.UserManager.FindById(userId);
-            var model = this.Cache.Get(
-                "currentUser",
-                () => this.Mapper.Map<ProfileViewModel>(currentUser),
-                30 * 60);
+            var model = this.Mapper.Map<ProfileViewModel>(currentUser);
 
             return this.PartialView("GetUser", model);
         }

@@ -1,5 +1,6 @@
 ﻿namespace TrueSnow.Web.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -10,10 +11,11 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
+
     using TrueSnow.Data.Models;
     using TrueSnow.Web.Models.Users;
     using TrueSnow.Web.Config;
-    using System;
+
     [Authorize]
     public class AccountController : BaseController
     {

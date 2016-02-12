@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comment.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="File.cs" />
     <Compile Include="FileType.cs" />

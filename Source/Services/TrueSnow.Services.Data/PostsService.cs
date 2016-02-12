@@ -3,8 +3,8 @@
     using System.Linq;
 
     using Contracts;
-    using TrueSnow.Data.Models;
     using TrueSnow.Data.Common;
+    using TrueSnow.Data.Models;
 
     public class PostsService : IPostsService
     {
@@ -20,6 +20,13 @@
             return this.posts
                 .All()
                 .OrderBy(p => p.CreatedOn);
+        }
+
+        public Post GetById(int id)
+        {
+            return this.posts
+                .All()
+                .FirstOrDefault(p => p.Id == id);
         }
 
         public IQueryable<Post> GetByUserId(string id)

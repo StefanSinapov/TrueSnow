@@ -4,11 +4,10 @@
     using System.Data.Entity;
     using System.Linq;
 
-    using Common.Models;
-
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    using TrueSnow.Data.Models;
+    using Common.Models;
+    using Models;
 
     public class TrueSnowDbContext : IdentityDbContext<User>
     {
@@ -22,6 +21,8 @@
         public IDbSet<File> Files { get; set; }
 
         public IDbSet<Post> Posts { get; set; }
+
+        public IDbSet<Comment> Comments { get; set; }
 
         public static TrueSnowDbContext Create()
         {

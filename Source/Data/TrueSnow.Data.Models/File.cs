@@ -12,8 +12,10 @@
         [StringLength(100)]
         public string ContentType { get; set; }
 
+        [Required]
         public byte[] Content { get; set; }
 
+        [Required]
         public FileType FileType { get; set; }
 
         public string UserId { get; set; }

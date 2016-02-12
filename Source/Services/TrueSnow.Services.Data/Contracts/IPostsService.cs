@@ -8,6 +8,8 @@
     {
         IQueryable<Post> GetAll();
 
+        Post GetById(int id);
+
         IQueryable<Post> GetByUserId(string id);
 
         void Add(Post postToAdd);

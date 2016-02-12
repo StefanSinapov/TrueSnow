@@ -8,10 +8,11 @@
     using System.Web.Mvc;
 
     using Microsoft.AspNet.Identity;
+
     using Data.Models;
     using Models.Posts;
-    using Services.Data.Contracts;
     using Infrastructure.Mapping;
+    using Services.Data.Contracts;
 
     public class PostsController : BaseController
     {
@@ -22,14 +23,21 @@
             this.posts = posts;
         }
 
-        public ActionResult Index()
-        {
-            var postsViewModel = this.posts
-                .GetAll()
-                .To<PostViewModel>()
-                .ToList();
+        //public ActionResult Index()
+        //{
+        //    var postsViewModel = this.posts
+        //        .GetAll()
+        //        .To<PostViewModel>()
+        //        .ToList();
 
-            return this.PartialView("Index", postsViewModel);
+        //    return this.PartialView("Index", postsViewModel);
+        //}
+
+        public ActionResult Index(int id)
+        {
+            var post = this.posts.GetById(id);
+            var model = this.Mapper.Map<PostViewModel>(post);
+            return this.View("ById", model);
         }
 
         public ActionResult ByUserId()

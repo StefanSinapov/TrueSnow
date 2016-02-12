@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommentsService.cs" />
+    <Compile Include="Contracts\ICommentsService.cs" />
     <Compile Include="Contracts\IFilesService.cs" />
     <Compile Include="Contracts\IPostsService.cs" />
     <Compile Include="FilesService.cs" />

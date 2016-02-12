@@ -8,10 +8,12 @@
     public class Post : BaseModel<int>
     {
         private ICollection<File> files;
+        private ICollection<Comment> comments;
 
         public Post()
         {
             this.files = new HashSet<File>();
+            this.comments = new HashSet<Comment>();
         }
 
         [Required]
@@ -20,14 +22,20 @@
         [Required]
         public string Content { get; set; }
 
+        public string CreatorId { get; set; }
+
+        public virtual User Creator { get; set; }
+
         public virtual ICollection<File> Files
         {
             get { return this.files; }
             set { this.files = value; }
         }
 
-        public string CreatorId { get; set; }
-
-        public virtual User Creator { get; set; }
+        public virtual ICollection<Comment> Comments
+        {
+            get { return this.comments; }
+            set { this.comments = value; }
+        }
     }
 }

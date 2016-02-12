@@ -8,8 +8,8 @@
     {
         IQueryable<File> GetAll();
 
-        void Add(File fileToAdd);
-
         File GetById(int id);
+
+        void Add(File fileToAdd);
     }
 }

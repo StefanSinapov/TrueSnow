@@ -17,18 +17,20 @@
 
         public IQueryable<File> GetAll()
         {
-            return this.files.All();
+            return this.files
+                .All()
+                .OrderBy(f => f.CreatedOn);
+        }
+
+        public File GetById(int id)
+        {
+            return this.files.GetById(id);
         }
 
         public void Add(File fileToAdd)
         {
             this.files.Add(fileToAdd);
             this.files.Save();
-        }
-
-        public File GetById(int id)
-        {
-            return this.files.GetById(id);
         }
     }
 }

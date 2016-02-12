@@ -8,15 +8,18 @@
     public class Event : BaseModel<int>
     {
         private ICollection<User> attendants;
+        private ICollection<Comment> comments;
 
         public Event()
         {
             this.attendants = new HashSet<User>();
+            this.comments = new HashSet<Comment>();
         }
 
         [Required]
         public string Title { get; set; }
 
+        [Required]
         public string Description { get; set; }
 
         public string CreatorId { get; set; }
@@ -27,6 +30,12 @@
         {
             get { return this.attendants; }
             set { this.attendants = value; }
+        }
+
+        public virtual ICollection<Comment> Comments
+        {
+            get { return this.comments; }
+            set { this.comments = value; }
         }
     }
 }

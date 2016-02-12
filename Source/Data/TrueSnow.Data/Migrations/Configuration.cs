@@ -2,6 +2,7 @@ namespace TrueSnow.Data.Migrations
 {
     using System.Data.Entity.Migrations;
     using System.Linq;
+
     using Microsoft.AspNet.Identity.EntityFramework;
 
     public sealed class Configuration : DbMigrationsConfiguration<TrueSnowDbContext>
