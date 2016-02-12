@@ -5,14 +5,17 @@
     using Contracts;
     using TrueSnow.Data.Common;
     using TrueSnow.Data.Models;
+    using Web.Contracts;
 
     public class PostsService : IPostsService
     {
         private readonly IDbRepository<Post> posts;
+        private readonly IIdentifierProvider identifierProvider;
 
-        public PostsService(IDbRepository<Post> posts)
+        public PostsService(IDbRepository<Post> posts, IIdentifierProvider identifierProvider)
         {
             this.posts = posts;
+            this.identifierProvider = identifierProvider;
         }
 
         public IQueryable<Post> GetAll()
@@ -22,11 +25,11 @@
                 .OrderByDescending(p => p.CreatedOn);
         }
 
-        public Post GetById(int id)
+        public Post GetById(string id)
         {
-            return this.posts
-                .All()
-                .FirstOrDefault(p => p.Id == id);
+            var intId = this.identifierProvider.DecodeId(id);
+
+            return this.posts.GetById(intId);
         }
 
         public IQueryable<Post> GetByUserId(string id)

@@ -2,7 +2,7 @@
 @model TrueSnow.Web.Models.Users.ProfileViewModel
 
 <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="profile" aria-expanded="false" style="padding: 0;">
-    <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).Id" alt="avatar" class="img-responsive img-thumbnail" style="height: 40px;" data-toggle="tooltip" data-placement="bottom" title="Profile" data-original-title="Profile" />
+    <img src="~/File/@Model.Files.First(f => f.FileType == FileType.Avatar).Id" alt="avatar" class="img-responsive img-thumbnail" style="height: 40px;" data-toggle="tooltip" data-placement="bottom" title="Profile" data-original-title="Profile" />
 </a>
 <ul class="dropdown-menu" aria-labelledby="profile">
     <li><a href="/Profile"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> @Model.FirstName @Model.LastName</a></li>

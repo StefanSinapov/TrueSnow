@@ -3,9 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     using AutoMapper;
+
     using Data.Models;
     using Infrastructure.Mapping;
+    using Services.Web;
+    using Services.Web.Contracts;
 
     public class PostViewModel : IMapFrom<Post>, IHaveCustomMappings
     {
@@ -29,6 +33,15 @@
         public int CommentsCount { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
+
+        public string Url
+        {
+            get
+            {
+                IIdentifierProvider identifier = new IdentifierProvider();
+                return $"/Post/{identifier.EncodeId(this.Id)}";
+            }
+        }
 
         public void CreateMappings(IMapperConfiguration configuration)
         {

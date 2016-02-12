@@ -4,7 +4,7 @@
 
 <h2 style="text-align: center">@Model.Title</h2>
 <br />
-<img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Photo).Id" alt="photo" class="img-responsive img-rounded" />
+<img src="~/File/@Model.Files.First(f => f.FileType == FileType.Photo).Id" alt="photo" class="img-responsive img-rounded" />
 <p>@Model.Content</p>
 <b>@Model.Creator.FirstName @Model.Creator.LastName</b>
 <p>@Model.CreatedOn.ToString("dd MMM HH:mm", CultureInfo.CreateSpecificCulture("en-US"))</p>

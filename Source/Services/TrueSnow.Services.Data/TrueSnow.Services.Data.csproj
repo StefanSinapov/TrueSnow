@@ -61,6 +61,10 @@
       <Project>{6bc1979b-c594-490f-950b-0bea0ee6c783}</Project>
       <Name>TrueSnow.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TrueSnow.Services.Web\TrueSnow.Services.Web.csproj">
+      <Project>{0c6a3a80-d9cc-438d-b596-33658639786d}</Project>
+      <Name>TrueSnow.Services.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

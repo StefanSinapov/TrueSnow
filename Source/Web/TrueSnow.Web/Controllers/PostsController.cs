@@ -33,7 +33,7 @@
             return this.PartialView("Index", postsViewModel);
         }
 
-        public ActionResult ById(int id)
+        public ActionResult ById(string id)
         {
             var post = this.posts.GetById(id);
             var model = this.Mapper.Map<PostViewModel>(post);
