@@ -1,4 +1,8 @@
-﻿.fileinput-remove-button {
+﻿.validation-summary-errors ul {
+    list-style-type: none !important;
+}
+
+.fileinput-remove-button {
     display: none !important;
 }
 
