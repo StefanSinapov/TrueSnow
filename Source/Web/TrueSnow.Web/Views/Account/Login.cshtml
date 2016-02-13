@@ -1,38 +1,56 @@
 ﻿@model TrueSnow.Web.Models.Users.LoginViewModel
 
 @{
-    ViewBag.Title = "Log in";
+    Layout = null;
 }
 
-<div class="container panel panel-default text-center" style="width: 300px;">
-    @using (Html.BeginForm("Login", "Account", new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", style = "padding-bottom: 10px" }))
-    {
-        @Html.AntiForgeryToken()
-        <h3 style="color: #4C90B7; margin-bottom: 20px;">Login</h3>
-        <img src="~/Content/Images/default-avatar.png" class="img-responsive img-circle" style="width: 100px; margin-left: auto; margin-right: auto" />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - True Snow</title>
+    @Styles.Render("~/Content/css")
+    <meta name="description" content="Social network for true snowboarders" />
+</head>
+<body>
+    <div class="page-wrap">
+        <div class="container panel panel-default text-center" style="width: 300px;">
+            @using (Html.BeginForm("Login", "Account", new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", style = "padding-bottom: 10px" }))
+            {
+                @Html.AntiForgeryToken()
+                <h3 style="color: #4C90B7; margin-bottom: 20px;">Login</h3>
+                <img src="~/Content/Images/default-avatar.png" class="img-responsive img-circle" style="width: 100px; margin-left: auto; margin-right: auto" />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group" style="margin: 20px;">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
-            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                <div class="form-group" style="margin: 20px;">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group" style="margin: 20px;">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+
+                <hr />
+
+                <div class="form-group text-center">
+                    <input type="submit" value="Login " class="btn btn-primary" />
+                </div>
+
+                <span>New? </span><a class="a-inLogin" href="/Account/Register">Register now!</a>
+            }
         </div>
 
-        <div class="form-group" style="margin: 20px;">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
-            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+    </div>
 
-        <hr />
-
-        <div class="form-group text-center">
-            <input type="submit" value="Login " class="btn btn-primary" />
-        </div>
-
-        <span>New? </span><a class="a-inLogin" href="/Account/Register">Register now!</a>
-    }
-</div>
-
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    <footer class="site-footer">
+        <p>&copy; @DateTime.Now.Year - True Snow</p>
+        <a href="https://github.com/BiserSirakov/TrueSnow" target="_blank" class="a-footer">Open Source</a>
+    </footer>
+</body>
+</html>
