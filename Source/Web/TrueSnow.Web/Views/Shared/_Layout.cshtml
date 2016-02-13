@@ -5,139 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - True Snow</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
     <meta name="description" content="Social network for true snowboarders" />
 </head>
 <body>
-    <div class="main-container">
 
-        <div class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("True Snow", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <ul class="nav navbar-nav">
-                                @*<li>@Html.ActionLink("Posts", "Index", "Posts")</li>
-                                    <li>@Html.ActionLink("Events", "Index", "Events")</li>*@
-                            </ul>
-                        </div>
-                        <div class="col-md-3">
-                            <ul class="nav navbar-nav">
-                                <li class="logo-container"><img src="~/Content/Images/logo.png" alt="Logo" class="logo img-responsive img-circle" /></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4" style="margin-left: 62px">
-                            @Html.Partial("_LoginPartial")
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container body-content">
-
-            @RenderBody()
-
-            <!-- Add Post Modal -->
-            <div class="modal fade" id="addPostModal" tabindex="-1" role="dialog" aria-labelledby="addPostModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="addPostModalLabel" style="text-align: center;">Add Post</h4>
-                        </div>
-                        <div class="modal-body">
-                            @{ Html.RenderAction("GetCreate", "Posts"); }
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Add Comment Modal -->
-            <div class="modal fade" id="addCommentModal" tabindex="-1" role="dialog" aria-labelledby="addCommentModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="addCommentModalLabel" style="text-align: center;">Add Comment</h4>
-                        </div>
-                        <div class="modal-body">
-                            @{ Html.RenderAction("GetCreate", "Comments"); }
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            @*<!-- Register Modal -->
-            <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="registerModalLabel" style="text-align: center;">Register</h4>
-                        </div>
-                        <div class="modal-body" style="padding: 30px 80px;">
-                            @{ Html.RenderAction("GetRegister", "Account"); }
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Log in Modal -->
-            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="loginModalLabel" style="text-align: center;">Log in</h4>
-                        </div>
-                        <div class="modal-body" style="padding: 30px 80px;">
-                            @{ Html.RenderAction("GetLogin", "Account"); }
-                        </div>
-                    </div>
-                </div>
-            </div>*@
-
-        </div>
+    <div class="page-wrap">
+        @RenderBody()
     </div>
-
-    <footer class="text-center">
+    
+    <footer class="site-footer">
         <p>&copy; @DateTime.Now.Year - True Snow</p>
         <a href="https://github.com/BiserSirakov/TrueSnow" target="_blank" class="a-footer">Open Source</a>
     </footer>
+
+    <!-- Add Post Modal -->
+    <div class="modal fade" id="addPostModal" tabindex="-1" role="dialog" aria-labelledby="addPostModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="addPostModalLabel" style="text-align: center;">Add Post</h4>
+                </div>
+                <div class="modal-body">
+                    @{ Html.RenderAction("GetCreate", "Posts"); }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Comment Modal -->
+    <div class="modal fade" id="addCommentModal" tabindex="-1" role="dialog" aria-labelledby="addCommentModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="addCommentModalLabel" style="text-align: center;">Add Comment</h4>
+                </div>
+                <div class="modal-body">
+                    @{ Html.RenderAction("GetCreate", "Comments"); }
+                </div>
+            </div>
+        </div>
+    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
-    <script>
+    <script type="text/javascript">
         $(document).ready(function () {
-            //$("#loginSubmit").on("click", function () {
-            //    var 
-            //    console.log("before validation");
-                
-            //    console.log($("#loginEmailtb").val());
-
-            //    console.log("after validation");
-            //    $("#loginForm").submit();
-            //    console.log("after submit");
-            //});
-
-            $(".active-text-date").each(function () {
-                var date = $(this).text();
-                var formatted = moment(date).calendar();
-                $(this).text(formatted);
-            });
-
             $('#Photo').fileinput({
                 language: 'bg',
                 uploadUrl: 'http://localhost:60702/Posts/Create',
@@ -152,11 +68,9 @@
 
             $('[data-toggle="tooltip"]').tooltip()
 
-            $('[data-utcdate]').each(function () {
-                var d = moment($(this).attr('data-utcdate'));
-                $(this).html(d.format());
+            $("#btnLogout").on('click', function () {
+                $('#logoutForm').submit();
             });
-
         });
     </script>
 </body>

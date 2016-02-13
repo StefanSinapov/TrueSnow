@@ -2,21 +2,51 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron text-center">
-    <h1>Welcome</h1>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <h3 style="text-align: center">Latest posts</h3>
-        <div class="col-md-6">
-            @{ Html.RenderAction("Index", "Posts", new { skip = 0 }); }
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("True Snow", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
         </div>
-        <div class="col-md-6">
-            @{ Html.RenderAction("Index", "Posts", new { skip = 3 }); }
+        <div class="navbar-collapse collapse">
+            <div class="row">
+                <div class="col-md-3">
+                    <ul class="nav navbar-nav"></ul>
+                </div>
+                <div class="col-md-3">
+                    <ul class="nav navbar-nav">
+                        <li class="logo-container"><img src="~/Content/Images/logo.png" alt="Logo" class="logo img-responsive img-circle" /></li>
+                    </ul>
+                </div>
+                <div class="col-md-4" style="margin-left: 62px">
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <h3 style="text-align: center">Latest events</h3>
+</div>
 
+<div class="container body-content">
+    <div class="jumbotron text-center">
+        <h1>Welcome</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3 style="text-align: center">Latest posts</h3>
+            <div class="col-md-6">
+                @{ Html.RenderAction("Index", "Posts", new { skip = 0 }); }
+            </div>
+            <div class="col-md-6">
+                @{ Html.RenderAction("Index", "Posts", new { skip = 3 }); }
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h3 style="text-align: center">Latest events</h3>
+        </div>
     </div>
 </div>
