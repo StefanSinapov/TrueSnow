@@ -15,7 +15,8 @@
     using TrueSnow.Data.Models;
     using TrueSnow.Web.Models.Users;
     using TrueSnow.Web.Config;
-
+    using Services.Data.Contracts;
+    using Services.Data;
     [Authorize]
     public class AccountController : BaseController
     {
@@ -150,9 +151,9 @@
 
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult GetRegister()
         {
-            return this.View();
+            return this.PartialView("Register");
         }
 
         // POST: /Account/Register
@@ -166,7 +167,6 @@
                 var user = new User
                 {
                     UserName = model.Email,
-                    ScreenName = model.ScreenName,
                     Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName
@@ -189,6 +189,11 @@
                     avatar.CreatedOn = DateTime.Now;
                     user.Files = new List<Data.Models.File> { avatar };
                 }
+                //else
+                //{
+                //    var defaultAvatar = this.filesService.GetDeafult();
+                //    user.Files = new List<Data.Models.File> { defaultAvatar };
+                //}
 
                 var result = await this.UserManager.CreateAsync(user, model.Password);
 

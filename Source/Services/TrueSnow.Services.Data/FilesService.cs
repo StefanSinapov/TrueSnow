@@ -32,5 +32,12 @@
             this.files.Add(fileToAdd);
             this.files.Save();
         }
+
+        public File GetDeafult()
+        {
+            return this.files
+                .All()
+                .FirstOrDefault(f => f.FileName == "default-avatar.png");
+        }
     }
 }

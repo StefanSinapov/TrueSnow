@@ -1,75 +1,37 @@
 ﻿@model TrueSnow.Web.Models.Users.RegisterViewModel
-@{
-    ViewBag.Title = "Register";
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First Name" })
+    </div>
+
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last Name" })
+    </div>
+
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+    </div>
+
+    <div class="form-group">
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+    </div>
+
+    <div class="form-group">
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
+    </div>
+
+    <div class="form-group">
+        <input class="" id="Avatar" name="upload" type="file">
+    </div>
+
+    <div class="text-center">
+        <input type="submit" class="btn btn-primary" value="Register" />
+    </div>
 }
-<br />
-<br />
-<div class="well col-lg-6 col-lg-offset-3">
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
-    {
-        <fieldset>
-            <legend class="text-center">Create a new account</legend>
-
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary("", new { @class = "text-danger" })
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.FirstName, new { @class = "col-md-4 control-label" })
-                <div class="col-md-8">
-                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.LastName, new { @class = "col-md-4 control-label" })
-                <div class="col-md-8">
-                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.ScreenName, new { @class = "col-md-4 control-label" })
-                <div class="col-md-8">
-                    @Html.TextBoxFor(m => m.ScreenName, new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.Email, new { @class = "col-md-4 control-label" })
-                <div class="col-md-8">
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.Password, new { @class = "col-md-4 control-label" })
-                <div class="col-md-8">
-                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-4 control-label" })
-                <div class="col-md-8">
-                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label("Avatar", new { @class = "col-md-4 control-label" })
-                <div class="col-md-8">
-                    <input type="file" id="Avatar" name="upload" />
-                </div>
-            </div>
-
-            <div class="text-center">
-                <input type="reset" class="btn btn-default" value="Reset" />
-                <input type="submit" class="btn btn-primary" value="Register" />
-            </div>
-
-        </fieldset>
-    }
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -77,6 +77,21 @@
                 </div>
             </div>
 
+            <!-- Register Modal -->
+            <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="registerModalLabel" style="text-align: center;">Register</h4>
+                        </div>
+                        <div class="modal-body" style="padding: 30px 80px;">
+                            @{ Html.RenderAction("GetRegister", "Account"); }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -100,6 +115,12 @@
             $('#Photo').fileinput({
                 language: 'bg',
                 uploadUrl: 'http://localhost:60702/Posts/Create',
+                allowedFileExtensions: ['jpg', 'png', 'gif'],
+            });
+
+            $('#Avatar').fileinput({
+                language: 'bg',
+                uploadUrl: 'http://localhost:60702/Account/Register',
                 allowedFileExtensions: ['jpg', 'png', 'gif'],
             });
 

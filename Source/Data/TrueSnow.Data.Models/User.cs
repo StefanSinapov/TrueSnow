@@ -24,9 +24,6 @@
         [Required]
         public string LastName { get; set; }
 
-        [Required]
-        public string ScreenName { get; set; }
-
         public virtual ICollection<File> Files
         {
             get { return this.files; }

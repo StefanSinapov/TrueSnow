@@ -25,7 +25,7 @@
         {
             return this.comments
                 .All()
-                .OrderByDescending(c => c.CreatedOn);
+                .OrderBy(c => c.CreatedOn);
         }
 
         public IQueryable<Comment> GetByEventId(int id)
@@ -33,7 +33,7 @@
             return this.comments
                 .All()
                 .Where(c => c.EventId == id)
-                .OrderByDescending(c => c.CreatedOn);
+                .OrderBy(c => c.CreatedOn);
         }
 
         public Comment GetById(int id)
@@ -48,7 +48,7 @@
             return this.comments
                 .All()
                 .Where(c => c.PostId == id)
-                .OrderByDescending(c => c.CreatedOn);
+                .OrderBy(c => c.CreatedOn);
         }
 
         public IQueryable<Comment> GetByUserId(string id)
@@ -56,7 +56,7 @@
             return this.comments
                 .All()
                 .Where(c => c.CreatorId == id)
-                .OrderByDescending(c => c.CreatedOn);
+                .OrderBy(c => c.CreatedOn);
         }
     }
 }

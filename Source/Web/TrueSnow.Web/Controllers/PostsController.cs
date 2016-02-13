@@ -23,11 +23,13 @@
             this.posts = posts;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int skip)
         {
             var postsViewModel = this.posts
                 .GetAll()
                 .To<PostViewModel>()
+                .Skip(skip)
+                .Take(3)
                 .ToList();
 
             return this.PartialView("Index", postsViewModel);

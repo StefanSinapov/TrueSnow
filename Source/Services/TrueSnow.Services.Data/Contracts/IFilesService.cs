@@ -10,6 +10,8 @@
 
         File GetById(int id);
 
+        File GetDeafult();
+
         void Add(File fileToAdd);
     }
 }

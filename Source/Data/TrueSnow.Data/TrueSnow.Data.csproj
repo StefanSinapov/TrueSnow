@@ -69,6 +69,10 @@
     <Compile Include="Migrations\201602121131063_CommentUpdate.Designer.cs">
       <DependentUpon>201602121131063_CommentUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602131207282_ScreenNameDelete.cs" />
+    <Compile Include="Migrations\201602131207282_ScreenNameDelete.Designer.cs">
+      <DependentUpon>201602131207282_ScreenNameDelete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="TrueSnowDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602121131063_CommentUpdate.resx">
       <DependentUpon>201602121131063_CommentUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602131207282_ScreenNameDelete.resx">
+      <DependentUpon>201602131207282_ScreenNameDelete.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

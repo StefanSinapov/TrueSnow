@@ -14,7 +14,11 @@
     using Services.Web;
     using Services.Web.Contracts;
     using Data.Common;
-
+    using Microsoft.AspNet.Identity;
+    using Data.Models;
+    using Microsoft.Owin.Security;
+    using Microsoft.Owin.Security.DataProtection;
+    using System.Web;
     public static class AutofacConfig
     {
         public static void RegisterAutofac()

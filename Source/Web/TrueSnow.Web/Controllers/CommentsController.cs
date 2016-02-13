@@ -36,7 +36,7 @@
 
         public ActionResult Create(CommentViewModel comment)
         {
-            if (this.ModelState.IsValid)
+            if (this.ModelState.IsValid && this.HttpContext.User.Identity.GetUserId() != null)
             {
                 var commentToAdd = new Comment
                 {

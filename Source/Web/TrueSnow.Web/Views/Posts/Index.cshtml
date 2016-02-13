@@ -2,14 +2,13 @@
 @using TrueSnow.Data.Models
 @model IEnumerable<TrueSnow.Web.Models.Posts.PostViewModel>
 
-<div class="list-group" style="width: 600px;">
+<div class="list-group">
     @foreach (var post in Model)
     {
-        <a href="@post.Url" class="list-group-item">
+        <a href="@post.Url" class="list-group-item" style="height: 270px">
             <h4 class="list-group-item-heading">@post.Title</h4>
-            <img src="~/File/@post.Files.First(f => f.FileType == FileType.Photo).Id" alt="photo" class="img-responsive img-rounded" />
-            <p class="list-group-item-text">@post.Content</p>
-            <b>@post.Creator.FirstName @post.Creator.LastName</b>
+            <img src="~/File/@post.Files.First(f => f.FileType == FileType.Photo).Id" alt="photo" class="img-responsive img-rounded" style="height: 180px;" />
+            by <b>@post.Creator.FirstName @post.Creator.LastName</b>
             <p>@post.CreatedOn.ToString("dd MMM HH:mm", CultureInfo.CreateSpecificCulture("en-US"))</p>
         </a>
     }
