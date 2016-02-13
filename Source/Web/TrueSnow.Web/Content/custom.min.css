@@ -1,4 +1,16 @@
-﻿.a-footer:hover {
+﻿.fileinput-remove-button {
+    display: none !important;
+}
+
+.fileinput-upload-button {
+    display: none !important;
+}
+
+.file-preview {
+    display: none !important;
+}
+
+.a-footer:hover {
     color: #4C90B7;
 }
 

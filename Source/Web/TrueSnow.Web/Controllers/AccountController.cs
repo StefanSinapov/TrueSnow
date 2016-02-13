@@ -12,11 +12,11 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
 
+    using Data;
     using TrueSnow.Data.Models;
     using TrueSnow.Web.Models.Users;
     using TrueSnow.Web.Config;
-    using Services.Data.Contracts;
-    using Services.Data;
+
     [Authorize]
     public class AccountController : BaseController
     {
@@ -25,6 +25,8 @@
 
         private ApplicationSignInManager signInManager;
         private ApplicationUserManager userManager;
+
+        private TrueSnowDbContext db = new TrueSnowDbContext();
 
         public AccountController()
         {
@@ -102,7 +104,7 @@
                     return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    this.ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    this.ModelState.AddModelError(string.Empty, "Incorrect email or password.");
                     return this.View(model);
             }
         }
@@ -151,9 +153,9 @@
 
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult GetRegister()
+        public ActionResult Register()
         {
-            return this.PartialView("Register");
+            return this.View();
         }
 
         // POST: /Account/Register
@@ -189,11 +191,12 @@
                     avatar.CreatedOn = DateTime.Now;
                     user.Files = new List<Data.Models.File> { avatar };
                 }
-                //else
-                //{
-                //    var defaultAvatar = this.filesService.GetDeafult();
-                //    user.Files = new List<Data.Models.File> { defaultAvatar };
-                //}
+                else if (upload == null)
+                {
+                    var defaultAvatar = this.db.Files
+                        .FirstOrDefault(f => f.Id == 17);
+                    user.Files = new List<Data.Models.File> { defaultAvatar };
+                }
 
                 var result = await this.UserManager.CreateAsync(user, model.Password);
 

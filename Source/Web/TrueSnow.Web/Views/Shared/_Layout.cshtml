@@ -77,7 +77,7 @@
                 </div>
             </div>
 
-            <!-- Register Modal -->
+            @*<!-- Register Modal -->
             <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -91,6 +91,21 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Log in Modal -->
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="loginModalLabel" style="text-align: center;">Log in</h4>
+                        </div>
+                        <div class="modal-body" style="padding: 30px 80px;">
+                            @{ Html.RenderAction("GetLogin", "Account"); }
+                        </div>
+                    </div>
+                </div>
+            </div>*@
 
         </div>
     </div>
@@ -106,6 +121,17 @@
 
     <script>
         $(document).ready(function () {
+            //$("#loginSubmit").on("click", function () {
+            //    var 
+            //    console.log("before validation");
+                
+            //    console.log($("#loginEmailtb").val());
+
+            //    console.log("after validation");
+            //    $("#loginForm").submit();
+            //    console.log("after submit");
+            //});
+
             $(".active-text-date").each(function () {
                 var date = $(this).text();
                 var formatted = moment(date).calendar();

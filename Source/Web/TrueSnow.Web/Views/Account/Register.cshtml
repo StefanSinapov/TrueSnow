@@ -1,8 +1,15 @@
 ﻿@model TrueSnow.Web.Models.Users.RegisterViewModel
 
+@{
+    ViewBag.Title = "Register";
+}
+
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
+    <h4>Create a new account.</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
 
     <div class="form-group">
         @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First Name" })
@@ -36,3 +43,5 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
