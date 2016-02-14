@@ -26,7 +26,7 @@
 
         public DateTime CreatedOn { get; set; }
 
-        public ICollection<File> Files { get; set; }
+        public File Photo { get; set; }
 
         public User Creator { get; set; }
 

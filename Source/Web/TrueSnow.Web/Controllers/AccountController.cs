@@ -16,7 +16,7 @@
     using TrueSnow.Data.Models;
     using TrueSnow.Web.Models.Users;
     using TrueSnow.Web.Config;
-
+    using Services.Data.Contracts;
     [Authorize]
     public class AccountController : BaseController
     {
@@ -25,8 +25,7 @@
 
         private ApplicationSignInManager signInManager;
         private ApplicationUserManager userManager;
-
-        private TrueSnowDbContext db = new TrueSnowDbContext();
+        //private IFilesService files;
 
         public AccountController()
         {
@@ -36,6 +35,7 @@
         {
             this.UserManager = userManager;
             this.SignInManager = signInManager;
+            //this.files = files;
         }
 
         public ApplicationSignInManager SignInManager
@@ -180,7 +180,8 @@
                     {
                         FileName = Path.GetFileName(upload.FileName),
                         FileType = FileType.Avatar,
-                        ContentType = upload.ContentType
+                        ContentType = upload.ContentType,
+                        CreatedOn = DateTime.Now
                     };
 
                     using (var reader = new BinaryReader(upload.InputStream))
@@ -188,14 +189,8 @@
                         avatar.Content = reader.ReadBytes(upload.ContentLength);
                     }
 
-                    avatar.CreatedOn = DateTime.Now;
-                    user.Files = new List<Data.Models.File> { avatar };
-                }
-                else if (upload == null)
-                {
-                    var defaultAvatar = this.db.Files
-                        .FirstOrDefault(f => f.Id == 17);
-                    user.Files = new List<Data.Models.File> { defaultAvatar };
+                    //this.files.Add(avatar);
+                    user.Avatar = avatar;
                 }
 
                 var result = await this.UserManager.CreateAsync(user, model.Password);

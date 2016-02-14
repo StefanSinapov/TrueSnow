@@ -4,13 +4,13 @@ namespace TrueSnow.Data.Migrations
     using System.Linq;
 
     using Microsoft.AspNet.Identity.EntityFramework;
-    using Models;
+
     public sealed class Configuration : DbMigrationsConfiguration<TrueSnowDbContext>
     {
         public Configuration()
         {
-            this.AutomaticMigrationsEnabled = false;
-            this.AutomaticMigrationDataLossAllowed = false;
+            this.AutomaticMigrationsEnabled = true;
+            this.AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(TrueSnowDbContext context)
@@ -21,17 +21,6 @@ namespace TrueSnow.Data.Migrations
                 context.Roles.Add(new IdentityRole { Name = "User" });
                 context.SaveChanges();
             }
-
-            //if (!context.Files.Any())
-            //{
-            //    var defaultAvatar = new File
-            //    {
-            //        FileName = "default-avatar.png",
-            //        FileType = FileType.Avatar,
-            //        ContentType = "image/png",
-            //        Content = 
-            //    };
-            //}
         }
     }
 }

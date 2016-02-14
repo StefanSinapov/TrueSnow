@@ -36,7 +36,7 @@
 
         public ActionResult Create(CommentViewModel comment)
         {
-            if (this.ModelState.IsValid && this.HttpContext.User.Identity.GetUserId() != null)
+            if (this.ModelState.IsValid)
             {
                 var commentToAdd = new Comment
                 {
@@ -50,7 +50,7 @@
                 return this.Redirect(this.Request.RawUrl);
             }
 
-            return this.RedirectToAction("Index", "Home");
+            return this.Redirect(this.Request.RawUrl);
         }
 
         //// GET: Comments/Create

@@ -10,12 +10,15 @@
 
     public class User : IdentityUser
     {
-        private ICollection<File> files;
         private ICollection<Post> posts;
+        private ICollection<User> followers;
+        private ICollection<User> following;
 
         public User()
         {
             this.posts = new HashSet<Post>();
+            this.followers = new HashSet<User>();
+            this.following = new HashSet<User>();
         }
 
         [Required]
@@ -24,16 +27,30 @@
         [Required]
         public string LastName { get; set; }
 
-        public virtual ICollection<File> Files
-        {
-            get { return this.files; }
-            set { this.files = value; }
-        }
+        public int AvatarId { get; set; }
+
+        public virtual File Avatar { get; set; }
+
+        //public int CoverId { get; set; }
+
+        //public virtual File Cover { get; set; }
 
         public virtual ICollection<Post> Posts
         {
             get { return this.posts; }
             set { this.posts = value; }
+        }
+
+        public virtual ICollection<User> Followers
+        {
+            get { return this.followers; }
+            set { this.followers = value; }
+        }
+
+        public virtual ICollection<User> Following
+        {
+            get { return this.following; }
+            set { this.following = value; }
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)

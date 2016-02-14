@@ -28,7 +28,6 @@
         public Post GetById(string id)
         {
             var intId = this.identifierProvider.DecodeId(id);
-
             return this.posts.GetById(intId);
         }
 

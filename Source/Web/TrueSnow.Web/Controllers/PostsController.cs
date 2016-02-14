@@ -67,7 +67,6 @@
                 {
                     Title = post.Title,
                     Content = post.Content,
-                    CreatedOn = DateTime.Now,
                     CreatorId = this.HttpContext.User.Identity.GetUserId()
                 };
 
@@ -85,7 +84,7 @@
                         photo.Content = reader.ReadBytes(upload.ContentLength);
                     }
 
-                    postToAdd.Files = new List<Data.Models.File> { photo };
+                    postToAdd.Photo = photo;
                 }
 
                 this.posts.Add(postToAdd);
@@ -93,7 +92,7 @@
                 return this.Redirect(this.Request.RawUrl);
             }
 
-            return this.RedirectToAction("Index", "Home");
+            return this.Redirect(this.Request.RawUrl);
         }
     }
 }

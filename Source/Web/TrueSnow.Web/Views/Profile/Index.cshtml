@@ -1,14 +1,10 @@
 ﻿@using TrueSnow.Data.Models
 @model TrueSnow.Web.Models.Users.ProfileViewModel
 
-@{
-    ViewBag.Title = "Profile";
-}
-
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <img src="~/File/@Model.Files.First(f => f.FileType == FileType.Avatar).Id" alt="avatar" class="img-responsive img-circle" style="width:200px;" />
+            <img src="~/File/@Model.Avatar.Id" alt="avatar" class="img-responsive img-circle" style="width:200px;" />
             <h3>@Model.FirstName @Model.LastName</h3>
         </div>
         <div class="col-md-9">

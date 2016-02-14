@@ -38,9 +38,7 @@
 
         public Comment GetById(int id)
         {
-            return this.comments
-                .All()
-                .FirstOrDefault(c => c.Id == id);
+            return this.comments.GetById(id);
         }
 
         public IQueryable<Comment> GetByPostId(int id)

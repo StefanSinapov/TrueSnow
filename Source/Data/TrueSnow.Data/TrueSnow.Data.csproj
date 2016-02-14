@@ -57,22 +57,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201602111448247_InitialCreate.cs" />
-    <Compile Include="Migrations\201602111448247_InitialCreate.Designer.cs">
-      <DependentUpon>201602111448247_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602121029318_Comment.cs" />
-    <Compile Include="Migrations\201602121029318_Comment.Designer.cs">
-      <DependentUpon>201602121029318_Comment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602121131063_CommentUpdate.cs" />
-    <Compile Include="Migrations\201602121131063_CommentUpdate.Designer.cs">
-      <DependentUpon>201602121131063_CommentUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602131207282_ScreenNameDelete.cs" />
-    <Compile Include="Migrations\201602131207282_ScreenNameDelete.Designer.cs">
-      <DependentUpon>201602131207282_ScreenNameDelete.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="TrueSnowDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,20 +80,6 @@
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602111448247_InitialCreate.resx">
-      <DependentUpon>201602111448247_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602121029318_Comment.resx">
-      <DependentUpon>201602121029318_Comment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602121131063_CommentUpdate.resx">
-      <DependentUpon>201602121131063_CommentUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602131207282_ScreenNameDelete.resx">
-      <DependentUpon>201602131207282_ScreenNameDelete.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

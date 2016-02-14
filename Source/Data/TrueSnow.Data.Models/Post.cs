@@ -7,12 +7,10 @@
 
     public class Post : BaseModel<int>
     {
-        private ICollection<File> files;
         private ICollection<Comment> comments;
 
         public Post()
         {
-            this.files = new HashSet<File>();
             this.comments = new HashSet<Comment>();
         }
 
@@ -26,11 +24,9 @@
 
         public virtual User Creator { get; set; }
 
-        public virtual ICollection<File> Files
-        {
-            get { return this.files; }
-            set { this.files = value; }
-        }
+        public int PhotoId { get; set; }
+
+        public virtual File Photo { get; set; }
 
         public virtual ICollection<Comment> Comments
         {

@@ -3,20 +3,47 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - True Snow</title>
+    <title>True Snow</title>
     @Styles.Render("~/Content/css")
     <meta name="description" content="Social network for true snowboarders" />
 </head>
 <body>
-
-    <div class="page-wrap">
-        @RenderBody()
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("True Snow", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <div class="row">
+                    <div class="col-md-3">
+                        <ul class="nav navbar-nav"></ul>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="nav navbar-nav">
+                            <li class="logo-container"><img src="~/Content/Images/logo.png" alt="Logo" class="logo img-responsive img-circle" /></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4" style="margin-left: 62px">
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    
-    <footer class="site-footer">
-        <p>&copy; @DateTime.Now.Year - True Snow</p>
-        <a href="https://github.com/BiserSirakov/TrueSnow" target="_blank" class="a-footer">Open Source</a>
-    </footer>
+
+    <div class="container body-content">
+        @RenderBody()
+
+        <footer>
+            <p>&copy; @DateTime.Now.Year - True Snow</p>
+            <a href="https://github.com/BiserSirakov/TrueSnow" target="_blank" class="a-footer">Open Source</a>
+        </footer>
+    </div>
 
     <!-- Add Post Modal -->
     <div class="modal fade" id="addPostModal" tabindex="-1" role="dialog" aria-labelledby="addPostModalLabel">

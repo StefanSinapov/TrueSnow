@@ -6,10 +6,10 @@
 {
     <div class="row">
         <span class="col-md-1">
-            <img src="~/File/@comment.Creator.Files.First(f => f.FileType == FileType.Avatar).Id" alt="avatar" class="img-responsive img-circle" style="width: 50px;" />
+            <img src="~/File/@comment.Creator.AvatarId" alt="avatar" class="img-responsive img-circle" style="width: 50px;" />
         </span>
         <div class="col-md-6" style="margin-left: -35px;">
-            <b>@comment.Creator.FirstName @comment.Creator.LastName</b>
+            <a href="/Profile/@comment.Creator.Id"><b>@comment.Creator.FirstName @comment.Creator.LastName</b></a>
             <small>@comment.CreatedOn.ToString("dd MMM HH:mm", CultureInfo.CreateSpecificCulture("en-US"))</small>
             <p>@comment.Content</p>
         </div>

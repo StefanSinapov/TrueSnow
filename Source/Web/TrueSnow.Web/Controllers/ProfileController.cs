@@ -34,11 +34,10 @@
             }
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
-            var userId = this.HttpContext.User.Identity.GetUserId();
-            var currentUser = this.UserManager.FindById(userId);
-            var model = this.Mapper.Map<ProfileViewModel>(currentUser);
+            var user = this.UserManager.FindById(id);
+            var model = this.Mapper.Map<ProfileViewModel>(user);
 
             return this.View(model);
         }

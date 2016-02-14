@@ -10,6 +10,21 @@
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Home",
+                url: "Home",
+                defaults: new { controller = "Home", action = "Index" });
+
+            routes.MapRoute(
+                name: "Profile",
+                url: "Profile/{id}",
+                defaults: new { controller = "Profile", action = "Index" });
+
+            routes.MapRoute(
+                name: "Register",
+                url: "Register",
+                defaults: new { controller = "Account", action = "Register" });
+
+            routes.MapRoute(
                 name: "Post",
                 url: "Post/{id}",
                 defaults: new { controller = "Posts", action = "ById" });

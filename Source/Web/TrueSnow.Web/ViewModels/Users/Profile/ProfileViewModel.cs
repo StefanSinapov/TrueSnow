@@ -13,6 +13,12 @@
 
         public string LastName { get; set; }
 
-        public ICollection<File> Files { get; set; }
+        public File Avatar { get; set; }
+
+        public File Cover { get; set; }
+
+        public ICollection<User> Followers { get; set; }
+
+        public ICollection<User> Following { get; set; }
     }
 }
