@@ -57,6 +57,8 @@
             return this.PartialView("Create");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(PostViewModel post, HttpPostedFileBase upload)
         {
             if (this.ModelState.IsValid)
@@ -86,8 +88,6 @@
                 }
 
                 this.posts.Add(postToAdd);
-
-                return this.Redirect(this.Request.UrlReferrer.ToString());
             }
 
             return this.Redirect(this.Request.UrlReferrer.ToString());

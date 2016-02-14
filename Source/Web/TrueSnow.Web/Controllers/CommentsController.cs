@@ -1,5 +1,6 @@
 ﻿namespace TrueSnow.Web.Controllers
 {
+    using System;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -8,7 +9,7 @@
     using ViewModels.Comments;
     using Microsoft.AspNet.Identity;
     using Infrastructure.Mapping;
-    using System;
+
     public class CommentsController : BaseController
     {
         private readonly ICommentsService comments;
@@ -34,6 +35,8 @@
             return this.PartialView("Create");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(CommentViewModel comment)
         {
             if (this.ModelState.IsValid)
@@ -46,8 +49,6 @@
                 };
 
                 this.comments.Add(commentToAdd);
-
-                return this.Redirect(this.Request.UrlReferrer.ToString());
             }
 
             return this.Redirect(this.Request.UrlReferrer.ToString());

@@ -189,7 +189,6 @@
                         avatar.Content = reader.ReadBytes(upload.ContentLength);
                     }
 
-                    //this.files.Add(avatar);
                     user.Avatar = avatar;
                 }
 

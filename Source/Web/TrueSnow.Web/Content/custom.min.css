@@ -44,8 +44,13 @@ html, body {
     display: none !important;
 }
 
-.a-footer:hover, .a-inLogin:hover, .a-profile:hover {
+.a-footer:hover, .a-inLogin:hover {
     color: #4C90B7;
+}
+
+.a-profile:hover {
+    color: #4C90B7;
+    text-decoration: none;
 }
 
 .btn-primary {
