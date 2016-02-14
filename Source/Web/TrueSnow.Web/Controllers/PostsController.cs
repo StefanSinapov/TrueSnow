@@ -42,12 +42,10 @@
             return this.View("ById", model);
         }
 
-        public ActionResult ByUserId()
+        public ActionResult ByUserId(string userId)
         {
-            var currentUserId = this.HttpContext.User.Identity.GetUserId();
-
             var postsViewModel = this.posts
-                .GetByUserId(currentUserId)
+                .GetByUserId(userId)
                 .To<PostViewModel>()
                 .ToList();
 
@@ -89,10 +87,10 @@
 
                 this.posts.Add(postToAdd);
 
-                return this.Redirect(this.Request.RawUrl);
+                return this.Redirect(this.Request.UrlReferrer.ToString());
             }
 
-            return this.Redirect(this.Request.RawUrl);
+            return this.Redirect(this.Request.UrlReferrer.ToString());
         }
     }
 }

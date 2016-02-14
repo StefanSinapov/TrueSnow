@@ -47,10 +47,10 @@
 
                 this.comments.Add(commentToAdd);
 
-                return this.Redirect(this.Request.RawUrl);
+                return this.Redirect(this.Request.UrlReferrer.ToString());
             }
 
-            return this.Redirect(this.Request.RawUrl);
+            return this.Redirect(this.Request.UrlReferrer.ToString());
         }
 
         //// GET: Comments/Create

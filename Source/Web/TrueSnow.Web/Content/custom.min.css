@@ -44,11 +44,7 @@ html, body {
     display: none !important;
 }
 
-.a-inLogin:hover {
-    color: #4C90B7;
-}
-
-.a-footer:hover {
+.a-footer:hover, .a-inLogin:hover, .a-profile:hover {
     color: #4C90B7;
 }
 
