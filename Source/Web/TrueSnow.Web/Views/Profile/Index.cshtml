@@ -1,14 +1,37 @@
 ﻿@using TrueSnow.Data.Models
 @model TrueSnow.Web.Models.Users.ProfileViewModel
 
-<div class="container">
-    <div class="row">
+@*<div class="row">
         <div class="col-md-3">
-            <img src="~/File/@Model.Avatar.Id" alt="avatar" class="img-responsive img-circle" style="width:200px;" />
+            <img src="~/File/@Model.Files.First(x => x.FileType == FileType.Avatar).Id" alt="avatar" class="img-responsive img-circle" style="width:200px;" />
             <h3>@Model.FirstName @Model.LastName</h3>
         </div>
         <div class="col-md-9">
             @{ Html.RenderAction("ByUserId", "Posts", new { userId = Model.Id }); }
         </div>
+    </div>*@
+<div class="jumbotron">
+    @if (Model.Files.Any(x => x.FileType == FileType.Cover))
+    {
+        <img src="~File/@Model.Files.First(x => x.FileType == FileType.Cover).Id" alt="cover" class="img-responsive" />
+    }
+    else
+    {
+        <img src="~/Content/Images/default-cover.jpg" alt="cover" class="img-responsive" />
+    }
+</div>
+<div class="row">
+    <div class="col-xs-4 col-lg-2">
+        <img src="~/File/@Model.Files.First(x => x.FileType == FileType.Avatar).Id" alt="avatar" class="avatar img-responsive img-circle" />
+    </div>
+    <div class="col-xs-4 col-lg-6">
+        <h1 class="profile-name">@Model.FirstName @Model.LastName</h1>
+    </div>
+    <div class="profile-stats col-xs-4 col-lg-4">
+        <h4 class="pull-right">FOLLOWERS <span class="badge">@Model.Followers.Count</span></h4>
+        <h4 class="pull-right">FOLLOWING <span class="badge">@Model.Following.Count</span></h4>
+        <h4 class="pull-right">POSTS <span class="badge">@Model.PostsCount</span></h4>
     </div>
 </div>
+
+<div style="height: 870px;"></div>

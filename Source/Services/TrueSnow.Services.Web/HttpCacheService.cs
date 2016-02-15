@@ -1,10 +1,10 @@
 ﻿namespace TrueSnow.Services.Web
 {
     using System;
-
-    using Contracts;
     using System.Web;
     using System.Web.Caching;
+
+    using Contracts;
 
     public class HttpCacheService : ICacheService
     {

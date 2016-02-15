@@ -58,10 +58,34 @@ html, body {
     border-color: #4C90B7 !important;
 }
 
+.avatar {
+    max-width: 150px;
+    max-height: 150px;
+    margin-left: 40px;
+    border: 5px solid white;
+    background-color: white;
+}
+
+.profile-name {
+    margin-top: 112px;
+    margin-left: 5px;
+}
+
+.profile-stats {
+    margin-top: 115px;
+}
+
+.profile-stats > h4 {
+    margin-left: 5px;
+}
+
 .jumbotron {
-    height: 400px;
-    margin-top: 15px !important;
-    /*background-image: url(Images/jbg.jpg)*/
+    margin-top: -20px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-height: 400px;
+    overflow: hidden;
+    margin-bottom: -110px !important;
 }
 
 .logo-container {

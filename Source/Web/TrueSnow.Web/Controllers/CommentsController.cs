@@ -54,31 +54,6 @@
             return this.Redirect(this.Request.UrlReferrer.ToString());
         }
 
-        //// GET: Comments/Create
-        // public ActionResult Create()
-        // {
-        //    ViewBag.CreatorId = new SelectList(db.Users, "Id", "FirstName");
-        //    return View();
-        // }
-
-        //// POST: Comments/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        // [HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public async Task<ActionResult> Create([Bind(Include = "Id,Content,CreatorId,CreatedOn,ModifiedOn,IsDeleted,DeletedOn")] Comment comment)
-        // {
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Comments.Add(comment);
-        //        await db.SaveChangesAsync();
-        //        return RedirectToAction("Index");
-        //    }
-
-        // ViewBag.CreatorId = new SelectList(db.Users, "Id", "FirstName", comment.CreatorId);
-        //    return View(comment);
-        // }
-
         //// GET: Comments/Edit/5
         // public async Task<ActionResult> Edit(int? id)
         // {

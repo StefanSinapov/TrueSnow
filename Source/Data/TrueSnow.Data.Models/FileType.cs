@@ -3,6 +3,7 @@
     public enum FileType
     {
         Avatar = 0,
-        Photo = 1
+        Photo = 1,
+        Cover = 2
     }
 }

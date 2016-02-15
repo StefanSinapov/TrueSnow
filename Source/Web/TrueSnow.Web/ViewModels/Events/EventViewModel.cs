@@ -13,6 +13,8 @@
 
         public User Creator { get; set; }
 
+        public File Photo { get; set; }
+
         public ICollection<User> Attendands { get; set; }
 
         public ICollection<Comment> Comments { get; set; }

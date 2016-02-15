@@ -50,5 +50,13 @@
 
             return this.PartialView("GetUser", model);
         }
+
+        public ActionResult Edit(string id)
+        {
+            var userToEdit = this.UserManager.FindById(id);
+            var model = this.Mapper.Map<ProfileViewModel>(userToEdit);
+
+            return this.View(model);
+        }
     }
 }

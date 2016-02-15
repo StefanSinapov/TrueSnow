@@ -268,10 +268,8 @@
     <Content Include="Content\fileinput.min.css" />
     <Content Include="Content\Images\bg.jpg" />
     <Content Include="Content\Images\default-avatar.png" />
-    <Content Include="Content\Images\jbg.jpg" />
-    <Content Include="Content\Images\jumbotronbg.jpg" />
+    <Content Include="Content\Images\default-cover.jpg" />
     <Content Include="Content\Images\logo.png" />
-    <Content Include="Content\Images\sb2.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -348,6 +346,7 @@
     <Content Include="Views\Comments\Create.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\TrueSnow.Data.Common\TrueSnow.Data.Common.csproj">

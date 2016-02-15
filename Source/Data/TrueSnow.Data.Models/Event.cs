@@ -26,6 +26,10 @@
 
         public virtual User Creator { get; set; }
 
+        public int PhotoId { get; set; }
+
+        public virtual File Photo { get; set; }
+
         public virtual ICollection<User> Attendants
         {
             get { return this.attendants; }

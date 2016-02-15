@@ -10,12 +10,14 @@
 
     public class User : IdentityUser
     {
+        private ICollection<File> files;
         private ICollection<Post> posts;
         private ICollection<User> followers;
         private ICollection<User> following;
 
         public User()
         {
+            this.files = new HashSet<File>();
             this.posts = new HashSet<Post>();
             this.followers = new HashSet<User>();
             this.following = new HashSet<User>();
@@ -27,13 +29,11 @@
         [Required]
         public string LastName { get; set; }
 
-        public int AvatarId { get; set; }
-
-        public virtual File Avatar { get; set; }
-
-        //public int CoverId { get; set; }
-
-        //public virtual File Cover { get; set; }
+        public virtual ICollection<File> Files
+        {
+            get { return this.files; }
+            set { this.files = value; }
+        }
 
         public virtual ICollection<Post> Posts
         {

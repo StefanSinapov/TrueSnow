@@ -1,7 +1,6 @@
 ﻿namespace TrueSnow.Web.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -12,11 +11,10 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
 
-    using Data;
     using TrueSnow.Data.Models;
     using TrueSnow.Web.Models.Users;
     using TrueSnow.Web.Config;
-    using Services.Data.Contracts;
+
     [Authorize]
     public class AccountController : BaseController
     {
@@ -25,7 +23,6 @@
 
         private ApplicationSignInManager signInManager;
         private ApplicationUserManager userManager;
-        //private IFilesService files;
 
         public AccountController()
         {
@@ -35,7 +32,6 @@
         {
             this.UserManager = userManager;
             this.SignInManager = signInManager;
-            //this.files = files;
         }
 
         public ApplicationSignInManager SignInManager
@@ -189,7 +185,7 @@
                         avatar.Content = reader.ReadBytes(upload.ContentLength);
                     }
 
-                    user.Avatar = avatar;
+                    user.Files.Add(avatar);
                 }
 
                 var result = await this.UserManager.CreateAsync(user, model.Password);
