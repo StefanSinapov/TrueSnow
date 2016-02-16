@@ -51,35 +51,5 @@
 
             return this.PartialView("GetUser", model);
         }
-
-        public ActionResult Follow(string id)
-        {
-            var currentUserId = this.HttpContext.User.Identity.GetUserId();
-            var currentUser = this.UserManager.FindById(currentUserId);
-
-            var userToFollow = this.UserManager.FindById(id);
-
-            currentUser.Following.Add(userToFollow);
-            this.UserManager.Update(currentUser);
-
-            var allusers = currentUser.Following.ToList();
-
-            return this.View("Index", this.Mapper.Map<ProfileViewModel>(userToFollow));
-        }
-
-        public ActionResult Unfollow(string id)
-        {
-            var currentUserId = this.HttpContext.User.Identity.GetUserId();
-            var currentUser = this.UserManager.FindById(currentUserId);
-
-            var userToUnfollow = this.UserManager.FindById(id);
-
-            currentUser.Following.Remove(userToUnfollow);
-            this.UserManager.Update(currentUser);
-
-            var allusers = currentUser.Following.ToList();
-
-            return this.View("Index", this.Mapper.Map<ProfileViewModel>(userToUnfollow));
-        }
     }
 }

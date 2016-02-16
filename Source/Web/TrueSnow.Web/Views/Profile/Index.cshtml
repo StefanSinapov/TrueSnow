@@ -11,35 +11,34 @@
     {
         <img src="~/Content/Images/default-cover.jpg" alt="cover" class="img-responsive" />
     }
-
-    @if (Model.Id == HttpContext.Current.User.Identity.GetUserId()) // If current user is the profile`s user
-    {
-        <button class="btn btn-sm btn-default edit-profile">Edit <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
-    }
-    else
-    {
-        if (Model.Followers.Any(x => x.Id == HttpContext.Current.User.Identity.GetUserId())) // If current user follows the profile`s user
-        {
-            @Html.ActionLink("Unfollow", "Unfollow", new { id = Model.Id }, new { id = "unfollowLink", @class = "btn btn-warning", style = "position: absolute; top: 200px;" });
-        }
-        else
-        {
-            @Html.ActionLink("Follow", "Follow", new { id = Model.Id }, new { id = "followLink", @class = "btn btn-warning", style = "position: absolute; top: 200px;" });
-        }
-    }
 </div>
 
 <div class="row">
     <div class="col-xs-4 col-lg-2">
         <img src="~/File/@Model.Files.First(x => x.FileType == FileType.Avatar).Id" alt="avatar" class="avatar img-responsive img-circle" />
     </div>
-    <div class="col-xs-4 col-lg-6">
+    <div class="col-xs-4 col-lg-5">
         <h1 class="profile-name">@Model.FirstName @Model.LastName</h1>
     </div>
-    <div class="profile-stats col-xs-4 col-lg-4">
-        <h4 class="pull-right">FOLLOWERS <span class="badge">@Model.Followers.Count</span></h4>
-        <h4 class="pull-right">FOLLOWING <span class="badge">@Model.Following.Count</span></h4>
-        <h4 class="pull-right">POSTS <span class="badge">@Model.PostsCount</span></h4>
+    <div class="profile-stats col-xs-4 col-lg-5">
+        <h4 class="pull-left">FOLLOWERS <span class="badge">@Model.Followers.Count</span></h4>
+        <h4 class="pull-left">FOLLOWING <span class="badge">@Model.Following.Count</span></h4>
+        <h4 class="pull-left">POSTS <span class="badge">@Model.PostsCount</span></h4>
+        @if (Model.Id == HttpContext.Current.User.Identity.GetUserId()) // If current user is the profile`s user
+        {
+            <button class="btn btn-sm btn-default edit-profile">Edit <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+        }
+        else
+        {
+            if (Model.Followers.Any(x => x.Id == HttpContext.Current.User.Identity.GetUserId())) // If current user follows the profile`s user
+            {
+                @Html.ActionLink("Unfollow", "Unfollow", "Follows", new { id = Model.Id }, new { id = "unfollowLink", @class = "btn btn-sm btn-primary", style = "margin-top: 8px; margin-left: 10px;" });
+            }
+            else
+            {
+                @Html.ActionLink("Follow", "Follow", "Follows", new { id = Model.Id }, new { id = "followLink", @class = "btn btn-sm btn-primary", style = "margin-top: 8px; margin-left: 10px;" });
+            }
+        }
     </div>
 </div>
 
