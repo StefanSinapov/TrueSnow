@@ -21,7 +21,10 @@
             <div class="navbar-collapse collapse">
                 <div class="row">
                     <div class="col-md-3">
-                        <ul class="nav navbar-nav"></ul>
+                        <ul class="nav navbar-nav">
+                            <li><a href="~/Events">Events</a></li>
+                            <li><a href="~/Articles">Articles</a></li>
+                        </ul>
                     </div>
                     <div class="col-md-3">
                         <ul class="nav navbar-nav">
@@ -81,6 +84,19 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            @*$('#follow').on('click', function () {
+                swal({
+                    title: 'Followed!',
+                    type: 'success',
+                    allowOutsideClick: true,
+                }, function () {
+                    location.reload();
+                    @{
+                        (TrueSnow.Web.Controllers.ProfileController)this.
+                    }
+                });
+            });*@
+            
             $('#Photo').fileinput({
                 language: 'bg',
                 uploadUrl: 'http://localhost:60702/Posts/Create',

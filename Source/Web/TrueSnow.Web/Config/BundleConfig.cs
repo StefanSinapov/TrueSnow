@@ -16,12 +16,14 @@
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/fileinput.min.js",
                       "~/Scripts/bootstrap.min.js",
-                      "~/Scripts/custom.js"));
+                      "~/Scripts/custom.js",
+                      "~/Scripts/sweetalert-dev.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/custom.min.css",
-                      "~/Content/fileinput.min.css"));
+                      "~/Content/fileinput.min.css",
+                      "~/Content/sweetalert.css"));
         }
     }
 }

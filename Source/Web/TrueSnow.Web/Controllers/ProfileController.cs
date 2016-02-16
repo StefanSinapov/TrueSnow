@@ -7,10 +7,12 @@
     using Models.Users;
     using Microsoft.AspNet.Identity.Owin;
     using Config;
+    using Data.Models;
 
     public class ProfileController : BaseController
     {
         private ApplicationUserManager userManager;
+        private TrueSnow.Data.TrueSnowDbContext db = new Data.TrueSnowDbContext();
 
         public ProfileController()
         {
@@ -56,7 +58,30 @@
             var userToEdit = this.UserManager.FindById(id);
             var model = this.Mapper.Map<ProfileViewModel>(userToEdit);
 
+            var currentUserId = this.HttpContext.User.Identity.GetUserId();
+            var currentUser = this.UserManager.FindById(currentUserId);
+            var userToFollow = this.UserManager.FindById(id);
+            currentUser.Following.Add(userToFollow);
+            this.db.SaveChanges();
+
             return this.View(model);
         }
+
+        //public void Follow()
+        //{
+        //    string userToFollowId = "";
+        //    var currentUserId = this.HttpContext.User.Identity.GetUserId();
+        //    var currentUser = this.UserManager.FindById(currentUserId);
+        //    var userToFollow = this.UserManager.FindById(userToFollowId);
+        //    currentUser.Following.Add(userToFollow);
+        //}
+
+        //public void Unfollow(string userToUnfollowId)
+        //{
+        //    var currentUserId = this.HttpContext.User.Identity.GetUserId();
+        //    var currentUser = this.UserManager.FindById(currentUserId);
+        //    var userToUnfollow = this.UserManager.FindById(userToUnfollowId);
+        //    currentUser.Following.Remove(userToUnfollow);
+        //}
     }
 }

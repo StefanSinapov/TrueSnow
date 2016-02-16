@@ -270,6 +270,7 @@
     <Content Include="Content\Images\default-avatar.png" />
     <Content Include="Content\Images\default-cover.jpg" />
     <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\sweetalert.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -301,6 +302,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\sweetalert-dev.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

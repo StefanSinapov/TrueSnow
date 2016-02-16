@@ -1,14 +1,30 @@
 ﻿@using System.Globalization
+@using TrueSnow.Data.Models
 @model IEnumerable<TrueSnow.Web.Models.Posts.PostViewModel>
 
-<div class="list-group">
-    @foreach (var post in Model)
-    {
-        <a href="@post.Url" class="list-group-item" style="height: 270px">
-            <h4 class="list-group-item-heading">@post.Title</h4>
-            <img src="~/File/@post.Photo.Id" alt="photo" class="img-responsive img-rounded" style="height: 180px;" />
-            by <b>@post.Creator.FirstName @post.Creator.LastName</b>
-            <p>@post.CreatedOn.ToString("dd MMM HH:mm", CultureInfo.CreateSpecificCulture("en-US"))</p>
-        </a>
-    }
-</div>
+@foreach (var post in Model)
+{
+    <div class="panel panel-primary" style="border: none;">
+        <div class="panel-heading row" style="margin: 0 !important; padding: 0; overflow: hidden">
+            <div class="col-xs-2 col-md-2" style="padding: 0">
+                <img src="~/File/@post.Creator.Files.First(x => x.FileType == FileType.Avatar).Id" alt="photo" class="img-responsive" style="height: 50px;" />
+            </div>
+            <div class="col-xs-10 col-md-10" style="padding: 0; padding-top: 5px;">
+                <h3 class="panel-title">
+                    <a href="~/Profile/@post.Creator.Id">@post.Creator.FirstName @post.Creator.LastName</a>
+                    <span style="font-size: 11px">on @post.CreatedOn.ToString("dd MMM HH:mm", CultureInfo.CreateSpecificCulture("en-US"))</span>
+                    <br />
+                    <span>@post.Title</span>
+                </h3>
+            </div>
+        </div>
+        <div class="panel-body" style="padding: 0;">
+            <a href="@post.Url">
+                <img src="~/File/@post.Photo.Id" alt="photo" class="img-responsive" />
+            </a>
+        </div>
+        <div class="panel-footer" style="padding: 5px 10px;">
+            <p style="margin: 0">Comments: @post.CommentsCount</p>
+        </div>
+    </div>
+}
