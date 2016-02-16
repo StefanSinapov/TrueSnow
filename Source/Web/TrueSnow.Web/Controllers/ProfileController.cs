@@ -37,6 +37,7 @@
 
         public ActionResult Index(string id)
         {
+            this.TempData["userId"] = id;
             var user = this.UserManager.FindById(id);
             var model = this.Mapper.Map<ProfileViewModel>(user);
 

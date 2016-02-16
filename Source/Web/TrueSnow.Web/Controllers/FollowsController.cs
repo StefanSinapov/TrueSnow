@@ -8,6 +8,7 @@
     using Microsoft.AspNet.Identity.Owin;
     using Config;
     using Models.Users;
+    using Infrastructure.Mapping;
 
     public class FollowsController : BaseController
     {
@@ -37,6 +38,7 @@
 
         public ActionResult Follow(string id)
         {
+            this.TempData["userId"] = id;
             var currentUserId = this.HttpContext.User.Identity.GetUserId();
             var currentUser = this.UserManager.FindById(currentUserId);
 
@@ -52,6 +54,7 @@
 
         public ActionResult Unfollow(string id)
         {
+            this.TempData["userId"] = id;
             var currentUserId = this.HttpContext.User.Identity.GetUserId();
             var currentUser = this.UserManager.FindById(currentUserId);
 
@@ -63,6 +66,34 @@
             var allusers = currentUser.Following.ToList();
 
             return this.View("../Profile/Index", this.Mapper.Map<ProfileViewModel>(userToUnfollow));
+        }
+
+        public ActionResult Following()
+        {
+            var currentUserId = this.TempData["userId"].ToString();
+            var currentUser = this.UserManager.FindById(currentUserId);
+
+            var model = currentUser
+                .Following
+                .AsQueryable()
+                .To<ProfileViewModel>()
+                .ToList();
+
+            return this.PartialView("Follow", model);
+        }
+
+        public ActionResult Followers()
+        {
+            var currentUserId = this.TempData["userId"].ToString();
+            var currentUser = this.UserManager.FindById(currentUserId);
+
+            var model = currentUser
+                .Followers
+                .AsQueryable()
+                .To<ProfileViewModel>()
+                .ToList();
+
+            return this.PartialView("Follow", model);
         }
     }
 }

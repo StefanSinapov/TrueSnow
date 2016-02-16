@@ -53,6 +53,25 @@ html, body {
     text-decoration: none;
 }
 
+.follow-btn {
+    font-size: 19px;
+    font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #000000;
+    margin-left: 10px;
+    margin-top: 10.5px;
+}
+
+.follow-btn:hover {
+    font-size: 19px;
+    font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #000000;
+    text-decoration: none;
+}
+
 .btn-primary {
     background-color: #4C90B7 !important;
     border-color: #4C90B7 !important;
