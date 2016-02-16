@@ -1,18 +1,17 @@
 ﻿namespace TrueSnow.Web.Controllers
 {
+    using System.Linq;
     using System.Web;
     using System.Web.Mvc;
 
     using Microsoft.AspNet.Identity;
-    using Models.Users;
     using Microsoft.AspNet.Identity.Owin;
     using Config;
-    using Data.Models;
+    using Models.Users;
 
     public class ProfileController : BaseController
     {
         private ApplicationUserManager userManager;
-        private TrueSnow.Data.TrueSnowDbContext db = new Data.TrueSnowDbContext();
 
         public ProfileController()
         {
@@ -53,35 +52,34 @@
             return this.PartialView("GetUser", model);
         }
 
-        public ActionResult Edit(string id)
+        public ActionResult Follow(string id)
         {
-            var userToEdit = this.UserManager.FindById(id);
-            var model = this.Mapper.Map<ProfileViewModel>(userToEdit);
-
             var currentUserId = this.HttpContext.User.Identity.GetUserId();
             var currentUser = this.UserManager.FindById(currentUserId);
-            var userToFollow = this.UserManager.FindById(id);
-            currentUser.Following.Add(userToFollow);
-            this.db.SaveChanges();
 
-            return this.View(model);
+            var userToFollow = this.UserManager.FindById(id);
+
+            currentUser.Following.Add(userToFollow);
+            this.UserManager.Update(currentUser);
+
+            var allusers = currentUser.Following.ToList();
+
+            return this.View("Index", this.Mapper.Map<ProfileViewModel>(userToFollow));
         }
 
-        //public void Follow()
-        //{
-        //    string userToFollowId = "";
-        //    var currentUserId = this.HttpContext.User.Identity.GetUserId();
-        //    var currentUser = this.UserManager.FindById(currentUserId);
-        //    var userToFollow = this.UserManager.FindById(userToFollowId);
-        //    currentUser.Following.Add(userToFollow);
-        //}
+        public ActionResult Unfollow(string id)
+        {
+            var currentUserId = this.HttpContext.User.Identity.GetUserId();
+            var currentUser = this.UserManager.FindById(currentUserId);
 
-        //public void Unfollow(string userToUnfollowId)
-        //{
-        //    var currentUserId = this.HttpContext.User.Identity.GetUserId();
-        //    var currentUser = this.UserManager.FindById(currentUserId);
-        //    var userToUnfollow = this.UserManager.FindById(userToUnfollowId);
-        //    currentUser.Following.Remove(userToUnfollow);
-        //}
+            var userToUnfollow = this.UserManager.FindById(id);
+
+            currentUser.Following.Remove(userToUnfollow);
+            this.UserManager.Update(currentUser);
+
+            var allusers = currentUser.Following.ToList();
+
+            return this.View("Index", this.Mapper.Map<ProfileViewModel>(userToUnfollow));
+        }
     }
 }
