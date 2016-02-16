@@ -96,6 +96,46 @@
                     }
                 });
             });*@
+
+            $('#followLink').click(function (e) {
+                e.preventDefault();
+                var href = $(this).attr('href');
+
+                swal({
+                    title: 'Followed!',
+                    type: 'success',
+                    allowOutsideClick: true
+                }, function () {
+                    setTimeout(function () {
+                        window.location = href;
+                    }, 200);
+                });
+            });
+
+            $('#unfollowLink').click(function (e) {
+                e.preventDefault();
+                var href = $(this).attr('href');
+
+                swal({
+                    title: 'Are you sure?',
+                    type: 'warning',
+                    allowOutsideClick: true,
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, unfollow!",
+                    closeOnConfirm: false
+                }, function () {
+                    swal({
+                        title: 'Unfollowed!',
+                        type: 'success',
+                        allowOutsideClick: true
+                    }, function () {
+                        setTimeout(function () {
+                            window.location = href;
+                        }, 200);
+                    });
+                });
+            });
             
             $('#Photo').fileinput({
                 language: 'bg',
