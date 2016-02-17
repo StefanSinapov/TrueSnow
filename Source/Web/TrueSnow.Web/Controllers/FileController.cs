@@ -13,7 +13,6 @@
             this.files = files;
         }
 
-        // GET: File
         public ActionResult Index(int id)
         {
             var fileToRetrieve = this.files.GetById(id);

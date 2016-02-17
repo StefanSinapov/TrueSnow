@@ -4,10 +4,10 @@
     using System.Web.Mvc;
 
     using Microsoft.AspNet.Identity;
-    using Models.Users;
 
     using Data.Models;
     using Infrastructure.Mapping;
+    using Models.Users;
 
     public class FollowsController : BaseController
     {
@@ -18,18 +18,25 @@
             this.userManager = userManager;
         }
 
+        private User CurrentUser
+        {
+            get
+            {
+                var currentUserId = this.HttpContext.User.Identity.GetUserId();
+                return this.userManager.FindById(currentUserId);
+            }
+        }
+
         public ActionResult Follow(string id)
         {
             this.TempData["userId"] = id;
-            var currentUserId = this.HttpContext.User.Identity.GetUserId();
-            var currentUser = this.userManager.FindById(currentUserId);
 
             var userToFollow = this.userManager.FindById(id);
 
-            currentUser.Following.Add(userToFollow);
-            this.userManager.Update(currentUser);
+            this.CurrentUser.Following.Add(userToFollow);
+            this.userManager.Update(this.CurrentUser);
 
-            var allusers = currentUser.Following.ToList();
+            var allusers = this.CurrentUser.Following.ToList();
 
             return this.View("../Profile/Index", this.Mapper.Map<ProfileViewModel>(userToFollow));
         }
@@ -37,15 +44,13 @@
         public ActionResult Unfollow(string id)
         {
             this.TempData["userId"] = id;
-            var currentUserId = this.HttpContext.User.Identity.GetUserId();
-            var currentUser = this.userManager.FindById(currentUserId);
 
             var userToUnfollow = this.userManager.FindById(id);
 
-            currentUser.Following.Remove(userToUnfollow);
-            this.userManager.Update(currentUser);
+            this.CurrentUser.Following.Remove(userToUnfollow);
+            this.userManager.Update(this.CurrentUser);
 
-            var allusers = currentUser.Following.ToList();
+            var allusers = this.CurrentUser.Following.ToList();
 
             return this.View("../Profile/Index", this.Mapper.Map<ProfileViewModel>(userToUnfollow));
         }
