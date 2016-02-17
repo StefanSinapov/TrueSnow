@@ -4,6 +4,7 @@ namespace TrueSnow.Data.Migrations
     using System.Linq;
 
     using Microsoft.AspNet.Identity.EntityFramework;
+    using TrueSnow.Web.Infrastructure.Constants;
 
     public sealed class Configuration : DbMigrationsConfiguration<TrueSnowDbContext>
     {
@@ -17,8 +18,8 @@ namespace TrueSnow.Data.Migrations
         {
             if (!context.Roles.Any())
             {
-                context.Roles.Add(new IdentityRole { Name = "Admin" });
-                context.Roles.Add(new IdentityRole { Name = "User" });
+                context.Roles.Add(new IdentityRole { Name = IdentityRoles.Administrator });
+                context.Roles.Add(new IdentityRole { Name = IdentityRoles.User });
                 context.SaveChanges();
             }
         }

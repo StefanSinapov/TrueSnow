@@ -12,6 +12,7 @@
 
     public class CommentsController : BaseController
     {
+        private const int CommentsPerPage = 5;
         private readonly ICommentsService comments;
 
         public CommentsController(ICommentsService comments)
@@ -19,15 +20,36 @@
             this.comments = comments;
         }
 
-        public ActionResult ByPost(int id)
+        public ActionResult ByPost(int id, int? page, string postUrl)
         {
+            if (page == null)
+            {
+                page = 1;
+            }
+
+            var allCommentsCount = this.comments.GetByPostId(id).Count();
+            var totalPages = (int)Math.Ceiling(allCommentsCount / (decimal)CommentsPerPage);
+            var commentsToSkip = (int)(page - 1) * CommentsPerPage;
+
             this.TempData["currentPostId"] = id;
-            var model = this.comments
+            var comments = this.comments
                 .GetByPostId(id)
+                .Skip(commentsToSkip)
+                .Take(CommentsPerPage)
                 .To<CommentViewModel>()
                 .ToList();
 
-            return this.PartialView("ByPost", model);
+            var viewModel = new CommentsByPostViewModel
+            {
+                Comments = comments,
+                TotalPages = totalPages,
+                PostUrl = postUrl,
+                CurrentPage = (int)page,
+                NextPage = (int)(page == totalPages ? totalPages : page + 1),
+                PreviousPage = (int)(page == 1 ? 1 : page - 1)
+            };
+
+            return this.PartialView("ByPost", viewModel);
         }
 
         public ActionResult GetCreate()
@@ -53,64 +75,5 @@
 
             return this.Redirect(this.Request.UrlReferrer.ToString());
         }
-
-        //// GET: Comments/Edit/5
-        // public async Task<ActionResult> Edit(int? id)
-        // {
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Comment comment = await db.Comments.FindAsync(id);
-        //    if (comment == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    ViewBag.CreatorId = new SelectList(db.Users, "Id", "FirstName", comment.CreatorId);
-        //    return View(comment);
-        // }
-
-        //// POST: Comments/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        // [HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public async Task<ActionResult> Edit([Bind(Include = "Id,Content,CreatorId,CreatedOn,ModifiedOn,IsDeleted,DeletedOn")] Comment comment)
-        // {
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(comment).State = EntityState.Modified;
-        //        await db.SaveChangesAsync();
-        //        return RedirectToAction("Index");
-        //    }
-        //    ViewBag.CreatorId = new SelectList(db.Users, "Id", "FirstName", comment.CreatorId);
-        //    return View(comment);
-        // }
-
-        //// GET: Comments/Delete/5
-        // public async Task<ActionResult> Delete(int? id)
-        // {
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Comment comment = await db.Comments.FindAsync(id);
-        //    if (comment == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(comment);
-        // }
-
-        //// POST: Comments/Delete/5
-        // [HttpPost, ActionName("Delete")]
-        // [ValidateAntiForgeryToken]
-        // public async Task<ActionResult> DeleteConfirmed(int id)
-        // {
-        //    Comment comment = await db.Comments.FindAsync(id);
-        //    db.Comments.Remove(comment);
-        //    await db.SaveChangesAsync();
-        //    return RedirectToAction("Index");
-        // }
     }
 }

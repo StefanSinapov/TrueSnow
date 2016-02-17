@@ -12,17 +12,21 @@ html, body {
     margin-bottom: -50px;
 }
 
-.page-wrap:after {
-    content: "";
-    display: block;
-}
+    .page-wrap:after {
+        content: "";
+        display: block;
+    }
 
-.site-footer, .page-wrap:after {
-    height: 50px;
-}
+    .site-footer, .page-wrap:after {
+        height: 50px;
+    }
 
 .site-footer {
     text-align: center;
+}
+
+span[data-action="like"], span[data-action="unlike"] {
+    cursor: pointer;
 }
 
 .validation-summary-errors ul {
@@ -63,13 +67,38 @@ html, body {
     margin-top: 10.5px;
 }
 
-.follow-btn:hover {
-    font-size: 19px;
-    font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
-    font-weight: 700;
-    line-height: 1.1;
-    color: #000000;
-    text-decoration: none;
+    .follow-btn:hover {
+        font-size: 19px;
+        font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+        font-weight: 700;
+        line-height: 1.1;
+        color: #000000;
+        text-decoration: none;
+    }
+
+    .follow-btn:active {
+        font-size: 19px;
+        font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+        font-weight: 700;
+        line-height: 1.1;
+        color: #000000 !important;
+        text-decoration: none !important;
+    }
+
+#chatRoom {
+    border: 1px solid black;
+    width: 100%;
+    height: 620px;
+}
+
+#chatWindow {
+    border: 1px solid black;
+    width: 70%;
+    height: 590px;
+}
+
+#message {
+    width: 95%;
 }
 
 .btn-primary {
@@ -94,9 +123,9 @@ html, body {
     margin-top: 115px;
 }
 
-.profile-stats > h4 {
-    margin-left: 10px;
-}
+    .profile-stats > h4 {
+        margin-left: 10px;
+    }
 
 .jumbotron {
     margin-top: -20px !important;
@@ -119,16 +148,13 @@ html, body {
     left: 615px;
 }
 
-.logo-container {
-    padding-top: 10px;
-    padding-left: 60px;
-}
-
-.logo-container2 {
-}
-
 .logo {
+    position: fixed;
     height: 40px;
+    top: 11px;
+    left: 50%;
+    margin-left: -95px;
+    z-index: 1031;
 }
 
 html {

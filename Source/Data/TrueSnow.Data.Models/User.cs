@@ -40,7 +40,7 @@
             get { return this.posts; }
             set { this.posts = value; }
         }
-
+        
         public virtual ICollection<User> Followers
         {
             get { return this.followers; }

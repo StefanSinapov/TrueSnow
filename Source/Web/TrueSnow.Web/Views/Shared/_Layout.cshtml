@@ -4,10 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>True Snow</title>
-    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css", "~/Content/kendo")
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery.signalR-2.2.0.js"></script>
+    <script src="~/signalr/hubs" type="text/javascript"></script>
     <meta name="description" content="Social network for true snowboarders" />
 </head>
 <body>
+    <img src="~/Content/Images/logo.png" alt="Logo" class="logo img-responsive img-circle" />
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -24,14 +28,19 @@
                         <ul class="nav navbar-nav">
                             <li><a href="~/Events">Events</a></li>
                             <li><a href="~/Articles">Articles</a></li>
+                            <li><a href="~/Messages/ByUser">Messages</a></li>
                         </ul>
                     </div>
                     <div class="col-md-3">
                         <ul class="nav navbar-nav">
-                            <li class="logo-container"><img src="~/Content/Images/logo.png" alt="Logo" class="logo img-responsive img-circle" /></li>
+                            <li class="logo-container"></li>
                         </ul>
                     </div>
                     <div class="col-md-4" style="margin-left: 62px">
+                        @if (this.User.IsInRole(TrueSnow.Web.Infrastructure.Constants.IdentityRoles.Administrator))
+                        {
+                            <a href="~/Administration/AdminPosts">Admin</a>
+                        }
                         @Html.Partial("_LoginPartial")
                     </div>
                 </div>
@@ -78,25 +87,12 @@
         </div>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/kendo")
     @RenderSection("scripts", required: false)
 
     <script type="text/javascript">
         $(document).ready(function () {
-            @*$('#follow').on('click', function () {
-                swal({
-                    title: 'Followed!',
-                    type: 'success',
-                    allowOutsideClick: true,
-                }, function () {
-                    location.reload();
-                    @{
-                        (TrueSnow.Web.Controllers.ProfileController)this.
-                    }
-                });
-            });*@
-
             $('#followLink').click(function (e) {
                 e.preventDefault();
                 var href = $(this).attr('href');
@@ -136,7 +132,7 @@
                     });
                 });
             });
-            
+
             $('#Photo').fileinput({
                 language: 'bg',
                 uploadUrl: 'http://localhost:60702/Posts/Create',

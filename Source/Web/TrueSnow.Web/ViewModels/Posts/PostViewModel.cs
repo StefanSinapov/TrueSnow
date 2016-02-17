@@ -3,9 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
 
     using AutoMapper;
-
     using Data.Models;
     using Infrastructure.Mapping;
     using Services.Web;
@@ -34,6 +34,8 @@
 
         public ICollection<Comment> Comments { get; set; }
 
+        public int Likes { get; set; }
+
         public string Url
         {
             get
@@ -46,7 +48,8 @@
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Post, PostViewModel>()
-                .ForMember(x => x.CommentsCount, opts => opts.MapFrom(x => x.Comments.Count));
+                .ForMember(x => x.CommentsCount, opts => opts.MapFrom(x => x.Comments.Count))
+                .ForMember(x => x.Likes, opts => opts.MapFrom(x => x.Likes.Where(l => !l.IsDeleted).Count()));
         }
     }
 }

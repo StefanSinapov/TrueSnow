@@ -67,6 +67,10 @@
     <None Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Web\TrueSnow.Web.Infrastructure\TrueSnow.Web.Infrastructure.csproj">
+      <Project>{e65fdfff-baeb-4ccd-9fca-6c5aa95bdc88}</Project>
+      <Name>TrueSnow.Web.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TrueSnow.Data.Common\TrueSnow.Data.Common.csproj">
       <Project>{3f2dfbbe-1e54-4de3-821b-3824517cda0a}</Project>
       <Name>TrueSnow.Data.Common</Name>

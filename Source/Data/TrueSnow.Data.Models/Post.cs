@@ -8,10 +8,12 @@
     public class Post : BaseModel<int>
     {
         private ICollection<Comment> comments;
+        private ICollection<Like> likes;
 
         public Post()
         {
             this.comments = new HashSet<Comment>();
+            this.likes = new HashSet<Like>();
         }
 
         [Required]
@@ -20,6 +22,7 @@
         [Required]
         public string Content { get; set; }
 
+        [Required]
         public string CreatorId { get; set; }
 
         public virtual User Creator { get; set; }
@@ -32,6 +35,12 @@
         {
             get { return this.comments; }
             set { this.comments = value; }
+        }
+
+        public virtual ICollection<Like> Likes
+        {
+            get { return this.likes; }
+            set { this.likes = value; }
         }
     }
 }

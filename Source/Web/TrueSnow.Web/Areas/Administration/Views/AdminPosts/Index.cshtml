@@ -1,0 +1,37 @@
+﻿@using Kendo.Mvc.UI
+@(Html.Kendo().Grid<TrueSnow.Data.Models.Post>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+        columns.Bound(c => c.Title);
+        columns.Bound(c => c.Content);
+        columns.Bound(c => c.CreatedOn);
+        columns.Bound(c => c.ModifiedOn);
+        columns.Bound(c => c.IsDeleted);
+        columns.Bound(c => c.DeletedOn);
+        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+      })
+      .ToolBar(toolbar => {
+            toolbar.Create();
+            toolbar.Excel();
+      })
+      .Editable(editable => editable.Mode(GridEditMode.PopUp))
+      .Pageable()
+      .Selectable(selectable => {
+            selectable.Mode(GridSelectionMode.Single);
+            selectable.Type(GridSelectionType.Row);
+      })
+      .Sortable(sortable => {
+          sortable.SortMode(GridSortMode.SingleColumn);
+      })
+      .Filterable()
+      .Scrollable()
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Model(model => model.Id(p => p.Id))
+          .Read(read => read.Action("Posts_Read", "Posts"))
+          .Create(create => create.Action("Posts_Create", "Posts"))
+          .Update(update => update.Action("Posts_Update", "Posts"))
+          .Destroy(destroy => destroy.Action("Posts_Destroy", "Posts"))
+      )
+)

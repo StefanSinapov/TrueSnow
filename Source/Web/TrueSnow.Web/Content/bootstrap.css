@@ -56,6 +56,8 @@ a {
 a:active,
 a:hover {
   outline: 0;
+  color: black;
+  text-decoration: none;
 }
 abbr[title] {
   border-bottom: 1px dotted;
@@ -4622,7 +4624,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
   color: #ffffff;
-  background-color: #e74b47;
+  background-color: black;
 }
 .navbar-inverse .navbar-nav > .disabled > a,
 .navbar-inverse .navbar-nav > .disabled > a:hover,
@@ -5443,8 +5445,8 @@ button.list-group-item-danger.active:hover,
 a.list-group-item-danger.active:focus,
 button.list-group-item-danger.active:focus {
   color: #fff;
-  background-color: #b94a48;
-  border-color: #b94a48;
+  background-color: black;
+  border-color: black;
 }
 .list-group-item-heading {
   margin-top: 0;

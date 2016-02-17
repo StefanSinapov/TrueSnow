@@ -57,10 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Article.cs" />
     <Compile Include="Comment.cs" />
+    <Compile Include="Conversation.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="File.cs" />
     <Compile Include="FileType.cs" />
+    <Compile Include="Like.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

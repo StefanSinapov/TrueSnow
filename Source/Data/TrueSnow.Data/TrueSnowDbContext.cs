@@ -16,13 +16,24 @@
         {
         }
 
+        public IDbSet<Article> Articles { get; set; }
+
+        public IDbSet<Comment> Comments { get; set; }
+
+        public IDbSet<Conversation> Conversations { get; set; }
+
         public IDbSet<Event> Events { get; set; }
 
         public IDbSet<File> Files { get; set; }
 
+        public IDbSet<Like> Likes { get; set; }
+
         public IDbSet<Post> Posts { get; set; }
 
-        public IDbSet<Comment> Comments { get; set; }
+        public override IDbSet<User> Users
+        {
+            get { return base.Users; }
+        }
 
         public static TrueSnowDbContext Create()
         {

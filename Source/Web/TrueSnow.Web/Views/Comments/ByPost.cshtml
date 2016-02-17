@@ -1,8 +1,8 @@
 ﻿@using System.Globalization
 @using TrueSnow.Data.Models
-@model  IEnumerable<TrueSnow.Web.ViewModels.Comments.CommentViewModel>
+@model  TrueSnow.Web.ViewModels.Comments.CommentsByPostViewModel
 
-@foreach (var comment in Model)
+@foreach (var comment in Model.Comments)
 {
     <div class="row">
         <span class="col-md-1">
@@ -16,3 +16,27 @@
     </div>
     <hr />
 }
+
+<nav>
+    <ul class="pagination">
+        <li>
+            <a href="@Model.PostUrl?page=@Model.PreviousPage" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            var className = string.Empty;
+            if (Model.CurrentPage == i)
+            {
+                className = "active";
+            }
+            <li class="@className"><a href="@Model.PostUrl?page=@i">@i</a></li>
+        }
+        <li>
+            <a href="@Model.PostUrl?page=@Model.NextPage" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>

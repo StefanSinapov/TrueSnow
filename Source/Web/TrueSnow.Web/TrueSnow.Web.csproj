@@ -74,6 +74,17 @@
       <HintPath>..\..\TrueSnow\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Kendo.Mvc">
+      <HintPath>..\..\External Libraries\Kendo.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -213,6 +224,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\AdminPostsController.cs" />
     <Compile Include="Config\ApplicationSignInManager.cs" />
     <Compile Include="Config\ApplicationUserManager.cs" />
     <Compile Include="Config\AutofacConfig.cs" />
@@ -232,14 +245,20 @@
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\FollowsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LikesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hub\Chat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Chat\MessageInfo.cs" />
+    <Compile Include="ViewModels\Chat\UserInfo.cs" />
+    <Compile Include="ViewModels\Comments\CommentsByPostViewModel.cs" />
     <Compile Include="ViewModels\Comments\CommentViewModel.cs" />
     <Compile Include="ViewModels\Events\EventViewModel.cs" />
     <Compile Include="ViewModels\Posts\PostViewModel.cs" />
@@ -272,6 +291,58 @@
     <Content Include="Content\Images\default-avatar.png" />
     <Content Include="Content\Images\default-cover.jpg" />
     <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\KendoUI\Default\editor.png" />
+    <Content Include="Content\KendoUI\Default\imagebrowser.png" />
+    <Content Include="Content\KendoUI\Default\indeterminate.gif" />
+    <Content Include="Content\KendoUI\Default\loading-image.gif" />
+    <Content Include="Content\KendoUI\Default\loading.gif" />
+    <Content Include="Content\KendoUI\Default\loading_2x.gif" />
+    <Content Include="Content\KendoUI\Default\markers.png" />
+    <Content Include="Content\KendoUI\Default\markers_2x.png" />
+    <Content Include="Content\KendoUI\Default\slider-h.gif" />
+    <Content Include="Content\KendoUI\Default\slider-v.gif" />
+    <Content Include="Content\KendoUI\Default\sprite.png" />
+    <Content Include="Content\KendoUI\Default\sprite_2x.png" />
+    <Content Include="Content\KendoUI\Default\sprite_kpi.png" />
+    <Content Include="Content\KendoUI\Default\sprite_kpi_2x.png" />
+    <Content Include="Content\KendoUI\fonts\DejaVu\LICENSE.txt" />
+    <Content Include="Content\KendoUI\fonts\glyphs\KendoUIGlyphs.svg" />
+    <Content Include="Content\KendoUI\images\back.png" />
+    <Content Include="Content\KendoUI\images\kendoui.svg" />
+    <Content Include="Content\KendoUI\images\wp8_icons.png" />
+    <Content Include="Content\KendoUI\images\wp8_inverseicons.png" />
+    <Content Include="Content\KendoUI\kendo.common.min.css" />
+    <Content Include="Content\KendoUI\kendo.default.min.css" />
+    <Content Include="Content\KendoUI\textures\brushed-metal.png" />
+    <Content Include="Content\KendoUI\textures\dots1.png" />
+    <Content Include="Content\KendoUI\textures\dots10.png" />
+    <Content Include="Content\KendoUI\textures\dots11.png" />
+    <Content Include="Content\KendoUI\textures\dots12.png" />
+    <Content Include="Content\KendoUI\textures\dots13.png" />
+    <Content Include="Content\KendoUI\textures\dots2.png" />
+    <Content Include="Content\KendoUI\textures\dots3.png" />
+    <Content Include="Content\KendoUI\textures\dots4.png" />
+    <Content Include="Content\KendoUI\textures\dots5.png" />
+    <Content Include="Content\KendoUI\textures\dots6.png" />
+    <Content Include="Content\KendoUI\textures\dots7.png" />
+    <Content Include="Content\KendoUI\textures\dots8.png" />
+    <Content Include="Content\KendoUI\textures\dots9.png" />
+    <Content Include="Content\KendoUI\textures\glass-lighter.png" />
+    <Content Include="Content\KendoUI\textures\glass.png" />
+    <Content Include="Content\KendoUI\textures\highlight.png" />
+    <Content Include="Content\KendoUI\textures\hsv-gradient.png" />
+    <Content Include="Content\KendoUI\textures\hue.png" />
+    <Content Include="Content\KendoUI\textures\leather1.png" />
+    <Content Include="Content\KendoUI\textures\leather2.png" />
+    <Content Include="Content\KendoUI\textures\noise.png" />
+    <Content Include="Content\KendoUI\textures\stripe1.png" />
+    <Content Include="Content\KendoUI\textures\stripe2.png" />
+    <Content Include="Content\KendoUI\textures\stripe3.png" />
+    <Content Include="Content\KendoUI\textures\stripe4.png" />
+    <Content Include="Content\KendoUI\textures\stripe5.png" />
+    <Content Include="Content\KendoUI\textures\stripe6.png" />
+    <Content Include="Content\KendoUI\textures\transparency.png" />
+    <Content Include="Content\KendoUI\textures\transtexture.png" />
     <Content Include="Content\sweetalert.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -287,6 +358,26 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Areas\Administration\Views\web.config" />
+    <Content Include="Areas\Administration\Views\AdminPosts\Index.cshtml" />
+    <Content Include="Content\KendoUI\fonts\DejaVu\DejaVuSans-Bold.ttf" />
+    <Content Include="Content\KendoUI\fonts\DejaVu\DejaVuSans-BoldOblique.ttf" />
+    <Content Include="Content\KendoUI\fonts\DejaVu\DejaVuSans-ExtraLight.ttf" />
+    <Content Include="Content\KendoUI\fonts\DejaVu\DejaVuSans-Oblique.ttf" />
+    <Content Include="Content\KendoUI\fonts\DejaVu\DejaVuSans.ttf" />
+    <Content Include="Content\KendoUI\fonts\DejaVu\DejaVuSansMono-Bold.ttf" />
+    <Content Include="Content\KendoUI\fonts\DejaVu\DejaVuSansMono-BoldOblique.ttf" />
+    <Content Include="Content\KendoUI\fonts\DejaVu\DejaVuSansMono-Oblique.ttf" />
+    <Content Include="Content\KendoUI\fonts\DejaVu\DejaVuSansMono.ttf" />
+    <Content Include="Content\KendoUI\fonts\DejaVu\DejaVuSerif-Bold.ttf" />
+    <Content Include="Content\KendoUI\fonts\DejaVu\DejaVuSerif-BoldItalic.ttf" />
+    <Content Include="Content\KendoUI\fonts\DejaVu\DejaVuSerif-Italic.ttf" />
+    <Content Include="Content\KendoUI\fonts\DejaVu\DejaVuSerif.ttf" />
+    <Content Include="Content\KendoUI\fonts\glyphs\KendoUIGlyphs.eot" />
+    <Content Include="Content\KendoUI\fonts\glyphs\KendoUIGlyphs.ttf" />
+    <Content Include="Content\KendoUI\fonts\glyphs\KendoUIGlyphs.woff" />
+    <Content Include="Content\KendoUI\images\kendoui.ttf" />
+    <Content Include="Content\KendoUI\images\kendoui.woff" />
     <None Include="Properties\PublishProfiles\truesnow - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\truesnow - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -300,10 +391,14 @@
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\KendoUI\kendo.all.min.js" />
+    <Content Include="Scripts\KendoUI\kendo.aspnetmvc.min.js" />
     <Content Include="Scripts\sweetalert-dev.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -352,6 +447,7 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Profile\Follow.cshtml" />
     <Content Include="Views\Follows\Follow.cshtml" />
+    <Content Include="Views\Messages\ByUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\TrueSnow.Data.Common\TrueSnow.Data.Common.csproj">
@@ -389,7 +485,10 @@
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Administration\Models\" />
+    <Folder Include="Areas\Administration\Views\Shared\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
