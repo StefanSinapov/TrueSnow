@@ -25,7 +25,8 @@ namespace TrueSnow.Web.Areas.Administration.Controllers
         public ActionResult Posts_Read([DataSourceRequest]DataSourceRequest request)
         {
             IQueryable<Post> posts = db.Posts;
-            DataSourceResult result = posts.ToDataSourceResult(request, post => new {
+            DataSourceResult result = posts.ToDataSourceResult(request, post => new
+            {
                 Id = post.Id,
                 Title = post.Title,
                 Content = post.Content,
@@ -88,23 +89,20 @@ namespace TrueSnow.Web.Areas.Administration.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Posts_Destroy([DataSourceRequest]DataSourceRequest request, Post post)
         {
-            if (ModelState.IsValid)
+            var entity = new Post
             {
-                var entity = new Post
-                {
-                    Id = post.Id,
-                    Title = post.Title,
-                    Content = post.Content,
-                    CreatedOn = post.CreatedOn,
-                    ModifiedOn = post.ModifiedOn,
-                    IsDeleted = post.IsDeleted,
-                    DeletedOn = post.DeletedOn
-                };
+                Id = post.Id,
+                Title = post.Title,
+                Content = post.Content,
+                CreatedOn = post.CreatedOn,
+                ModifiedOn = post.ModifiedOn,
+                IsDeleted = post.IsDeleted,
+                DeletedOn = post.DeletedOn
+            };
 
-                db.Posts.Attach(entity);
-                db.Posts.Remove(entity);
-                db.SaveChanges();
-            }
+            db.Posts.Attach(entity);
+            db.Posts.Remove(entity);
+            db.SaveChanges();
 
             return Json(new[] { post }.ToDataSourceResult(request, ModelState));
         }

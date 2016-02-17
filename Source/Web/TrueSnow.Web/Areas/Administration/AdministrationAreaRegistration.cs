@@ -1,18 +1,18 @@
-﻿namespace TrueSnow.Web.Areas.Administration
-{
-    using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-    public class AdministrationAreaRegistration : AreaRegistration
+namespace TrueSnow.Web.Areas.Administration
+{
+    public class AdministrationAreaRegistration : AreaRegistration 
     {
-        public override string AreaName
+        public override string AreaName 
         {
-            get
+            get 
             {
                 return "Administration";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context)
+        public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
                 "Administration_default",

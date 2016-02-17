@@ -18,14 +18,11 @@
       .Editable(editable => editable.Mode(GridEditMode.PopUp))
       .Pageable()
       .Selectable(selectable => {
-            selectable.Mode(GridSelectionMode.Single);
+            selectable.Mode(GridSelectionMode.Multiple);
             selectable.Type(GridSelectionType.Row);
       })
-      .Sortable(sortable => {
-          sortable.SortMode(GridSortMode.SingleColumn);
-      })
       .Filterable()
-      .Scrollable()
+      .Scrollable(scrollable => scrollable.Enabled(false))
       .DataSource(dataSource => dataSource
           .Ajax()
           .Model(model => model.Id(p => p.Id))

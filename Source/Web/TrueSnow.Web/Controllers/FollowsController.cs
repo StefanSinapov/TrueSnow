@@ -1,51 +1,33 @@
 ﻿namespace TrueSnow.Web.Controllers
 {
     using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
 
     using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.Owin;
-    using Config;
     using Models.Users;
+
+    using Data.Models;
     using Infrastructure.Mapping;
 
     public class FollowsController : BaseController
     {
-        private ApplicationUserManager userManager;
+        private readonly UserManager<User> userManager;
 
-        public FollowsController()
+        public FollowsController(UserManager<User> userManager)
         {
-        }
-
-        public FollowsController(ApplicationUserManager userManager)
-        {
-            this.UserManager = userManager;
-        }
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return this.userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-
-            private set
-            {
-                this.userManager = value;
-            }
+            this.userManager = userManager;
         }
 
         public ActionResult Follow(string id)
         {
             this.TempData["userId"] = id;
             var currentUserId = this.HttpContext.User.Identity.GetUserId();
-            var currentUser = this.UserManager.FindById(currentUserId);
+            var currentUser = this.userManager.FindById(currentUserId);
 
-            var userToFollow = this.UserManager.FindById(id);
+            var userToFollow = this.userManager.FindById(id);
 
             currentUser.Following.Add(userToFollow);
-            this.UserManager.Update(currentUser);
+            this.userManager.Update(currentUser);
 
             var allusers = currentUser.Following.ToList();
 
@@ -56,12 +38,12 @@
         {
             this.TempData["userId"] = id;
             var currentUserId = this.HttpContext.User.Identity.GetUserId();
-            var currentUser = this.UserManager.FindById(currentUserId);
+            var currentUser = this.userManager.FindById(currentUserId);
 
-            var userToUnfollow = this.UserManager.FindById(id);
+            var userToUnfollow = this.userManager.FindById(id);
 
             currentUser.Following.Remove(userToUnfollow);
-            this.UserManager.Update(currentUser);
+            this.userManager.Update(currentUser);
 
             var allusers = currentUser.Following.ToList();
 
@@ -71,7 +53,7 @@
         public ActionResult Following()
         {
             var currentUserId = this.TempData["userId"].ToString();
-            var currentUser = this.UserManager.FindById(currentUserId);
+            var currentUser = this.userManager.FindById(currentUserId);
 
             var model = currentUser
                 .Following
@@ -85,7 +67,7 @@
         public ActionResult Followers()
         {
             var currentUserId = this.TempData["userId"].ToString();
-            var currentUser = this.UserManager.FindById(currentUserId);
+            var currentUser = this.userManager.FindById(currentUserId);
 
             var model = currentUser
                 .Followers

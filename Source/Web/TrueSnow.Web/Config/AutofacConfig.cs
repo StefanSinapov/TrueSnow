@@ -19,6 +19,7 @@
     using Microsoft.Owin.Security;
     using Microsoft.Owin.Security.DataProtection;
     using System.Web;
+    using Microsoft.AspNet.Identity.EntityFramework;
     public static class AutofacConfig
     {
         public static void RegisterAutofac()
@@ -60,6 +61,11 @@
             builder.Register(x => new IdentifierProvider())
                 .As<IIdentifierProvider>()
                 .InstancePerRequest();
+
+            builder.RegisterType<UserStore<User>>()
+                .As<IUserStore<User>>();
+
+            builder.RegisterType<UserManager<User>>();
 
             var servicesAssembly = Assembly.GetAssembly(typeof(FilesService));
             builder.RegisterAssemblyTypes(servicesAssembly).AsImplementedInterfaces();
