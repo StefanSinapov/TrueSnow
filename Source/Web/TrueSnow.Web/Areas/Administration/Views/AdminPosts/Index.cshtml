@@ -29,9 +29,9 @@
       .DataSource(dataSource => dataSource
           .Ajax()
           .Model(model => model.Id(p => p.Id))
-          .Read(read => read.Action("Posts_Read", "Posts"))
-          .Create(create => create.Action("Posts_Create", "Posts"))
-          .Update(update => update.Action("Posts_Update", "Posts"))
-          .Destroy(destroy => destroy.Action("Posts_Destroy", "Posts"))
+          .Read(read => read.Action("Posts_Read", "AdminPosts"))
+          .Create(create => create.Action("Posts_Create", "AdminPosts"))
+          .Update(update => update.Action("Posts_Update", "AdminPosts"))
+          .Destroy(destroy => destroy.Action("Posts_Destroy", "AdminPosts"))
       )
 )

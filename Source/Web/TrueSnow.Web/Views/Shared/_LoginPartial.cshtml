@@ -7,7 +7,7 @@
         <ul class="nav navbar-nav navbar-right">
             <li style="margin-top: 10px;"><button class="btn btn-info" data-toggle="modal" data-target="#addPostModal" style="height: 39px; background-color: #4C90B7; border-color: #4C90B7;"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> <b>Post</b></button></li>
             <li class="dropdown" style="padding: 10px;">
-                @{ Html.RenderAction("GetUser", "Profile"); }
+                @{ Html.RenderAction("GetUser", "Profile", new { area = "" }); }
             </li>
         </ul>
     }
