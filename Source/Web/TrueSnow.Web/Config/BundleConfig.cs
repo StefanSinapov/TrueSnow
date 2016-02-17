@@ -32,7 +32,12 @@
 
             bundles.Add(new StyleBundle("~/Content/kendo").Include(
                       "~/Content/KendoUI/kendo.common.min.css",
-                      "~/Content/KendoUI/kendo.default.min.css"));
+                      "~/Content/KendoUI/kendo.default.min.css",
+                      "~/Content/KendoUI/kendo.office365.min.css"));
+
+            bundles.Add(new StyleBundle("~/Content/slick").Include(
+                      "~/Content/slick.css",
+                      "~/Content/slick-theme.css"));
         }
     }
 }

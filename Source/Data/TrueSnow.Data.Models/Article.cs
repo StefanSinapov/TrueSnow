@@ -7,6 +7,15 @@
 
     public class Article : BaseModel<int>
     {
+        private ICollection<Like> likes;
+        private ICollection<Comment> comments;
+
+        public Article()
+        {
+            this.likes = new HashSet<Like>();
+            this.comments = new HashSet<Comment>();
+        }
+
         [Required]
         public string Title { get; set; }
 
@@ -18,8 +27,22 @@
 
         public virtual User Creator { get; set; }
 
-        public int PhotoId { get; set; }
+        public int? PhotoId { get; set; }
 
         public virtual File Photo { get; set; }
+
+        public string VideoUrl { get; set; }
+
+        public virtual ICollection<Like> Likes
+        {
+            get { return this.likes; }
+            set { this.likes = value; }
+        }
+
+        public virtual ICollection<Comment> Comments
+        {
+            get { return this.comments; }
+            set { this.comments = value; }
+        }
     }
 }

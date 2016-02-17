@@ -1,7 +1,5 @@
 ﻿namespace TrueSnow.Web.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Web;
@@ -16,20 +14,25 @@
 
     public class PostsController : BaseController
     {
-        private readonly IPostsService posts;
+        private const int HomepagePostsCount = 15;
 
-        public PostsController(IPostsService posts)
+        private readonly IPostsService posts;
+        private readonly UserManager<User> userManager;
+
+        public PostsController(IPostsService posts, UserManager<User> userManager)
         {
             this.posts = posts;
+            this.userManager = userManager;
         }
 
-        public ActionResult Index(int skip)
+        public ActionResult Index()
         {
-            var postsViewModel = this.posts
-                .GetAll()
+            var currentUser = this.userManager.FindById(this.User.Identity.GetUserId());
+            var followingPosts = this.posts.GetFollowingPostsByUserFollowing(currentUser.Following);
+
+            var postsViewModel = followingPosts
                 .To<PostViewModel>()
-                .Skip(skip)
-                .Take(3)
+                .Take(HomepagePostsCount)
                 .ToList();
 
             return this.PartialView("Index", postsViewModel);
@@ -67,7 +70,7 @@
                 {
                     Title = post.Title,
                     Content = post.Content,
-                    CreatorId = this.HttpContext.User.Identity.GetUserId()
+                    CreatorId = this.User.Identity.GetUserId()
                 };
 
                 if (upload != null && upload.ContentLength > 0)

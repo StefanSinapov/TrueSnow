@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace TrueSnow.Web.ViewModels.Comments
+﻿namespace TrueSnow.Web.ViewModels.Comments
 {
+    using System.Collections.Generic;
+
     public class CommentsByPostViewModel
     {
         public List<CommentViewModel> Comments { get; set; }

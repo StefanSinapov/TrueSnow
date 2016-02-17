@@ -1,30 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using Kendo.Mvc.Extensions;
-using Kendo.Mvc.UI;
-using TrueSnow.Data.Models;
-using TrueSnow.Data;
-
-namespace TrueSnow.Web.Areas.Administration.Controllers
+﻿namespace TrueSnow.Web.Areas.Administration.Controllers
 {
-    public class AdminPostsController : Controller
+    using System;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using Data;
+    using Data.Models;
+    using Infrastructure.Constants;
+    using Kendo.Mvc.Extensions;
+    using Kendo.Mvc.UI;
+    using Web.Controllers;
+
+    [Authorize(Roles = IdentityRoles.Administrator)]
+    public class AdminPostsController : BaseController
     {
         private TrueSnowDbContext db = new TrueSnowDbContext();
 
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult Posts_Read([DataSourceRequest]DataSourceRequest request)
         {
-            IQueryable<Post> posts = db.Posts;
+            IQueryable<Post> posts = this.db.Posts;
             DataSourceResult result = posts.ToDataSourceResult(request, post => new
             {
                 Id = post.Id,
@@ -36,13 +36,13 @@ namespace TrueSnow.Web.Areas.Administration.Controllers
                 DeletedOn = post.DeletedOn
             });
 
-            return Json(result);
+            return this.Json(result);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Posts_Create([DataSourceRequest]DataSourceRequest request, Post post)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var entity = new Post
                 {
@@ -54,18 +54,18 @@ namespace TrueSnow.Web.Areas.Administration.Controllers
                     DeletedOn = post.DeletedOn
                 };
 
-                db.Posts.Add(entity);
-                db.SaveChanges();
+                this.db.Posts.Add(entity);
+                this.db.SaveChanges();
                 post.Id = entity.Id;
             }
 
-            return Json(new[] { post }.ToDataSourceResult(request, ModelState));
+            return this.Json(new[] { post }.ToDataSourceResult(request, this.ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Posts_Update([DataSourceRequest]DataSourceRequest request, Post post)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var entity = new Post
                 {
@@ -78,12 +78,12 @@ namespace TrueSnow.Web.Areas.Administration.Controllers
                     DeletedOn = post.DeletedOn
                 };
 
-                db.Posts.Attach(entity);
-                db.Entry(entity).State = EntityState.Modified;
-                db.SaveChanges();
+                this.db.Posts.Attach(entity);
+                this.db.Entry(entity).State = EntityState.Modified;
+                this.db.SaveChanges();
             }
 
-            return Json(new[] { post }.ToDataSourceResult(request, ModelState));
+            return this.Json(new[] { post }.ToDataSourceResult(request, this.ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -100,11 +100,11 @@ namespace TrueSnow.Web.Areas.Administration.Controllers
                 DeletedOn = post.DeletedOn
             };
 
-            db.Posts.Attach(entity);
-            db.Posts.Remove(entity);
-            db.SaveChanges();
+            this.db.Posts.Attach(entity);
+            this.db.Posts.Remove(entity);
+            this.db.SaveChanges();
 
-            return Json(new[] { post }.ToDataSourceResult(request, ModelState));
+            return this.Json(new[] { post }.ToDataSourceResult(request, this.ModelState));
         }
 
         [HttpPost]
@@ -112,12 +112,12 @@ namespace TrueSnow.Web.Areas.Administration.Controllers
         {
             var fileContents = Convert.FromBase64String(base64);
 
-            return File(fileContents, contentType, fileName);
+            return this.File(fileContents, contentType, fileName);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            this.db.Dispose();
             base.Dispose(disposing);
         }
     }

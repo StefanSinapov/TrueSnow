@@ -23,6 +23,12 @@
             this.following = new HashSet<User>();
         }
 
+        public override string Id
+        {
+            get { return base.Id; }
+            set { base.Id = value; }
+        }
+
         [Required]
         public string FirstName { get; set; }
 
@@ -40,7 +46,7 @@
             get { return this.posts; }
             set { this.posts = value; }
         }
-        
+
         public virtual ICollection<User> Followers
         {
             get { return this.followers; }

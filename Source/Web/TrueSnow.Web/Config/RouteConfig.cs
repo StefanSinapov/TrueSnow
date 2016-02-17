@@ -30,6 +30,11 @@
                 defaults: new { controller = "Posts", action = "ById" });
 
             routes.MapRoute(
+                name: "Articles",
+                url: "Articles/{action}/{id}",
+                defaults: new { controller = "Articles", action = "Index", id = UrlParameter.Optional });
+
+            routes.MapRoute(
                 name: "File",
                 url: "File/{id}",
                 defaults: new { controller = "File", action = "Index" });

@@ -256,6 +256,7 @@
     <Compile Include="Hub\Chat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Articles\ArticleViewModel.cs" />
     <Compile Include="ViewModels\Chat\MessageInfo.cs" />
     <Compile Include="ViewModels\Chat\UserInfo.cs" />
     <Compile Include="ViewModels\Comments\CommentsByPostViewModel.cs" />
@@ -313,6 +314,21 @@
     <Content Include="Content\KendoUI\images\wp8_inverseicons.png" />
     <Content Include="Content\KendoUI\kendo.common.min.css" />
     <Content Include="Content\KendoUI\kendo.default.min.css" />
+    <Content Include="Content\KendoUI\kendo.office365.min.css" />
+    <Content Include="Content\KendoUI\Office365\editor.png" />
+    <Content Include="Content\KendoUI\Office365\imagebrowser.png" />
+    <Content Include="Content\KendoUI\Office365\indeterminate.gif" />
+    <Content Include="Content\KendoUI\Office365\loading-image.gif" />
+    <Content Include="Content\KendoUI\Office365\loading.gif" />
+    <Content Include="Content\KendoUI\Office365\loading_2x.gif" />
+    <Content Include="Content\KendoUI\Office365\markers.png" />
+    <Content Include="Content\KendoUI\Office365\markers_2x.png" />
+    <Content Include="Content\KendoUI\Office365\slider-h.gif" />
+    <Content Include="Content\KendoUI\Office365\slider-v.gif" />
+    <Content Include="Content\KendoUI\Office365\sprite.png" />
+    <Content Include="Content\KendoUI\Office365\sprite_2x.png" />
+    <Content Include="Content\KendoUI\Office365\sprite_kpi.png" />
+    <Content Include="Content\KendoUI\Office365\sprite_kpi_2x.png" />
     <Content Include="Content\KendoUI\textures\brushed-metal.png" />
     <Content Include="Content\KendoUI\textures\dots1.png" />
     <Content Include="Content\KendoUI\textures\dots10.png" />
@@ -343,6 +359,8 @@
     <Content Include="Content\KendoUI\textures\stripe6.png" />
     <Content Include="Content\KendoUI\textures\transparency.png" />
     <Content Include="Content\KendoUI\textures\transtexture.png" />
+    <Content Include="Content\slick-theme.css" />
+    <Content Include="Content\slick.css" />
     <Content Include="Content\sweetalert.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -400,6 +418,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\KendoUI\kendo.all.min.js" />
     <Content Include="Scripts\KendoUI\kendo.aspnetmvc.min.js" />
+    <Content Include="Scripts\slick.min.js" />
     <Content Include="Scripts\sweetalert-dev.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -449,6 +468,9 @@
     <Content Include="Views\Profile\Follow.cshtml" />
     <Content Include="Views\Follows\Follow.cshtml" />
     <Content Include="Views\Messages\ByUser.cshtml" />
+    <Content Include="Views\Articles\Index.cshtml" />
+    <Content Include="Views\Articles\Create.cshtml" />
+    <Content Include="Views\Articles\ById.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\TrueSnow.Data.Common\TrueSnow.Data.Common.csproj">

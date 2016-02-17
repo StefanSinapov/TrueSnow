@@ -6,7 +6,7 @@
     using TrueSnow.Data.Common;
     using TrueSnow.Data.Models;
     using Web.Contracts;
-
+    using System.Collections.Generic;
     public class PostsService : IPostsService
     {
         private readonly IDbRepository<Post> posts;
@@ -43,6 +43,21 @@
         {
             this.posts.Add(postToAdd);
             this.posts.Save();
+        }
+
+        public IQueryable<Post> GetFollowingPostsByUserFollowing(ICollection<User> userFollowing)
+        {
+            List<Post> followingPosts = new List<Post>();
+            foreach (User followingUser in userFollowing)
+            {
+                var currentFollowingUserPosts = this.GetByUserId(followingUser.Id);
+                foreach (var post in currentFollowingUserPosts)
+                {
+                    followingPosts.Add(post);
+                }
+            }
+
+            return followingPosts.AsQueryable().OrderByDescending(x => x.CreatedOn);
         }
     }
 }

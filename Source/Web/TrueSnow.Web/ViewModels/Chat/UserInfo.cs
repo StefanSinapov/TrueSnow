@@ -1,4 +1,4 @@
-﻿namespace TrueSnow.Web.ViewModels.Chat
+﻿namespace TrueSnow.Web.Models.Chat
 {
     public class UserInfo
     {
