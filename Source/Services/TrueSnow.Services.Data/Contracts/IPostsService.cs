@@ -9,7 +9,7 @@
     {
         IQueryable<Post> GetAll();
 
-        Post GetById(string id);
+        Post GetById(int id);
 
         IQueryable<Post> GetByUserId(string id);
 

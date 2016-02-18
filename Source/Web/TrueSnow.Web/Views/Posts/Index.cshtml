@@ -4,28 +4,35 @@
 
 @foreach (var post in Model)
 {
+    <!-- Info Post Modal -->
+    <div class="modal" id="postInfoModal-@post.Id" data-easein="fadeIn" tabindex="-1" role="dialog" aria-labelledby="postInfoModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                @{ Html.RenderAction("ById", "Posts", new { id = post.Id }); }
+            </div>
+        </div>
+    </div>
+
     <div class="panel panel-primary" style="border: none;">
         <div class="panel-heading row" style="margin: 0 !important; padding: 0; overflow: hidden">
-            <div class="col-xs-2 col-md-3" style="padding: 0">
+            <div class="col-xs-2 col-md-2" style="padding: 0">
                 <img src="~/File/@post.Creator.Files.First(x => x.FileType == FileType.Avatar).Id" alt="photo" class="img-responsive" style="height: 50px;" />
             </div>
-            <div class="col-xs-10 col-md-9" style="padding: 0; padding-top: 5px;">
+            <div class="col-xs-10 col-md-10" style="padding: 0; padding-top: 5px; margin-left: -30px;">
                 <h3 class="panel-title">
                     <a href="~/Profile/@post.Creator.Id">@post.Creator.FirstName @post.Creator.LastName</a>
-                    <span style="font-size: 11px">on @post.CreatedOn.ToString("dd MMM HH:mm", CultureInfo.CreateSpecificCulture("en-US"))</span>
+                    <span class="pull-right" style="font-size: 13px; margin-left: 12px; margin-top: 13px;"><span class="glyphicon glyphicon-calendar"></span> @post.CreatedOn.ToString("dd MMM HH:mm", CultureInfo.CreateSpecificCulture("en-US"))</span>
+                    <span class="pull-right" style="font-size: 13px; margin-left: 12px; margin-top: 13px;"><span class="glyphicon glyphicon-heart"></span> @post.Likes</span>
+                    <span class="pull-right" style="font-size: 13px; margin-left: 12px; margin-top: 13px;"><span class="glyphicon glyphicon-comment"></span> @post.CommentsCount</span>
                     <br />
-                    <span>@post.Title</span>
+                    <span style="font-size: 21px;">@post.Title</span>
                 </h3>
             </div>
         </div>
         <div class="panel-body" style="padding: 0;">
-            <a href="@post.Url">
+            <a href="#postInfoModal-@post.Id" role="button" data-toggle="modal" data-target="#postInfoModal-@post.Id">
                 <img src="~/File/@post.Photo.Id" alt="photo" class="img-responsive" />
             </a>
-        </div>
-        <div class="panel-footer" style="padding: 5px 10px;">
-            <p style="margin: 0">Comments: @post.CommentsCount</p>
-            <p style="margin: 0">Likes: @post.Likes</p>
         </div>
     </div>
 }

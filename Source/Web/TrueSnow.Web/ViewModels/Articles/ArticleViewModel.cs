@@ -40,14 +40,14 @@
 
         public int Likes { get; set; }
 
-        public string Url
-        {
-            get
-            {
-                IIdentifierProvider identifier = new IdentifierProvider();
-                return $"/Articles/ById/{identifier.EncodeId(this.Id)}";
-            }
-        }
+        //public string Url
+        //{
+        //    get
+        //    {
+        //        IIdentifierProvider identifier = new IdentifierProvider();
+        //        return $"/Articles/ById/{identifier.EncodeId(this.Id)}";
+        //    }
+        //}
 
         public void CreateMappings(IMapperConfiguration configuration)
         {

@@ -10,6 +10,7 @@
     @Scripts.Render("~/bundles/jquery")
     <script src="~/Scripts/jquery.signalR-2.2.0.js"></script>
     <script src="~/signalr/hubs" type="text/javascript"></script>
+    <script src="~/Scripts/velocity.min.js"></script>
     <meta name="description" content="Social network for true snowboarders" />
 </head>
 <body>
@@ -92,10 +93,44 @@
     @Scripts.Render("~/bundles/bootstrap")
     @*@Scripts.Render("~/bundles/kendo")*@
     @*<script type="text/javascript" src="~/Scripts/slick.min.js"></script>*@
+    
     @RenderSection("scripts", required: false)
 
     <script type="text/javascript">
         $(document).ready(function () {
+            $('span[data-action="like"]').click(function () {
+                var id = $(this).attr('data-id');
+
+                $.post(
+                    '/Likes/Like',
+                    {
+                        postId: id
+                    },
+                    function (data) {
+                        $('#likesCount-' + id).html('Likes: ' + data.Count);
+                    });
+            });
+
+            $('span[data-action="unlike"]').click(function () {
+                var id = $(this).attr('data-id');
+
+                $.post(
+                    '/Likes/Unlike',
+                    {
+                        postId: id
+                    },
+                    function (data) {
+                        $('#likesCount-' + id).html('Likes: ' + data.Count);
+                    });
+            });
+
+            $(".modal").each(function (index) {
+                $(this).on('show.bs.modal', function (e) {
+                    var open = $(this).attr('data-easein');
+                    $('.modal-dialog').velocity('transition.' + open);
+                });
+            });
+
             $('#followLink').click(function (e) {
                 e.preventDefault();
                 var href = $(this).attr('href');

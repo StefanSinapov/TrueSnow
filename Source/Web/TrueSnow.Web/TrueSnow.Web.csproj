@@ -420,6 +420,7 @@
     <Content Include="Scripts\KendoUI\kendo.aspnetmvc.min.js" />
     <Content Include="Scripts\slick.min.js" />
     <Content Include="Scripts\sweetalert-dev.js" />
+    <Content Include="Scripts\velocity.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

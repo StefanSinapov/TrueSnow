@@ -10,12 +10,12 @@
     public class PostsService : IPostsService
     {
         private readonly IDbRepository<Post> posts;
-        private readonly IIdentifierProvider identifierProvider;
+        //private readonly IIdentifierProvider identifierProvider;
 
-        public PostsService(IDbRepository<Post> posts, IIdentifierProvider identifierProvider)
+        public PostsService(IDbRepository<Post> posts)
         {
             this.posts = posts;
-            this.identifierProvider = identifierProvider;
+            //this.identifierProvider = identifierProvider;
         }
 
         public IQueryable<Post> GetAll()
@@ -25,10 +25,10 @@
                 .OrderByDescending(p => p.CreatedOn);
         }
 
-        public Post GetById(string id)
+        public Post GetById(int id)
         {
-            var intId = this.identifierProvider.DecodeId(id);
-            return this.posts.GetById(intId);
+            //var intId = this.identifierProvider.DecodeId(id);
+            return this.posts.GetById(id);
         }
 
         public IQueryable<Post> GetByUserId(string id)
