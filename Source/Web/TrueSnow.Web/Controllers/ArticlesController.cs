@@ -81,6 +81,8 @@
                 }
 
                 this.articles.Add(articleToAdd);
+
+                return this.Redirect(this.Request.UrlReferrer.ToString());
             }
 
             return this.View(model);

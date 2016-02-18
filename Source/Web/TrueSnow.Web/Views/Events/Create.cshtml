@@ -1,0 +1,27 @@
+﻿@model TrueSnow.Web.Models.Events.EventViewModel
+
+<h2 class="text-center">Create new event</h2>
+
+@using (Html.BeginForm("Create", "Events", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data", style = "padding: 15px 130px" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Title" })
+    </div>
+
+    <div class="form-group">
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "4", placeholder = "Description" })
+    </div>
+
+    <div class="form-group">
+        <input class="" type="file" placeholder="Photo" id="Photo" name="upload" style="background-color: #4C90B7" />
+    </div>
+
+    <hr />
+
+    <div class="text-center">
+        <input type="submit" class="btn btn-primary" value="Create" style="background-color: #4C90B7; border-color: #4C90B7" />
+    </div>
+}

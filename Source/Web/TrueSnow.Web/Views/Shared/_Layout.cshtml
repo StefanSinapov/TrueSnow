@@ -5,12 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>True Snow</title>
     @Styles.Render("~/Content/css")
-    @*@Styles.Render("~/Content/slick")*@
-    @*@Styles.Render("~/Content/kendo")*@
     @Scripts.Render("~/bundles/jquery")
     <script src="~/Scripts/jquery.signalR-2.2.0.js"></script>
     <script src="~/signalr/hubs" type="text/javascript"></script>
-    <script src="~/Scripts/velocity.min.js"></script>
     <meta name="description" content="Social network for true snowboarders" />
 </head>
 <body>
@@ -75,10 +72,7 @@
         </div>
     </div>
 
-    @Scripts.Render("~/bundles/bootstrap")
-    @*@Scripts.Render("~/bundles/kendo")*@
-    @*<script type="text/javascript" src="~/Scripts/slick.min.js"></script>*@
-    
+    @Scripts.Render("~/bundles/bootstrap")    
     @RenderSection("scripts", required: false)
 
     <script type="text/javascript">
@@ -96,7 +90,6 @@
                     });
 
                 $(this).hide();
-                //$('span[data-action="unlike"][data-id="' + id + '"]').show();
                 $('span[data-action="unlike"]').show();
             });
 
@@ -113,7 +106,6 @@
                     });
 
                 $(this).hide();
-                //$('span[data-action="like"][data-id="' + id + '"]').show();
                 $('span[data-action="like"]').show();
             });
 

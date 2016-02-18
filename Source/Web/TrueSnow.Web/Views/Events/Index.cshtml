@@ -1,0 +1,13 @@
+﻿@model IEnumerable<TrueSnow.Web.Models.Events.EventViewModel>
+
+<h1>All events</h1>
+@Html.ActionLink("Create new", "Create", "Events", null, new { @class = "btn btn-primary" })
+
+@foreach (var currentEvent in Model)
+{
+    <div>
+        <h1>@currentEvent.Title</h1>
+        <img src="~/File/@currentEvent.Photo.Id" alt="photo" class="img-responsive" />
+        <p>@currentEvent.Description</p>
+    </div>
+}

@@ -476,6 +476,10 @@
     <Content Include="Views\Articles\Create.cshtml" />
     <Content Include="Views\Articles\ById.cshtml" />
     <Content Include="Views\Articles\GetLatest.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Events\GetLatest.cshtml" />
+    <Content Include="Views\Events\Create.cshtml" />
+    <Content Include="Views\Events\ById.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\TrueSnow.Data.Common\TrueSnow.Data.Common.csproj">

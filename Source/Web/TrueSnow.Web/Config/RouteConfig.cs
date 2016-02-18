@@ -24,15 +24,15 @@
                 url: "Register",
                 defaults: new { controller = "Account", action = "Register" });
 
-            //routes.MapRoute(
-            //    name: "Post",
-            //    url: "Post/{id}",
-            //    defaults: new { controller = "Posts", action = "ById" });
-
             routes.MapRoute(
                 name: "Articles",
                 url: "Articles/{action}/{id}",
                 defaults: new { controller = "Articles", action = "Index", id = UrlParameter.Optional });
+
+            routes.MapRoute(
+                name: "Events",
+                url: "Events/{action}/{id}",
+                defaults: new { controller = "Events", action = "Index", id = UrlParameter.Optional });
 
             routes.MapRoute(
                 name: "File",
