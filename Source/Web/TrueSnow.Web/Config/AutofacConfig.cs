@@ -58,9 +58,9 @@
             builder.Register(x => new HttpCacheService())
                 .As<ICacheService>()
                 .InstancePerRequest();
-            //builder.Register(x => new IdentifierProvider())
-            //    .As<IIdentifierProvider>()
-            //    .InstancePerRequest();
+            builder.Register(x => new IdentifierProvider())
+                .As<IIdentifierProvider>()
+                .InstancePerRequest();
 
             builder.RegisterType<UserStore<User>>()
                 .As<IUserStore<User>>();

@@ -94,6 +94,10 @@
                     function (data) {
                         $('#likesCount-' + id).html('Likes: ' + data.Count);
                     });
+
+                $(this).hide();
+                //$('span[data-action="unlike"][data-id="' + id + '"]').show();
+                $('span[data-action="unlike"]').show();
             });
 
             $('span[data-action="unlike"]').click(function () {
@@ -107,13 +111,10 @@
                     function (data) {
                         $('#likesCount-' + id).html('Likes: ' + data.Count);
                     });
-            });
 
-            $(".modal").each(function (index) {
-                $(this).on('show.bs.modal', function (e) {
-                    var open = $(this).attr('data-easein');
-                    $('.modal-dialog').velocity('transition.' + open);
-                });
+                $(this).hide();
+                //$('span[data-action="like"][data-id="' + id + '"]').show();
+                $('span[data-action="like"]').show();
             });
 
             $('#followLink').click(function (e) {

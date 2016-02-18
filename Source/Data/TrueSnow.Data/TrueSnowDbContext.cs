@@ -30,11 +30,6 @@
 
         public IDbSet<Post> Posts { get; set; }
 
-        public override IDbSet<User> Users
-        {
-            get { return base.Users; }
-        }
-
         public static TrueSnowDbContext Create()
         {
             return new TrueSnowDbContext();

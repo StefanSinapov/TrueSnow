@@ -9,7 +9,7 @@
     }
     else
     {
-        <img src="~/Content/Images/default-cover.jpg" alt="cover" class="img-responsive" />
+        <img src="~/Content/Images/untitled.png" alt="cover" class="img-responsive" />
     }
 </div>
 
@@ -18,9 +18,9 @@
         <img src="~/File/@Model.Files.First(x => x.FileType == FileType.Avatar).Id" alt="avatar" class="avatar img-responsive img-circle" />
     </div>
     <div class="col-xs-4 col-lg-5">
-        <h1 class="profile-name">@Model.FirstName @Model.LastName</h1>
+        <h1 class="profile-name" style="margin-top: 100px;">@Model.FirstName @Model.LastName</h1>
     </div>
-    <div class="profile-stats col-xs-4 col-lg-5">
+    <div class="profile-stats col-xs-4 col-lg-5" style="margin-top: 100px;">
         <h4 class="pull-left">POSTS <span class="badge">@Model.PostsCount</span></h4>
         <a href="#" data-toggle="modal" data-target="#followingModal" class="pull-left follow-btn">FOLLOWING <span class="badge">@Model.Following.Count</span></a>
         <a href="#" data-toggle="modal" data-target="#followersModal" class="pull-left follow-btn">FOLLOWERS <span class="badge">@Model.Followers.Count</span></a>

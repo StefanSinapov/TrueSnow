@@ -1,6 +1,6 @@
 ﻿@using System.Globalization
 @using TrueSnow.Data.Models
-@model TrueSnow.Web.Models.Posts.PostViewModel
+@model TrueSnow.Web.Models.Posts.PostByIdViewModel
 
 @{
     Layout = null;
@@ -8,24 +8,32 @@
 
 <div class="modal-header" style="background-color: #4C90B7; padding: 0">
     <div class="col-md-3">
-        <img src="~/File/@Model.Creator.Files.First(x => x.FileType == FileType.Avatar).Id" alt="photo" class="img-responsive" style="height: 50px; margin: 10px 0" />
+        <img src="~/File/@Model.PostViewModel.Creator.Files.First(x => x.FileType == FileType.Avatar).Id" alt="photo" class="img-responsive" style="height: 50px; margin: 10px 0" />
     </div>
     <div class="col-md-9" style="margin-top: 15px; padding-left: 70px;">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="postInfoModalLabel" style="color: white; font-size: 25px;">@Model.Title</h4>
+        <h4 class="modal-title" id="postInfoModalLabel" style="color: white; font-size: 25px;">@Model.PostViewModel.Title</h4>
     </div>
 </div>
 <div class="modal-body" style="padding: 0; margin-top: -1px;">
-    <img src="~/File/@Model.Photo.Id" alt="photo" class="img-responsive" />
-    <p>@Model.Content</p>
-    <b>@Model.Creator.FirstName @Model.Creator.LastName</b>
-    <p>@Model.CreatedOn.ToString("dd MMM HH:mm", CultureInfo.CreateSpecificCulture("en-US"))</p>
-    <p id="likesCount-@Model.Id">Likes: @Model.Likes</p>
+    <img src="~/File/@Model.PostViewModel.Photo.Id" alt="photo" class="img-responsive" />
+    <p>@Model.PostViewModel.Content</p>
+    <b>@Model.PostViewModel.Creator.FirstName @Model.PostViewModel.Creator.LastName</b>
+    <p>@Model.PostViewModel.CreatedOn.ToString("dd MMM HH:mm", CultureInfo.CreateSpecificCulture("en-US"))</p>
+    <p id="likesCount-@Model.PostViewModel.Id">Likes: @Model.PostViewModel.Likes</p>
 
     @if (this.Request.IsAuthenticated)
     {
-        <span data-toggle="tooltip" data-placement="top" title="Like" data-original-title="Like" data-id="@Model.Id" data-action="like" class="glyphicon glyphicon-heart" style="font-size: 35px;"></span>
-        <span data-toggle="tooltip" data-placement="top" title="Unlike" data-original-title="Unlike" data-id="@Model.Id" data-action="unlike" class="glyphicon glyphicon-heart-empty" style="font-size: 35px;"></span>
+        if (Model.PostLikedByCurrentUser)
+        {
+            <span data-toggle="tooltip" data-placement="top" title="Unlike" data-original-title="Unlike" data-id="@Model.PostViewModel.Id" data-action="unlike" class="glyphicon glyphicon-heart-empty" style="font-size: 35px; color: red;"></span>
+            <span data-toggle="tooltip" data-placement="top" title="Like" data-original-title="Like" data-id="@Model.PostViewModel.Id" data-action="like" class="glyphicon glyphicon-heart" style="font-size: 35px; display: none; color: red;"></span>
+        }
+        else
+        {
+            <span data-toggle="tooltip" data-placement="top" title="Like" data-original-title="Like" data-id="@Model.PostViewModel.Id" data-action="like" class="glyphicon glyphicon-heart" style="font-size: 35px; color: red;"></span>
+            <span data-toggle="tooltip" data-placement="top" title="Unlike" data-original-title="Unlike" data-id="@Model.PostViewModel.Id" data-action="unlike" class="glyphicon glyphicon-heart-empty" style="font-size: 35px; display: none; color: red;"></span>
+        }
     }
 
     @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { @class = "form-horizontal", role = "form", style = "padding: 10px 50px;" }))
@@ -35,7 +43,7 @@
         <div class="form-group">
             <input class="form-control" data-val="true" data-val-required="The Content field is required." id="Content" name="Content" placeholder="Comment" type="text" value="">
         </div>
-        <input name="PostId" type="hidden" value="@Model.Id" >
+        <input name="PostId" type="hidden" value="@Model.PostViewModel.Id">
         <hr />
 
         <div class="text-center">
@@ -43,5 +51,5 @@
         </div>
     }
     <hr />
-    @{ Html.RenderAction("ByPost", "Comments", new { id = Model.Id }); }
+    @{ Html.RenderAction("ByPost", "Comments", new { id = Model.PostViewModel.Id }); }
 </div>

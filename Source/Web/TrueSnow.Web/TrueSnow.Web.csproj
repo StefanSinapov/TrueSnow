@@ -263,6 +263,7 @@
     <Compile Include="ViewModels\Comments\CommentViewModel.cs" />
     <Compile Include="ViewModels\Comments\InputCommentViewModel.cs" />
     <Compile Include="ViewModels\Events\EventViewModel.cs" />
+    <Compile Include="ViewModels\Posts\PostByIdViewModel.cs" />
     <Compile Include="ViewModels\Posts\PostViewModel.cs" />
     <Compile Include="ViewModels\Users\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Users\Manage\ChangePasswordViewModel.cs" />
@@ -293,6 +294,7 @@
     <Content Include="Content\Images\default-avatar.png" />
     <Content Include="Content\Images\default-cover.jpg" />
     <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\untitled.png" />
     <Content Include="Content\KendoUI\Default\editor.png" />
     <Content Include="Content\KendoUI\Default\imagebrowser.png" />
     <Content Include="Content\KendoUI\Default\indeterminate.gif" />

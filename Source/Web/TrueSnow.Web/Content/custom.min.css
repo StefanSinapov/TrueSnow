@@ -133,7 +133,7 @@ span[data-action="like"], span[data-action="unlike"] {
     padding: 0 !important;
     max-height: 400px;
     overflow: hidden;
-    margin-bottom: -110px !important;
+    margin-bottom: -90px !important;
 }
 
 .edit-profile {

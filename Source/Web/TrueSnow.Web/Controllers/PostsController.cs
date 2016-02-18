@@ -17,11 +17,13 @@
         private const int HomepagePostsCount = 15;
 
         private readonly IPostsService posts;
+        private readonly ILikesService likes;
         private readonly UserManager<User> userManager;
 
-        public PostsController(IPostsService posts, UserManager<User> userManager)
+        public PostsController(IPostsService posts, ILikesService likes, UserManager<User> userManager)
         {
             this.posts = posts;
+            this.likes = likes;
             this.userManager = userManager;
         }
 
@@ -41,7 +43,16 @@
         public ActionResult ById(int id)
         {
             var post = this.posts.GetById(id);
-            var model = this.Mapper.Map<PostViewModel>(post);
+            var postModel = this.Mapper.Map<PostViewModel>(post);
+
+            var like = this.likes.GetByUserAndPostId(this.User.Identity.GetUserId(), id);
+
+            var model = new PostByIdViewModel
+            {
+                PostViewModel = postModel,
+                PostLikedByCurrentUser = like != null
+            };
+
             return this.View("ById", model);
         }
 
