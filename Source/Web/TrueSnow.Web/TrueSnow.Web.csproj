@@ -261,6 +261,7 @@
     <Compile Include="ViewModels\Chat\UserInfo.cs" />
     <Compile Include="ViewModels\Comments\CommentsByPostViewModel.cs" />
     <Compile Include="ViewModels\Comments\CommentViewModel.cs" />
+    <Compile Include="ViewModels\Comments\InputCommentViewModel.cs" />
     <Compile Include="ViewModels\Events\EventViewModel.cs" />
     <Compile Include="ViewModels\Posts\PostViewModel.cs" />
     <Compile Include="ViewModels\Users\Manage\AddPhoneNumberViewModel.cs" />

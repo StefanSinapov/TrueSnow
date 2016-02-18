@@ -1,9 +1,8 @@
-﻿@model TrueSnow.Web.ViewModels.Comments.CommentViewModel
+﻿@model TrueSnow.Web.ViewModels.Comments.InputCommentViewModel
 
 @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { @class = "form-horizontal", role = "form", style = "padding: 10px 50px;" }))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary("", new { @class = "text-danger" })
 
     <div class="form-group">
         @Html.TextBoxFor(m => m.Content, new { @class = "form-control", placeholder = "Comment" })
