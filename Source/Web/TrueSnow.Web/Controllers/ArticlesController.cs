@@ -1,16 +1,17 @@
 ﻿namespace TrueSnow.Web.Controllers
 {
+    using System.IO;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
 
     using Microsoft.AspNet.Identity;
 
-    using Infrastructure.Mapping;
-    using TrueSnow.Services.Data.Contracts;
-    using Models.Articles;
     using Data.Models;
-    using System.IO;
+    using Infrastructure.Mapping;
+    using Models.Articles;
+    using TrueSnow.Services.Data.Contracts;
+
     public class ArticlesController : BaseController
     {
         private readonly IArticlesService articles;
@@ -35,6 +36,13 @@
             var article = this.articles.GetById(id);
             var model = this.Mapper.Map<ArticleViewModel>(article);
             return this.View(model);
+        }
+
+        public ActionResult GetLatest()
+        {
+            var article = this.articles.GetAll().First();
+            var model = this.Mapper.Map<ArticleViewModel>(article);
+            return this.PartialView(model);
         }
 
         public ActionResult Create()

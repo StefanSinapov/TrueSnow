@@ -1,16 +1,15 @@
 ﻿namespace TrueSnow.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
 
     using Contracts;
     using TrueSnow.Data.Common;
     using TrueSnow.Data.Models;
-    using Web.Contracts;
-    using System.Collections.Generic;
+
     public class PostsService : IPostsService
     {
         private readonly IDbRepository<Post> posts;
-        //private readonly IIdentifierProvider identifierProvider;
 
         public PostsService(IDbRepository<Post> posts)
         {

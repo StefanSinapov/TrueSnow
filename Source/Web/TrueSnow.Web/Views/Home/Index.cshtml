@@ -1,7 +1,7 @@
 ﻿<div class="row">
     <div class="col-md-3">
-        <h3 style="text-align: center; margin-top: 0">Latest articles</h3>
-
+        <h3 style="text-align: center; margin-top: 0">Latest article</h3>
+        @{ Html.RenderAction("GetLatest", "Articles"); }
     </div>
 
     <div class="col-md-6">
@@ -9,7 +9,7 @@
     </div>
 
     <div class="col-md-3">
-        <h3 style="text-align: center; margin-top: 0">Latest events</h3>
+        <h3 style="text-align: center; margin-top: 0">Latest event</h3>
 
     </div>
 </div>

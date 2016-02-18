@@ -3,28 +3,12 @@
 <h1>Latest Articles</h1>
 @Html.ActionLink("Create new", "Create", "Articles", null, new { @class = "btn btn-primary" })
 
-<div class="articles-carousel">
-    @foreach (var article in Model)
-    {
-        <div class="item">
-            <img src="~/File/@article.Photo.Id" alt="photo" class="img-responsive" />
-            <p>@article.Creator.FirstName @article.Creator.LastName @article.CreatedOn </p>
-                <a href="@article.Url">@article.Title</a>
-                <p>@article.Content</p>
-        </div>
-    }
-</div>
-
-@*@section scripts {
-    <script>
-        $(document).ready(function(){
-            $('.articles-carousel').slick({
-                dots: true,
-                infinite: true,
-                speed: 500,
-                fade: true,
-                cssEase: 'linear'
-            });
-        });
-    </script>   
-}*@
+@foreach (var article in Model)
+{
+    <div class="item">
+        <img src="~/File/@article.Photo.Id" alt="photo" class="img-responsive" />
+        <p>@article.Creator.FirstName @article.Creator.LastName @article.CreatedOn </p>
+        <a href="@article.Url">@article.Title</a>
+        <p>@article.Content</p>
+    </div>
+}
