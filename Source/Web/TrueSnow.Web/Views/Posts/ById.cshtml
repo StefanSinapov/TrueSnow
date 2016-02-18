@@ -12,7 +12,7 @@
     <h4 class="modal-title pull-left text-center" id="postInfoModalLabel" style="color: white; font-size: 25px; margin-left: 7px;">
         @Model.PostViewModel.Title
         <span style="font-size: 15px; margin-left: 141px; margin-top: 13px;"><span class="glyphicon glyphicon-comment"></span> @Model.PostViewModel.CommentsCount</span>
-        <span style="font-size: 15px; margin-left: 12px; margin-top: 13px;"><span class="glyphicon glyphicon-heart"></span> <span id="likesCount-@Model.PostViewModel.Id"> @Model.PostViewModel.Likes</span></span>
+        <span style="font-size: 15px; margin-left: 12px; margin-top: 13px;"><span class="glyphicon glyphicon-heart"></span> <span class="likesCount-@Model.PostViewModel.Id"> @Model.PostViewModel.Likes</span></span>
         <span style="font-size: 15px; margin-left: 12px; margin-top: 13px;"><span class="glyphicon glyphicon-calendar"></span> @Model.PostViewModel.CreatedOn.ToString("dd MMM HH:mm", CultureInfo.CreateSpecificCulture("en-US"))</span>
     </h4>
 </div>
@@ -50,6 +50,6 @@
             </div>
         </div>
     }
-    <hr />
+
     @{ Html.RenderAction("ByPost", "Comments", new { id = Model.PostViewModel.Id }); }
 </div>

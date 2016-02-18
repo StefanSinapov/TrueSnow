@@ -40,9 +40,9 @@
             }
         }
     </div>
-</div>
 
-@{ Html.RenderAction("ByUserId", "Posts", new { userId = Model.Id }); }
+    @{ Html.RenderAction("ByUserId", "Posts", new { userId = Model.Id }); }
+</div>
 
 <!-- Followers Modal -->
 <div class="modal fade" id="followersModal" tabindex="-1" role="dialog" aria-labelledby="followersModalLabel">

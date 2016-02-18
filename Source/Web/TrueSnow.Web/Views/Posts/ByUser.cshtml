@@ -2,32 +2,37 @@
 @using TrueSnow.Data.Models
 @model IEnumerable<TrueSnow.Web.Models.Posts.PostViewModel>
 
-<div class="row" style="margin-top: 50px;">
-    @foreach (var post in Model)
-    {
-        <div class="col-xs-12 col-md-6 col-lg-4 panel panel-primary" style="border: none;">
-            <div class="panel-heading row" style="margin: 0 !important; padding: 0; overflow: hidden">
-                <div class="col-xs-2 col-md-2" style="padding: 0">
-                    <img src="~/File/@post.Creator.Files.First(x => x.FileType == FileType.Avatar).Id" alt="photo" class="img-responsive" style="height: 50px;" />
-                </div>
-                <div class="col-xs-10 col-md-10" style="padding: 0; padding-top: 5px;">
-                    <h3 class="panel-title">
-                        <a id="userFullName" href="~/Profile/@post.Creator.Id">@post.Creator.FirstName @post.Creator.LastName</a>
-                        <span style="font-size: small">on @post.CreatedOn.ToString("dd MMM HH:mm", CultureInfo.CreateSpecificCulture("en-US"))</span>
-                        <br />
-                        <span>@post.Title</span>
-                    </h3>
-                </div>
-                </div>
-            <div class="panel-body" style="padding: 0;">
-                @*<a href="@post.Url">*@
-                    <img src="~/File/@post.Photo.Id" alt="photo" class="img-responsive" />
-                @*</a>*@
-            </div>
-            <div class="panel-footer" style="padding: 5px 10px;">
-                <p style="margin: 0">Comments: @post.CommentsCount</p>
-                <p style="margin: 0">Likes: @post.Likes</p>
+@foreach (var post in Model)
+{
+        <!-- Info Post Modal -->
+    <div class="modal" id="postInfoModal-@post.Id" data-easein="fadeIn" tabindex="-1" role="dialog" aria-labelledby="postInfoModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                @{ Html.RenderAction("ById", "Posts", new { id = post.Id }); }
             </div>
         </div>
-    }
-</div>
+    </div>
+
+    <div class="panel panel-primary col-xs-12 col-md-6 col-lg-6" style="border: none; margin-top: 60px;">
+        <div class="panel-heading row" style="margin: 0 !important; padding: 0; overflow: hidden; border: none;">
+            <div class="col-xs-2 col-md-2" style="padding: 0">
+                <img src="~/File/@post.Creator.Files.First(x => x.FileType == FileType.Avatar).Id" alt="photo" class="img-responsive" style="height: 50px;" />
+            </div>
+            <div class="col-xs-10 col-md-10" style="padding: 0; padding-top: 5px; margin-left: -30px;">
+                <h3 class="panel-title">
+                    <a href="~/Profile/@post.Creator.Id">@post.Creator.FirstName @post.Creator.LastName</a>
+                    <span class="pull-right" style="font-size: 13px; margin-left: 12px; margin-top: 13px;"><span class="glyphicon glyphicon-calendar"></span> @post.CreatedOn.ToString("dd MMM HH:mm", CultureInfo.CreateSpecificCulture("en-US"))</span>
+                    <span class="pull-right" style="font-size: 13px; margin-left: 12px; margin-top: 13px;"><span class="glyphicon glyphicon-heart"></span> <span class="likesCount-@post.Id"> @post.Likes</span></span>
+                    <span class="pull-right" style="font-size: 13px; margin-left: 12px; margin-top: 13px;"><span class="glyphicon glyphicon-comment"></span> @post.CommentsCount</span>
+                    <br />
+                    <span style="font-size: 21px;">@post.Title</span>
+                </h3>
+            </div>
+        </div>
+        <div class="panel-body" style="padding: 0;">
+            <a href="#postInfoModal-@post.Id" role="button" data-toggle="modal" data-target="#postInfoModal-@post.Id">
+                <img src="~/File/@post.Photo.Id" alt="photo" class="img-responsive" />
+            </a>
+        </div>
+    </div>
+}

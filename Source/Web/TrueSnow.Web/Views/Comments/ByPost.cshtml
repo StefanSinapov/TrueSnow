@@ -2,17 +2,18 @@
 @using TrueSnow.Data.Models
 @model  IEnumerable<TrueSnow.Web.ViewModels.Comments.CommentViewModel>
 
+<hr style="margin: 10px 35px;" />
 @foreach (var comment in Model)
 {
     <div class="row">
-        <div class="col-md-3">
-            <img src="~/File/@comment.Creator.Files.First(x => x.FileType == FileType.Avatar).Id" alt="avatar" class="img-responsive img-circle" style="width: 50px;" />
+        <div class="col-md-2">
+            <img src="~/File/@comment.Creator.Files.First(x => x.FileType == FileType.Avatar).Id" alt="avatar" class="img-responsive img-circle" style="width: 60px; float: right" />
         </div>
-        <div class="col-md-9" style="margin-left: -35px;">
+        <div class="col-md-10" style="margin-left: -20px; padding-top: 8px;">
             <a class="a-profile" href="/Profile/@comment.Creator.Id"><b>@comment.Creator.FirstName @comment.Creator.LastName</b></a>
             <small>@comment.CreatedOn.ToString("dd MMM HH:mm", CultureInfo.CreateSpecificCulture("en-US"))</small>
-            <p>@comment.Content</p>
+            <p style="overflow: auto">@comment.Content</p>
         </div>
     </div>
-    <hr />
+    <hr style="margin: 10px 35px;" />
 }
