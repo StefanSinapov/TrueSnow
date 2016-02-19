@@ -1,0 +1,8 @@
+﻿@model IEnumerable<TrueSnow.Web.Models.Users.ProfileViewModel>
+
+<h2>Users</h2>
+
+@foreach (var user in Model)
+{
+    <p>@user.FirstName @user.LastName</p>
+}

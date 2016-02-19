@@ -1,0 +1,8 @@
+﻿@using (Html.BeginForm("Search", "Search", FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <input name="query" placeholder="Search" />
+
+    <input type="submit" class="btn btn-primary" value="Search" style="background-color: #4C90B7; border-color: #4C90B7" />
+}

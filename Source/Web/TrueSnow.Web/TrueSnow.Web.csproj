@@ -250,6 +250,7 @@
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -483,6 +484,8 @@
     <Content Include="Views\Events\GetLatest.cshtml" />
     <Content Include="Views\Events\Create.cshtml" />
     <Content Include="Views\Events\ById.cshtml" />
+    <Content Include="Views\Search\GetSearch.cshtml" />
+    <Content Include="Views\Search\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\TrueSnow.Data.Common\TrueSnow.Data.Common.csproj">

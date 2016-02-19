@@ -23,7 +23,7 @@
     <img src="~/File/@Model.PostViewModel.Photo.Id" alt="photo" class="img-responsive" />
     <p style="margin: 15px;">@Model.PostViewModel.Content</p>
 
-    @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { @class = "form-horizontal", role = "form", style = "padding: 1px 15px;" }))
+    @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { id = "createCommentForm", @class = "form-horizontal", role = "form", style = "padding: 1px 15px;" }))
     {
         @Html.AntiForgeryToken()
         <input name="PostId" type="hidden" value="@Model.PostViewModel.Id">
@@ -55,3 +55,54 @@
 
     @{ Html.RenderAction("ByPost", "Comments", new { id = Model.PostViewModel.Id }); }
 </div>
+
+@section scripts {
+    <script>
+        $(function () {
+            $('span[data-action="like"]').click(function () {
+                var id = $(this).attr('data-id');
+
+                $.post(
+                    '/Likes/Like',
+                    {
+                        postId: id
+                    },
+                    function (data) {
+                        $('.likesCount-' + id).html(data.Count);
+                    });
+
+                $(this).hide();
+                $('span[data-action="unlike"][data-id="' + id + '"]').show();
+            });
+
+            $('span[data-action="unlike"]').click(function () {
+                var id = $(this).attr('data-id');
+
+                $.post(
+                    '/Likes/Unlike',
+                    {
+                        postId: id
+                    },
+                    function (data) {
+                        $('.likesCount-' + id).html(data.Count);
+                    });
+
+                $(this).hide();
+                $('span[data-action="like"][data-id="' + id + '"]').show();
+            });
+
+            $('#createCommentForm').on('submit', function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        debugger;
+                    }
+                });
+            });
+        });
+    </script>
+}
