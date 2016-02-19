@@ -7,6 +7,7 @@
     using Models.Users;
     using Data.Models;
 
+    [Authorize]
     public class ProfileController : BaseController
     {
         private readonly UserManager<User> userManager;

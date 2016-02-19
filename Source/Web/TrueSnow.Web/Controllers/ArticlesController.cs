@@ -12,6 +12,7 @@
     using Models.Articles;
     using TrueSnow.Services.Data.Contracts;
 
+    [Authorize]
     public class ArticlesController : BaseController
     {
         private readonly IArticlesService articles;

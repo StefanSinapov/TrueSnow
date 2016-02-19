@@ -12,6 +12,7 @@
     using Models.Events;
     using TrueSnow.Services.Data.Contracts;
 
+    [Authorize]
     public class EventsController : BaseController
     {
         private readonly IEventsService events;

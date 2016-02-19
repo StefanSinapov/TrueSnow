@@ -4,6 +4,7 @@
 
     using TrueSnow.Services.Data.Contracts;
 
+    [Authorize]
     public class FileController : BaseController
     {
         private readonly IFilesService files;

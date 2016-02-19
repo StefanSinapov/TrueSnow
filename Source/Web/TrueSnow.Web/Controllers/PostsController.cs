@@ -12,6 +12,7 @@
     using Infrastructure.Mapping;
     using Services.Data.Contracts;
 
+    [Authorize]
     public class PostsController : BaseController
     {
         private const int HomepagePostsCount = 15;

@@ -9,6 +9,7 @@
     using Infrastructure.Mapping;
     using Models.Users;
 
+    [Authorize]
     public class FollowsController : BaseController
     {
         private readonly UserManager<User> userManager;

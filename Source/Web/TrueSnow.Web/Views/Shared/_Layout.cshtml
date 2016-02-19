@@ -74,7 +74,7 @@
 
     @Scripts.Render("~/bundles/bootstrap")    
     @RenderSection("scripts", required: false)
-
+    
     <script type="text/javascript">
         $(document).ready(function () {
             $('span[data-action="like"]').click(function () {
@@ -90,7 +90,7 @@
                     });
 
                 $(this).hide();
-                $('span[data-action="unlike"]').show();
+                $('span[data-action="unlike"][data-id="' + id + '"]').show();
             });
 
             $('span[data-action="unlike"]').click(function () {
@@ -106,7 +106,7 @@
                     });
 
                 $(this).hide();
-                $('span[data-action="like"]').show();
+                $('span[data-action="like"][data-id="' + id + '"]').show();
             });
 
             $('#followLink').click(function (e) {

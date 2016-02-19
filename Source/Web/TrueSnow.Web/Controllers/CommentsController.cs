@@ -10,6 +10,7 @@
     using Microsoft.AspNet.Identity;
     using Infrastructure.Mapping;
 
+    [Authorize]
     public class CommentsController : BaseController
     {
         private const int CommentsPerPage = 5;
