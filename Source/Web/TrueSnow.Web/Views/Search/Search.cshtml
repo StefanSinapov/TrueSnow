@@ -2,41 +2,45 @@
 
 <h3>Results for "@Model.Query"</h3>
 
-<h3>Users</h3>
-@if (Model.Users == null)
-{
-    <h4>No match</h4>
-}
-else
-{
-    foreach (var user in Model.Users)
-    {
-        <p>@user.FirstName @user.LastName</p>
-    }
-}
-
-<h3>Articles</h3>
-@if (Model.Articles == null)
-{
-    <h4>No match</h4>
-}
-else
-{
-    foreach (var article in Model.Articles)
-    {
-        <p>@article.Title</p>
-    }
-}
-
-<h3>Events</h3>
-@if (Model.Events == null)
-{
-    <h4>No match</h4>
-}
-else
-{
-    foreach (var currentEvent in Model.Events)
-    {
-        <p>@currentEvent.Title</p>
-    }
-}
+<div class="row">
+    <div class="col-xs-12 col-md-4">
+        <h3 class="text-center">Users</h3>
+        @foreach (var user in Model.Users)
+        {
+            <div class="row" style="margin: 20px 0;">
+                <div class="col-xs-4 col-md-3">
+                    <img src="~/File/@user.Files.First(x => x.FileType == FileType.Avatar).Id" alt="avatar" class="img-responsive img-circle" style="height: 60px;" />
+                </div>
+                <div class="col-xs-8 col-md-9" style="padding-left: 0; padding-top: 10px;">
+                    <h4>
+                        <a href="~/Profile/@user.Id">@user.FirstName @user.LastName</a>
+                    </h4>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-xs-12 col-md-4">
+        <h3 class="text-center">Articles</h3>
+        @foreach (var article in Model.Articles)
+        {
+            <div class="row" style="margin-top: 20px; margin-bottom: 60px;">
+                <h4 class="text-center col-md-12">
+                    <a href="@article.Url">@article.Title</a>
+                </h4>
+                <img src="~/File/@article.Photo.Id" alt="photo" class="col-md-12 img-responsive" />
+            </div>
+        }
+    </div>
+    <div class="col-xs-12 col-md-4">
+        <h3 class="text-center">Events</h3>
+        @foreach (var currentEvent in Model.Events)
+        {
+            <div class="row" style="margin-top: 20px; margin-bottom: 60px;">
+                <h4 class="text-center col-md-12">
+                    <a href="@currentEvent.Url">@currentEvent.Title</a>
+                </h4>
+                <img src="~/File/@currentEvent.Photo.Id" alt="photo" class="col-md-12 img-responsive" />
+            </div>
+        }
+    </div>
+</div>

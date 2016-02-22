@@ -1,5 +1,5 @@
 ﻿<div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3" style="margin-bottom: 40px;">
         <h3 style="text-align: center; margin-top: 0">Latest article</h3>
         @{ Html.RenderAction("GetLatest", "Articles"); }
     </div>
@@ -8,7 +8,7 @@
         @{ Html.RenderAction("Index", "Posts"); }
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-3" style="margin-bottom: 40px;">
         <h3 style="text-align: center; margin-top: 0">Latest event</h3>
         @{ Html.RenderAction("GetLatest", "Events"); }
     </div>
