@@ -35,6 +35,11 @@ namespace TrueSnow.Web.Areas.Administration
                 new { controller = "AdminArticles", action = "Index" });
 
             context.MapRoute(
+                "Administration_events",
+                "Administration/Events",
+                new { controller = "AdminEvents", action = "Index" });
+
+            context.MapRoute(
                 "Administration_default",
                 "Administration/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional });

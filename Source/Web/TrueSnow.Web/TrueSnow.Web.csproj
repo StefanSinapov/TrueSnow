@@ -237,10 +237,12 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminArticlesController.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminCommentsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\AdminEventsController.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminPostsController.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminUsersController.cs" />
     <Compile Include="Areas\Administration\ViewModels\AdminArticleViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\AdminCommentViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\AdminEventViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\AdminPostViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\AdminUserViewModel.cs" />
     <Compile Include="Config\ApplicationSignInManager.cs" />
@@ -424,6 +426,7 @@
     <Content Include="Areas\Administration\Views\AdminUsers\Index.cshtml" />
     <Content Include="Areas\Administration\Views\AdminComments\Index.cshtml" />
     <Content Include="Areas\Administration\Views\AdminArticles\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\AdminEvents\Index.cshtml" />
     <None Include="Properties\PublishProfiles\truesnow - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\truesnow - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -551,6 +554,7 @@
   <ItemGroup>
     <Folder Include="Areas\Administration\Views\Shared\" />
     <Folder Include="Views\AdminArticles\" />
+    <Folder Include="Views\AdminEvents\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

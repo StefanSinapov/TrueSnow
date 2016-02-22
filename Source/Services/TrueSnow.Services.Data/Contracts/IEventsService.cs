@@ -11,5 +11,9 @@
         Event GetById(string id);
 
         void Add(Event eventToAdd);
+
+        void Save();
+
+        void Delete(int id);
     }
 }

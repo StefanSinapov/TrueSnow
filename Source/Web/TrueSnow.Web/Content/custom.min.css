@@ -1,4 +1,9 @@
-﻿.modal-open {
+﻿.search-container a:hover {
+    color: #4C90B7;
+    text-decoration: none;
+}
+
+.modal-open {
     overflow-y: auto !important;
 }
 
