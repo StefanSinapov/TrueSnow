@@ -1,0 +1,26 @@
+﻿@(Html.Kendo().Grid<TrueSnow.Web.Areas.Administration.ViewModels.AdminCommentViewModel>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+          columns.Bound(c => c.Id);
+          columns.Bound(c => c.CreatorId);
+          columns.Bound(c => c.Content); 
+          columns.Bound(c => c.PostId);
+          columns.Bound(c => c.EventId);
+          columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+      })
+      .Editable(editable => editable.Mode(GridEditMode.PopUp))
+      .Pageable()
+      .Sortable(sortable => {
+          sortable.SortMode(GridSortMode.SingleColumn);
+      })
+      .Filterable()
+      .Scrollable(scrollable => scrollable.Enabled(false))
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Model(model => model.Id(p => p.Id))
+          .Read(read => read.Action("Comments_Read", "AdminComments"))
+          .Update(update => update.Action("Comments_Update", "AdminComments"))
+          .Destroy(destroy => destroy.Action("Comments_Destroy", "AdminComments"))
+      )
+)

@@ -36,6 +36,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>TrueSnow.Web.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -44,8 +45,13 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>TrueSnow.Web.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AngleSharp, Version=0.9.4.42449, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AngleSharp.0.9.4\lib\net45\AngleSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
@@ -72,6 +78,10 @@
     </Reference>
     <Reference Include="Glimpse.Mvc5, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\TrueSnow\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HtmlSanitizer, Version=3.0.0.0, Culture=neutral, PublicKeyToken=61c49a1a9e79cc28, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\HtmlSanitizer.3.1.93\lib\net45\HtmlSanitizer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Kendo.Mvc">
@@ -225,7 +235,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\AdminArticlesController.cs" />
+    <Compile Include="Areas\Administration\Controllers\AdminCommentsController.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminPostsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\AdminUsersController.cs" />
+    <Compile Include="Areas\Administration\ViewModels\AdminArticleViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\AdminCommentViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\AdminPostViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\AdminUserViewModel.cs" />
     <Compile Include="Config\ApplicationSignInManager.cs" />
     <Compile Include="Config\ApplicationUserManager.cs" />
     <Compile Include="Config\AutofacConfig.cs" />
@@ -401,8 +418,11 @@
     <Content Include="Content\KendoUI\images\kendoui.ttf" />
     <Content Include="Content\KendoUI\images\kendoui.woff" />
     <Content Include="Areas\Administration\Views\web.config" />
-    <Content Include="Areas\Administration\Views\AdminPosts\Index.cshtml" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Administration\Views\AdminPosts\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\AdminUsers\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\AdminComments\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\AdminArticles\Index.cshtml" />
     <None Include="Properties\PublishProfiles\truesnow - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\truesnow - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -422,9 +442,12 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\KendoUI\kendo.custom.min.js" />
+    <Content Include="Scripts\KendoUI\kendo.grid.min.js" />
     <Content Include="Scripts\KendoUI\kendo.all.min.js" />
     <Content Include="Scripts\KendoUI\kendo.aspnetmvc.min.js" />
     <Content Include="Scripts\materialize.min.js" />
+    <Content Include="Scripts\site.js" />
     <Content Include="Scripts\slick.min.js" />
     <Content Include="Scripts\sweetalert-dev.js" />
     <Content Include="Scripts\velocity.min.js" />
@@ -486,6 +509,7 @@
     <Content Include="Views\Events\ById.cshtml" />
     <Content Include="Views\Search\GetSearch.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
+    <Content Include="TrueSnow.Web.ruleset" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\TrueSnow.Data.Common\TrueSnow.Data.Common.csproj">
@@ -524,9 +548,8 @@
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="Views\AdminPosts\" />
+    <Folder Include="Views\AdminArticles\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

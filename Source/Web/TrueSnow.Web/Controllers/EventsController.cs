@@ -41,7 +41,7 @@
 
         public ActionResult GetLatest()
         {
-            var latestEvent = this.events.GetAll().First();
+            var latestEvent = this.events.GetAll().FirstOrDefault();
             var model = this.Mapper.Map<EventViewModel>(latestEvent);
             return this.PartialView(model);
         }

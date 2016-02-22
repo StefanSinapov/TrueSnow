@@ -41,7 +41,7 @@
 
         public ActionResult GetLatest()
         {
-            var article = this.articles.GetAll().First();
+            var article = this.articles.GetAll().FirstOrDefault();
             var model = this.Mapper.Map<ArticleViewModel>(article);
             return this.PartialView(model);
         }

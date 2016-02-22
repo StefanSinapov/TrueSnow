@@ -26,6 +26,8 @@
         [AllowHtml]
         public string Content { get; set; }
 
+        public string ContentSanitized { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         public File Photo { get; set; }

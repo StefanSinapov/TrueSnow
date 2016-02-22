@@ -20,6 +20,7 @@
     using Microsoft.Owin.Security.DataProtection;
     using System.Web;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Infrastructure;
     public static class AutofacConfig
     {
         public static void RegisterAutofac()
@@ -60,6 +61,9 @@
                 .InstancePerRequest();
             builder.Register(x => new IdentifierProvider())
                 .As<IIdentifierProvider>()
+                .InstancePerRequest();
+            builder.Register(x => new HtmlSanitizerAdapter())
+                .As<ISanitizer>()
                 .InstancePerRequest();
 
             builder.RegisterType<UserStore<User>>()

@@ -56,5 +56,26 @@
                 .Where(c => c.CreatorId == id)
                 .OrderBy(c => c.CreatedOn);
         }
+
+        public int CommentCountByPost(int id)
+        {
+            return this.comments
+                .All()
+                .Where(c => c.PostId == id)
+                .ToList()
+                .Count;
+        }
+
+        public void Save()
+        {
+            this.comments.Save();
+        }
+
+        public void Delete(int id)
+        {
+            var commentToDelete = this.GetById(id);
+            this.comments.Delete(commentToDelete);
+            this.Save();
+        }
     }
 }

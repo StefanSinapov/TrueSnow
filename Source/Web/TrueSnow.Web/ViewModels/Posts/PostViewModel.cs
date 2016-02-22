@@ -8,8 +8,6 @@
     using AutoMapper;
     using Data.Models;
     using Infrastructure.Mapping;
-    using Services.Web;
-    using Services.Web.Contracts;
 
     public class PostViewModel : IMapFrom<Post>, IHaveCustomMappings
     {
@@ -36,19 +34,10 @@
 
         public int Likes { get; set; }
 
-        //public string Url
-        //{
-        //    get
-        //    {
-        //        IIdentifierProvider identifier = new IdentifierProvider();
-        //        return $"/Post/{identifier.EncodeId(this.Id)}";
-        //    }
-        //}
-
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Post, PostViewModel>()
-                .ForMember(x => x.CommentsCount, opts => opts.MapFrom(x => x.Comments.Count))
+                .ForMember(x => x.CommentsCount, opts => opts.MapFrom(x => x.Comments.Where(c => !c.IsDeleted).Count()))
                 .ForMember(x => x.Likes, opts => opts.MapFrom(x => x.Likes.Where(l => !l.IsDeleted).Count()));
         }
     }

@@ -1,6 +1,5 @@
 ﻿namespace TrueSnow.Data.Models
 {
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using Common.Models;
@@ -18,9 +17,5 @@
 
         [Required]
         public FileType FileType { get; set; }
-
-        //public virtual ICollection<User> UsersCover { get; set; }
-
-        //public virtual ICollection<User> UsersAvatar { get; set; }
     }
 }

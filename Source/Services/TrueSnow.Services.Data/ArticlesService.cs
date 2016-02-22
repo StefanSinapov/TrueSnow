@@ -36,5 +36,17 @@
             var intId = this.identifierProvider.DecodeId(id);
             return this.articles.GetById(intId);
         }
+
+        public void Save()
+        {
+            this.articles.Save();
+        }
+
+        public void Delete(int id)
+        {
+            var articleToDelete = this.articles.All().FirstOrDefault(x => x.Id == id);
+            this.articles.Delete(articleToDelete);
+            this.articles.Save();
+        }
     }
 }

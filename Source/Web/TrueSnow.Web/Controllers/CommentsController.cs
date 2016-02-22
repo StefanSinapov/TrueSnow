@@ -9,7 +9,7 @@
     using ViewModels.Comments;
     using Microsoft.AspNet.Identity;
     using Infrastructure.Mapping;
-
+    using System.Globalization;
     [Authorize]
     public class CommentsController : BaseController
     {
@@ -50,8 +50,21 @@
 
                 var currentUser = this.userManager.FindById(this.User.Identity.GetUserId());
                 var creatorAvatarId = currentUser.Files.First(x => x.FileType == FileType.Avatar).Id;
-                var createdOnStr = commentToAdd.CreatedOn.ToString();
-                return this.Json(new { Content = commentToAdd.Content, CreatorAvatarId = creatorAvatarId, CreatedOn = createdOnStr });
+                var creatorFullname = currentUser.FirstName + " " + currentUser.LastName;
+                var createdOnStr = commentToAdd.CreatedOn.ToString("dd MMM HH:mm", CultureInfo.CreateSpecificCulture("en-US"));
+                var commentsCount = this.comments.CommentCountByPost(comment.PostId);
+
+                return this.Json(
+                    new
+                    {
+                        Content = commentToAdd.Content,
+                        CreatorId = currentUser.Id,
+                        CreatorName = creatorFullname,
+                        CreatorAvatarId = creatorAvatarId,
+                        CreatedOn = createdOnStr,
+                        PostId = comment.PostId,
+                        CommentsCount = commentsCount
+                    });
             }
 
             return this.Redirect(this.Request.UrlReferrer.ToString());

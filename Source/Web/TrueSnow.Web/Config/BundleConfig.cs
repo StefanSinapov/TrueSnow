@@ -8,8 +8,7 @@
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/jquery-{version}.intellisense.js"));
+                        "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -21,8 +20,7 @@
                       "~/Scripts/sweetalert-dev.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
-                      "~/Scripts/KendoUI/kendo.all.min.js",
-                      "~/Scripts/KendoUI/kendo.aspnetmvc.min.js"));
+                      "~/Scripts/KendoUI/kendo.custom.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
@@ -32,12 +30,9 @@
 
             bundles.Add(new StyleBundle("~/Content/kendo").Include(
                       "~/Content/KendoUI/kendo.common.min.css",
-                      "~/Content/KendoUI/kendo.default.min.css",
                       "~/Content/KendoUI/kendo.office365.min.css"));
 
-            bundles.Add(new StyleBundle("~/Content/slick").Include(
-                      "~/Content/slick.css",
-                      "~/Content/slick-theme.css"));
+            bundles.IgnoreList.Clear();
         }
     }
 }

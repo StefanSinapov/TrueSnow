@@ -11,5 +11,9 @@
         Article GetById(string id);
 
         void Add(Article articleToAdd);
+
+        void Save();
+
+        void Delete(int id);
     }
 }

@@ -14,7 +14,6 @@
         public PostsService(IDbRepository<Post> posts)
         {
             this.posts = posts;
-            //this.identifierProvider = identifierProvider;
         }
 
         public IQueryable<Post> GetAll()
@@ -26,7 +25,6 @@
 
         public Post GetById(int id)
         {
-            //var intId = this.identifierProvider.DecodeId(id);
             return this.posts.GetById(id);
         }
 

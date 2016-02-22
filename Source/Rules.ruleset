@@ -78,4 +78,15 @@
     <Rule Id="SA1644" Action="Warning" />
     <Rule Id="SA1652" Action="None" />
   </Rules>
+  <Rules AnalyzerId="Telerik.JustCode.RoslynCSharpWarnings" RuleNamespace="Telerik.JustCode.RoslynCSharpWarnings">
+    <Rule Id="JustCode_CSharp_DelegateTypeFileNameMismatch" Action="None" />
+    <Rule Id="JustCode_CSharp_InnerTypeFileNameMismatch" Action="None" />
+    <Rule Id="JustCode_CSharp_TypeFileNameMismatch" Action="None" />
+    <Rule Id="JustCode_ExplicitTypedVariableDeclarationMisused" Action="None" />
+    <Rule Id="JustCode_FieldCanBeMadeReadonly" Action="None" />
+    <Rule Id="JustCode_ImplicitTypedVariableDeclarationMisused" Action="None" />
+    <Rule Id="JustCode_LiteralArgumentIsNotNamedDiagnostic" Action="None" />
+    <Rule Id="JustCode_NamingConventions" Action="None" />
+    <Rule Id="JustCode_RedundantThisQualifier" Action="None" />
+  </Rules>
 </RuleSet>

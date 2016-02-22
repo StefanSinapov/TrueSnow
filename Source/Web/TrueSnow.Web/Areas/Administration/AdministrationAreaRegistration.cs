@@ -2,23 +2,42 @@
 
 namespace TrueSnow.Web.Areas.Administration
 {
-    public class AdministrationAreaRegistration : AreaRegistration 
+    public class AdministrationAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
+        public override string AreaName
         {
-            get 
+            get
             {
                 return "Administration";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
+            context.MapRoute(
+                "Administration_users",
+                "Administration/Users",
+                new { controller = "AdminUsers", action = "Index" });
+
+            context.MapRoute(
+                "Administration_posts",
+                "Administration/Posts",
+                new { controller = "AdminPosts", action = "Index" });
+
+            context.MapRoute(
+                "Administration_comments",
+                "Administration/Comments",
+                new { controller = "AdminComments", action = "Index" });
+
+            context.MapRoute(
+                "Administration_articles",
+                "Administration/Articles",
+                new { controller = "AdminArticles", action = "Index" });
+
             context.MapRoute(
                 "Administration_default",
                 "Administration/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
-            );
+                new { action = "Index", id = UrlParameter.Optional });
         }
     }
 }

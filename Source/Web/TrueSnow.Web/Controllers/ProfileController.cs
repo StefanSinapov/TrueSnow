@@ -22,13 +22,12 @@
             this.TempData["userId"] = id;
             var user = this.userManager.FindById(id);
             var model = this.Mapper.Map<ProfileViewModel>(user);
-
             return this.View(model);
         }
 
         public ActionResult GetUser()
         {
-            var userId = this.HttpContext.User.Identity.GetUserId();
+            var userId = this.User.Identity.GetUserId();
             var currentUser = this.userManager.FindById(userId);
             var model = this.Mapper.Map<ProfileViewModel>(currentUser);
 

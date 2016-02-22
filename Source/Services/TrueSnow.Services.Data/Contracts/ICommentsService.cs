@@ -17,5 +17,11 @@
         Comment GetById(int id);
 
         void Add(Comment commentToAdd);
+
+        int CommentCountByPost(int id);
+
+        void Save();
+
+        void Delete(int id);
     }
 }
