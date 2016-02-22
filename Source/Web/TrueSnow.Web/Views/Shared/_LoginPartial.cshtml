@@ -5,30 +5,31 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
-                @if (this.User.IsInRole(TrueSnow.Web.Infrastructure.Constants.IdentityRoles.Administrator))
-                {
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" id="admin-panel" href="#" aria-expanded="false">Admin Panel <span class="caret"></span></a>
-                        <ul class="dropdown-menu" aria-labelledby="admin-panel">
-                            <li><a href="/Administration/Users">Users</a></li>
-                            <li><a href="/Administration/Posts">Posts</a></li>
-                            <li><a href="/Administration/Comments">Comments</a></li>
-                            <li><a href="/Administration/Articles">Articles</a></li>
-                        </ul>
-                    </li>
-                }
+            @if (this.User.IsInRole(TrueSnow.Web.Infrastructure.Constants.IdentityRoles.Administrator))
+            {
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" id="admin-panel" href="#" aria-expanded="false">Admin Panel <span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="admin-panel">
+                        <li><a href="/Administration/Users">Users</a></li>
+                        <li><a href="/Administration/Posts">Posts</a></li>
+                        <li><a href="/Administration/Comments">Comments</a></li>
+                        <li><a href="/Administration/Articles">Articles</a></li>
+                    </ul>
+                </li>
+            }
+            <li style="margin-top: 10px; margin-right: 10px;"><button class="btn btn-info" data-toggle="modal" data-target="#searchModal" style="height: 39px; background-color: #4C90B7; border-color: #4C90B7;"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></li>
             <li style="margin-top: 10px;"><button class="btn btn-info" data-toggle="modal" data-target="#addPostModal" style="height: 39px; background-color: #4C90B7; border-color: #4C90B7;"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> <b>Post</b></button></li>
             <li class="dropdown" style="padding: 10px;">
                 @{ Html.RenderAction("GetUser", "Profile", new { area = "" }); }
             </li>
         </ul>
-    }
-}
-else
-{
+                        }
+                    }
+                    else
+                    {
     <ul class="nav navbar-nav navbar-right">
         @*<li><a href="#" data-toggle="modal" data-target="#registerModal">Register</a></li>
-        <li><a href="#" data-toggle="modal" data-target="#loginModal">Log in</a></li>*@
+            <li><a href="#" data-toggle="modal" data-target="#loginModal">Log in</a></li>*@
         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>

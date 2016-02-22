@@ -1,8 +1,42 @@
-﻿@model IEnumerable<TrueSnow.Web.Models.Users.ProfileViewModel>
+﻿@model TrueSnow.Web.ViewModels.Search.SearchViewModel
 
-<h2>Users</h2>
+<h3>Results for "@Model.Query"</h3>
 
-@foreach (var user in Model)
+<h3>Users</h3>
+@if (Model.Users == null)
 {
-    <p>@user.FirstName @user.LastName</p>
+    <h4>No match</h4>
+}
+else
+{
+    foreach (var user in Model.Users)
+    {
+        <p>@user.FirstName @user.LastName</p>
+    }
+}
+
+<h3>Articles</h3>
+@if (Model.Articles == null)
+{
+    <h4>No match</h4>
+}
+else
+{
+    foreach (var article in Model.Articles)
+    {
+        <p>@article.Title</p>
+    }
+}
+
+<h3>Events</h3>
+@if (Model.Events == null)
+{
+    <h4>No match</h4>
+}
+else
+{
+    foreach (var currentEvent in Model.Events)
+    {
+        <p>@currentEvent.Title</p>
+    }
 }

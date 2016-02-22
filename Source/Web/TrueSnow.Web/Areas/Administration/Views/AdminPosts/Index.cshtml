@@ -1,20 +1,17 @@
-﻿@(Html.Kendo().Grid<TrueSnow.Data.Models.Post>()
+﻿@(Html.Kendo().Grid<TrueSnow.Web.Areas.Administration.ViewModels.AdminPostViewModel>()
       .Name("grid")
       .Columns(columns =>
       {
-        columns.Bound(c => c.Title);
-        columns.Bound(c => c.Content);
-        columns.Bound(c => c.CreatedOn);
-        columns.Bound(c => c.ModifiedOn);
-        columns.Bound(c => c.IsDeleted);
-        columns.Bound(c => c.DeletedOn);
-        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+          columns.Bound(c => c.Id);
+          columns.Bound(c => c.Title);
+          columns.Bound(c => c.Content);
+          columns.Bound(c => c.CreatorId);
+          columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
       })
       .Editable(editable => editable.Mode(GridEditMode.PopUp))
       .Pageable()
       .Sortable(sortable => {
           sortable.SortMode(GridSortMode.SingleColumn);
-          sortable.AllowUnsort(false);
       })
       .Filterable()
       .Scrollable(scrollable => scrollable.Enabled(false))

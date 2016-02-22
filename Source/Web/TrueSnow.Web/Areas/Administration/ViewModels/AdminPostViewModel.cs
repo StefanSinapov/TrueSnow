@@ -11,6 +11,6 @@
 
         public string Content { get; set; }
 
-        public string Creator { get; set; }
+        public string CreatorId { get; set; }
     }
 }

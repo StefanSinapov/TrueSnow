@@ -1,6 +1,6 @@
-﻿//[TestFixture]
-//public class JokesControllerTests
-//{
+﻿// [TestFixture]
+// public class JokesControllerTests
+// {
 //    [Test]
 //    public void ByIdShouldWorkCorrectly()
 //    {
@@ -19,4 +19,4 @@
     //                    Assert.AreEqual(JokeContent, viewModel.Content);
     //                }).AndNoModelErrors();
 //    }
-//}
+// }

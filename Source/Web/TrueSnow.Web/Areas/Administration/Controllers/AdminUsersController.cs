@@ -78,7 +78,6 @@
             }
             else
             {
-
             }
 
             return this.Json(new[] { user }.ToDataSourceResult(request, this.ModelState));

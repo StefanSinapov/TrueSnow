@@ -8,7 +8,6 @@
         [Test]
         public void ProfileRouteTest()
         {
-
         }
     }
 }

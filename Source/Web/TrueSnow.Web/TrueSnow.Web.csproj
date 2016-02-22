@@ -283,6 +283,7 @@
     <Compile Include="ViewModels\Events\EventViewModel.cs" />
     <Compile Include="ViewModels\Posts\PostByIdViewModel.cs" />
     <Compile Include="ViewModels\Posts\PostViewModel.cs" />
+    <Compile Include="ViewModels\Search\SearchViewModel.cs" />
     <Compile Include="ViewModels\Users\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Users\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Users\Manage\ConfigureTwoFactorViewModel.cs" />

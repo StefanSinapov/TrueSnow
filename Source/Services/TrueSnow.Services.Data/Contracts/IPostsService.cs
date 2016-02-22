@@ -16,5 +16,9 @@
         void Add(Post postToAdd);
 
         IQueryable<Post> GetFollowingPostsByUserFollowing(ICollection<User> userFollowing);
+
+        void Save();
+
+        void Delete(int id);
     }
 }

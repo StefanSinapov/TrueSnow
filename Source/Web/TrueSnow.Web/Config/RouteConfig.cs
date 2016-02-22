@@ -40,6 +40,11 @@
                 defaults: new { controller = "File", action = "Index" });
 
             routes.MapRoute(
+                name: "Search",
+                url: "Search",
+                defaults: new { controller = "Search", action = "Search" });
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional });

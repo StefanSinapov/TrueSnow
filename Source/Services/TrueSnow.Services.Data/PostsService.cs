@@ -56,5 +56,17 @@
 
             return followingPosts.AsQueryable().OrderByDescending(x => x.CreatedOn);
         }
+
+        public void Save()
+        {
+            this.posts.Save();
+        }
+
+        public void Delete(int id)
+        {
+            var postToDelete = this.GetById(id);
+            this.posts.Delete(postToDelete);
+            this.Save();
+        }
     }
 }
